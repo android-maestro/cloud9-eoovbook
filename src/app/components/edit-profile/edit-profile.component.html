@@ -1,0 +1,158 @@
+<app-timeline-header></app-timeline-header>
+<section>
+    <div class="gap-min gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <form method="post" class="c-form" [formGroup]="InsertProfileform" novalidate>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button class="main-btn lgajbtn" *ngIf="personalInfo.ProfileId=='00000000-0000-0000-0000-000000000000'; else templateName " (click)="addDetails()"  type="submit" data-ripple="">Save Profile</button>
+                                
+                                <ng-template #templateName>
+                                    <button class="main-btn lgajbtn" (click)="UpdateDetails()"  type="submit" data-ripple="">Update Profile</button>
+                                </ng-template>
+                            </div> 
+                        </div>
+                        <div class="mt-2">&nbsp;</div>
+                         
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3">
+                                <aside class="sidebar">
+                                <div class="central-meta">
+                                    <span class="create-post">Personal Info</span>
+                                    <div class="personal-head">
+                                    
+                                        <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
+                                    <div class="mb10">
+                                        <input class="form-control" type="text" placeholder="About me" formControlName="AboutMe" [(ngModel)]="personalInfo.AboutMe">
+                                    </div>
+                                        <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
+                                        <div class="mb10">
+                                            <input class="form-control" type="text" placeholder="Blood group (Ex. B+)" formControlName="BloodGroup" [(ngModel)]="personalInfo.BloodGroup">
+                                        </div>
+                                        <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
+                                        <div class="mb10">
+                                            <select name="country" #countryy formControlName="CountryId" [(ngModel)]="postData.CountryId" (change)="fetchState($event,countryy.value)" class="form-control">
+                                                <option *ngFor="let st of country" value="{{st.DataValue}}">{{st.DataText}}</option>
+                                            </select>
+                                        </div>
+                                        <span class="f-title"><i class="fa fa-globe"></i> State:</span>
+                                        <div class="mb10">
+                                            <select name="state" #statee formControlName="StateId" [(ngModel)]="postData.StateId"  (change)="fetchCity($event,statee.value)" class="form-control">
+                                                <option *ngFor="let st of state" value="{{st.DataValue}}">{{st.DataText}}</option>
+                                            </select>
+                                        </div>
+                                        <span class="f-title"><i class="fa fa-globe"></i> City:</span>
+                                        <div class="mb10">
+                                            <select name="city" #cityy formControlName="CityId" [(ngModel)]="postData.CityId" class="form-control">
+                                                <option *ngFor="let st of city" value="{{st.DataValue}}">{{st.DataText}}</option>
+                                            </select>
+                                        </div>
+                                        <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
+                                        <div class="mb10">
+                                            <select class="form-control" formControlName="Occupation" >
+                                                <option formControlName="OccupationId" *ngFor="let item of Occupation" value="{{item.DataValue}}">{{item.DataText}}</option>
+                                            </select>
+                                        </div>
+                                        
+                                        
+                                    
+                                    </div>
+                                </div>
+                                </aside>	
+                            </div>	
+                            <div class="col-lg-9 col-md-9">                            
+                                <div class="central-meta">
+                                    <span class="create-post">Personal Info <a href="javascript:void();" title="">See All</a></span>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span><i class="fa fa-puzzle-piece"></i> Hobbies</span>
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="Hobbies" formControlName="Hobbies" [(ngModel)]="personalInfo.Hobbies">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span><i class="fa fa-mortar-board"></i> Education</span>
+                                                <select class="form-control">
+                                                    <option *ngFor="let item of Education" value="{{item.DataValue}}">{{item.DataText}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span><i class="fa fa-plus"></i> Higher Education</span>
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="Higher Education"  >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>	
+
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span><i class="fa fa-certificate"></i> Work and experience</span>
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="Work & Experience" formControlName="WorkExperience" [(ngModel)]="personalInfo.WorkExperience">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span><i class="fa fa-instagram"></i> Instagram Link</span>
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="https://www.instagram.com/abc" formControlName="InstragramLink" [(ngModel)]="personalInfo.InstragramLink">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span> <i class="fa fa-vk"></i> vk Link </span>
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="https://vk.com/abc" formControlName="VKLink" [(ngModel)]="personalInfo.VKLink">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span> <i class="fa fa-facebook"></i> Facebook Link </span>
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="https://www.facebook.com/abc" formControlName="FacebookLink" [(ngModel)]="personalInfo.FacebookLink">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span><i class="fa fa-twitter"></i> Twitter Link</span>
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="https://www.twitter.com/abc" formControlName="TwitterLink" [(ngModel)]="personalInfo.TwitterLink">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="gen-metabox">
+                                                <span><i class="fa fa-linkedin"></i> Linkedin Link </span>
+                                                <div>
+                                                    <input class="form-control" type="text" placeholder="https://www.linkedin.com/abc" formControlName="LinkedInLink" [(ngModel)]="personalInfo.LinkedInLink">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </div>
+                            </div>
+                        </div>	
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>	
+</section>

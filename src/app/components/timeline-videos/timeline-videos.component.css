@@ -1,0 +1,20 @@
+.videos-list li 
+{
+list-style-type: none;
+}
+.videos-list li 
+{
+display: inline-flex;
+margin-right:10px;
+margin-bottom: 10px;
+}
+
+.videos-list video
+{
+
+width: 175px;
+height: 175px;
+object-fit: cover;
+border: 1px solid #ede9e9;
+border-radius: 10px;
+}

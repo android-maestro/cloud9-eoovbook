@@ -1,0 +1,422 @@
+<app-navbar></app-navbar>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row merged20">
+                <div class="col-lg-9">
+                    <div class="forum-warper" *ngIf="UserRole==='Administrator'">
+                        <div class="central-meta">
+                            <div class="signglepagenewstitile"> Add Author <a href="javascript:void();" data-toggle="collapse" data-target="#addauthor"><i class="fa fa-chevron-down"></i></a></div>
+                            <div id="addauthor">
+                                <form method="post" class="c-form" [formGroup]="NewsAuthorform" novalidate>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Author Name</label>
+                                            <input placeholder="Add Author Name" class="form-control"  formControlName="Name">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Email</label>
+                                            <input type="text" (focusout)="emailVerify()" [ngClass]="{'input-error': NewsAuthorform.controls['Email'].invalid && NewsAuthorform.controls['Email'].touched}"
+                                                        pattern="^[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                                        class="form-control" placeholder="Email Id"
+                                                        formControlName="Email" value="" required>
+                                        </div>
+
+                                        <div *ngIf="NewsAuthorform.controls['Email'].touched">
+                                            <p *ngIf="NewsAuthorform.controls['Email'].errors?.['required']"
+                                                class="alert alert-danger">
+                                                <i class="fa fa-exclamation-circle"></i>&nbsp; Email is
+                                                required.
+                                            </p>
+                                            <p *ngIf="NewsAuthorform.controls['Email'].errors?.['pattern']"
+                                                class="alert alert-danger"><i
+                                                    class="fa fa-exclamation-circle"></i>&nbsp; Email
+                                                address is invalid
+                                            </p>
+                                        </div>
+                                        <p *ngIf="emailError!='null'" class="alert alert-danger">
+                                            <i class="fa fa-exclamation-circle"></i>&nbsp; {{emailError}}
+                                        </p>
+
+                                    </div>
+                                    <div class="mt-2"></div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone Number</label>
+                                            <input placeholder="Phone Number" (focusout)="mobileVerify()"
+                                            [ngClass]="{'input-error': NewsAuthorform.controls['Mobile'].invalid && NewsAuthorform.controls['Mobile'].touched}"
+                                            pattern="^((\\+91-?)|0)?[0-9]{10}$" class="form-control"  formControlName="Mobile" [(ngModel)]="postData.Mobile">
+                                            <div *ngIf="NewsAuthorform.controls['Mobile'].touched">
+                                                <p *ngIf="NewsAuthorform.controls['Mobile'].errors?.['required']"
+                                                    class="alert alert-danger">
+                                                    <i class="fa fa-exclamation-circle"></i>&nbsp; Mobile
+                                                    No. is required.
+                                                </p>
+                                            </div>
+                                            <p *ngIf="mobileError!='null'" class="alert alert-danger">
+                                                <i class="fa fa-exclamation-circle"></i>&nbsp;
+                                                {{mobileError}}
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Date of Birth</label>
+                                            <input class="form-control" id="birthday"  class="form-control" formControlName="DateOfBirth" name="date" placeholder="YYYY-MM-DD" bsDatepicker [(ngModel)]="currentData" [bsValue]="bsValue"
+                                                    [minDate]="minDate" [maxDate]="maxDate"   [bsConfig]="{ containerClass:'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false }"  type="text"  required/>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2"></div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="row merged10">
+                                                <div class="col-lg-12">
+                                                    <div class="lfdgs">Gender</div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-12">
+                                                    <div class="form-radio cutomradiobtncss">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" formControlName="Gender"
+                                                                    value="Female" checked="checked"><i
+                                                                    class="check-box"></i>Female
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-12">
+                                                    <div class="form-radio cutomradiobtncss">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input type="radio" formControlName="Gender"
+                                                                    value="Male" checked="checked"><i
+                                                                    class="check-box"></i>Male
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-12">
+                                                    <div class="form-radio cutomradiobtncss">
+                                                        <div class="radio">
+                                                            <label>
+                                                                <input formControlName="Gender"
+                                                                    value="Other" type="radio"
+                                                                    checked="checked"><i
+                                                                    class="check-box"></i>Other
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="mt-2"></div>
+                                    <div class="row">
+                                            <div class="col-lg-4 demo-select">
+                                                <div class="demographictxt">Country</div>
+                                               <select formControlName="CountryId" name="country" #countryy [(ngModel)]="postData.CountryId" (change)="fetchState($event,countryy.value)">
+                                                     <option *ngFor="let st of country" value="{{st.DataValue}}">{{st.DataText}}</option>
+                                                 </select>
+
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="demographictxt">State</div>
+                                                <select formControlName="StateId" name="state" #statee [(ngModel)]="postData.StateId"  (change)="fetchCity($event,statee.value)">
+                                                     <option *ngFor="let st of state" value="{{st.DataValue}}">{{st.DataText}}</option>
+                                                 </select>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="demographictxt">City</div>
+                                                 <select formControlName="CityId" name="city" #cityy [(ngModel)]="postData.CityId">
+                                                     <option *ngFor="let st of city" value="{{st.DataValue}}">{{st.DataText}}</option>
+                                                 </select>
+                                            </div>
+                                        </div>
+                                    <div class="mt-2"></div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="demographictxt">What are your interest?</div>
+
+                                                <div >
+                                                 <label class="checkbox-inline tagssdesign" *ngFor="let value of demographics;">       
+                                                    <input type="checkbox" (change)="onItemSelectItem($event)"  value="{{value.DataValue}}" class="checkmark"  required> {{value.DataText}}
+                                                  </label>
+                                              
+                                                  </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2"></div>
+                                    <div class="col-lg-6 text-center">
+                                        <button (click)="AddAuthor()" type="submit" class="main-btn lgajbtn">Add Author</button>
+                                    </div> 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forum-form">
+                        <div class="central-meta">
+                            <div class="signglepagenewstitile"> Add News <a href="javascript:void();" data-toggle="collapse" data-target="#addnews"><i class="fa fa-chevron-down"></i></a></div>
+                            <div id="addnews">
+                            <form method="post" class="c-form" [formGroup]="newsform" novalidate>
+                                <div class="row">
+                                <div class="col-lg-4">
+                                    <label>Category</label>
+                                    <select class="form-control" formControlName="DemographicId" (change)="selectChangeHandler($event)">
+                                        <option  *ngFor="let demo of demographics" [ngValue]="demo.DataValue">{{demo.DataText}}</option>
+                                    </select>
+                                    
+                                </div>
+                                
+
+                                <div class="mt-2">&nbsp;</div>
+                                <div class="col-md-12">
+                                    <label>Upload News Cover Image</label>
+                                    <div>										 
+                                        <input type="File" (change)="processImage($event)" formControlName="fileToUpload" value="ImageName" accept="image/*">
+                                        <image-cropper
+                                                    [imageChangedEvent]="imageChangedEvent"
+                                                    [maintainAspectRatio]="true"
+                                                    [aspectRatio]="4 / 3"
+                                                    format="png"
+                                                    (imageCropped)="imageCropped($event)"
+                                                    (imageLoaded)="imageLoaded()"
+                                                    (cropperReady)="cropperReady()"
+                                                    (loadImageFailed)="loadImageFailed()"
+                                                ></image-cropper>
+                                        <img [src]="thumbnail" alt="" class="editNewsImage" *ngIf="thumbnail" >					
+                                                            
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Upload Video</label>
+                                    <div>										 
+                                        <input #file type="file" data-toggle="tooltip" data-placement="top" title="Add Videos" (change)="ProcessVideo($event)" formControlName="VideoFiles" value="VideoName" accept='video/*' (change)="previewvideo(file.files)">
+                                        
+                                                        
+                                                            
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">&nbsp;</div>
+
+                                <div class="col-md-6">
+                                    <div class="row">
+                                    <div class="col-md-9">
+                                        <label>Add Image Link</label>
+                                        <div>
+                                            <input formControlName="NewsImageLinks" placeholder="Image Link">
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <label>Add Video Link</label>
+                                            <div>
+                                                <input formControlName="NewsVideoLinks" placeholder="Video Link">
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">&nbsp;</div>
+
+                                
+                                <div>
+
+                                    
+                                        
+                                        <input #files type="File" (change)="postImage($event)" formControlName="ImageFiles" value="ImageName" accept="image/*" multiple>
+                            
+
+                                    </div>
+
+                                <div class="mt-2">&nbsp;</div>
+                                <div class="col-lg-12">
+                                    <label>News Headline</label>
+                                    <input type="text" placeholder="News Headline" [ngClass]="{'input-error': newsform.controls['NewsHeadline'].touched && newsform.controls['NewsHeadline'].invalid}" class="form-control" formControlName="NewsHeadline" required="" minlength="20" maxlength="100">
+                                    <div *ngIf="newsform.controls['NewsHeadline'].touched">
+                                                    <p *ngIf="newsform.controls['NewsHeadline'].errors?.['required']"
+                                                        class="alert alert-danger">
+                                                        <i class="fa fa-exclamation-circle"></i>&nbsp; News Headline is required !!
+                                                    </p>
+                                                    <p *ngIf="newsform.controls['NewsHeadline'].errors?.['maxlength']"
+                                                        class="alert alert-danger">
+                                                        <i class="fa fa-exclamation-circle"></i>&nbsp;Maximum length
+                                                        is 100 !!!
+                                                    </p>
+                                                    <p *ngIf="newsform.controls['NewsHeadline'].errors?.['minlength']"
+                                                        class="alert alert-danger">
+                                                        <i class="fa fa-exclamation-circle"></i>&nbsp;Minimum 20 Charcters long !!!
+                                                    </p>
+                                    </div>
+                                    
+                                </div>
+                                <div class="mt-2">&nbsp;</div>
+                                <div class="col-lg-12">
+                                    <label>News Description</label>
+                                    <ckeditor [editor]="Editor" rows="3" placeholder="News Description" [ngClass]="{'input-error': newsform.controls['NewsBody'].touched && newsform.controls['NewsBody'].invalid}"  formControlName="NewsBody" value="" required>
+                                    </ckeditor>
+
+                                    <div *ngIf="newsform.controls['NewsBody'].touched">
+                                        <p *ngIf="newsform.controls['NewsBody'].errors?.['required']"
+                                                        class="alert alert-danger">
+                                            <i class="fa fa-exclamation-circle"></i>&nbsp; News Body is
+                                                        required !!
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                 <div *ngIf="validateImage!='null'">
+                                            <p class="alert alert-danger">
+                                                <i class="fa fa-exclamation-circle"></i>&nbsp; {{validateImage}}
+                                            </p>
+                                    </div>
+                                <div class="col-lg-3">
+                                    <div class="row merged10">
+                                        <div class="col-lg-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked="checked"
+                                                        class="form-control" formControlName="IsPublic"
+                                                        [ngClass]="{'input-error': newsform.controls['IsPublic'].invalid && newsform.controls['IsPublic'].touched}"
+                                                        required><i class="check-box"></i>
+                                                    <span>Make it Public</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="row merged10">
+                                        <label></label>
+                                        <div class="col-lg-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" checked="checked"
+                                                        class="form-control" formControlName="IsTrending"
+                                                        [ngClass]="{'input-error': newsform.controls['IsTrending'].invalid && newsform.controls['IsTrending'].touched}"
+                                                        required><i class="check-box"></i>
+                                                    <span>Make it Trending</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-2">&nbsp;</div>
+                                <div class="col-lg-12">
+                                    <button class="main-btn lgajbtn" *ngIf="!isAddMode" [disabled]="isLoading" (click)="submit()" type="submit" data-ripple="">
+                                        <img *ngIf="isLoading" style="width: 20px; height: 20px; margin-right: 5px;" src="../assets/img/loading-25.gif" alt="" class="">Post News</button>
+                                        
+                                    <button class="main-btn lgajbtn" *ngIf="isAddMode"  type="submit" (click)="update()" data-ripple="">
+                                        <img *ngIf="isLoading" style="width: 20px; height: 20px; margin-right: 5px;" src="../assets/img/loading-25.gif" alt="" class="">Update News</button>
+                                    <button class="main-btn lgajbtn"  data-ripple="">Cancel</button>
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+
+                    <br/>
+                    <div class="central-meta" style="margin-top:20px;" *ngIf="UserRole==='Administrator'">
+                        <div class="signglepagenewstitile"> Publish News Post <a href="javascript:void();" data-toggle="collapse" data-target="#viewpostnews"><i class="fa fa-chevron-down"></i></a></div>
+                            <div id="viewpostnews">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>Sr. No.</th>
+                                            <th>News Title</th>
+                                            <th>Author Name</th>
+                                            <th>Published Date</th>
+                                            <th>Category</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        <tr *ngFor="let item of news | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalNewsCount }; let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td><a href="javascript:void();" (click)="singleNews(item.Id)">{{item.NewsHeadline}}</a></td>
+                                            <td>{{item.AuthorName}}</td>
+                                            <td>{{item.PulishDays}}</td>
+                                            <td>{{item.NewsCategory}}</td>
+                                            <td><label class="switch">
+                                                <input *ngIf="item.IsActive" (click)="deactivateNews(item.Id)" type="checkbox" checked>
+                                                <input *ngIf="!item.IsActive" (click)="activateNews(item.Id)" type="checkbox" >
+                                                
+                                                <span class="slider round"></span>
+                                              </label> </td>
+                                        </tr>
+                                    </table>
+                                    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                                </div>
+                            </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3" *ngIf="UserRole==='Administrator'">
+                    <aside class="sidebar static right">
+                        
+                        <div class="widget widgetcustom addnewscat" style="padding: 15px;">
+                            <div class="signglepagenewstitile"> Categories <a href="javascript:void();" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a></div>
+                            <div id="demo">
+                            <ul class="forum-static" cdkDropList [cdkDropListData]="categories" (cdkDropListDropped)="drop($event)">
+                                <mat-card #dropListContainer *ngFor="let cat of categories" 
+                                cdkDrag
+                                >
+                                <div>
+                                    <a href="javascript:void();" title="">{{cat.DataText}}</a>
+                                    <span class="editCat" (click)="updateCat(cat.DataText)"><i class="fa fa-edit edt"></i></span>
+                                    <span class="deleteCat" (click)="deleteCat(cat.DataValue,cat.DataText)"><i class="fa fa-trash edt"></i></span>
+                                </div>	
+                                </mat-card>
+                            </ul>
+                        </div>
+                        </div>
+                        
+                    </aside>	
+
+                    <aside class="sidebar static right addcategory">
+                        <div class="widget widgetcustom addnewscat" style="padding:15px;">
+                            <div class="signglepagenewstitile"> Add Category <a href="javascript:void();" data-toggle="collapse" data-target="#addcategory"><i class="fa fa-chevron-down"></i></a></div>
+                            <div id="addcategory">
+                            <div class="forum-form">
+                                <div class="central-meta1">
+                                    <form method="post" class="c-form" [formGroup]="catform" novalidate>
+                                        <div class="row">
+                                        <div class="mt-2">&nbsp;</div>
+                                        <div class="col-lg-12">
+                                            <label>Category Name </label>
+                                            <input type="text" placeholder="Add Category Name" [ngClass]="{'input-error': catform.controls['Name'].touched && catform.controls['Name'].invalid}" class="form-control" formControlName="Name" required="">
+                                            <div *ngIf="catform.controls['Name'].touched">
+                                                            <p *ngIf="catform.controls['Name'].errors?.['required']"
+                                                                class="alert alert-danger">
+                                                                <i class="fa fa-exclamation-circle"></i>&nbsp;Catgeory Name is required !!
+                                                            </p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">&nbsp;</div>
+                                        <div class="col-lg-12">
+                                            <button class="main-btn lgajbtn" *ngIf="!isUpdate"  (click)="submitCat()" type="submit" data-ripple="">Submit Category</button>
+                                            <button class="main-btn lgajbtn" *ngIf="isUpdate" (click)="submitCat()" type="submit" data-ripple="">Update Category</button>
+                                        </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        
+                    </aside>
+
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

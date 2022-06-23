@@ -1,0 +1,219 @@
+.circular_image { 
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    /* commented for demo
+    float: left;
+    margin-left: 125px;
+    margin-top: 20px;
+    */
+    
+    /*for demo*/
+    display:inline-block;
+    vertical-align:top;
+    border: 1px solid #eee;
+  }
+  .circular_image img{
+    width:100%;
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
+  }
+
+  .joincmntybtn
+  {
+    background-color: #5B4B95;
+    color: #fff;
+    font-size: 14px;
+    padding:5px 20px;
+    border: 0px;
+    border-radius: 4px;
+  }
+
+  .joincmntybtn:hover
+  {
+    background-color: #58559C;
+    color: #fff;
+    font-size: 14px;
+    padding:5px 20px;
+    border: 0px;
+    border-radius: 4px;
+  }
+
+  .createyrcmtybtn
+  {
+    background-color:#0CA4F0;
+    color: #fff !important;
+    padding: 2px 20px;
+    text-align: right;
+    float: right;
+    font-size:16px;
+    border-radius:4px;
+  }
+
+  .createyrcmtybtn:hover
+  {
+    background-color:#2C88D5;
+    color: #fff !important;
+    padding: 2px 20px;
+    text-align: right;
+    float: right;
+    font-size:15x;
+    border-radius:4px;
+  }
+
+  .createyourcmtybtn
+  {
+    background-color:#0CA4F0;
+    color: #fff !important;
+    padding: 10px 30px;
+    font-size:16px;
+    border-radius:4px;
+    border: 0;
+    text-align: center;
+  }
+  .createyourcmtybtn:hover
+  {
+    background-color:#2C88D5;
+    color: #fff !important;
+    padding: 10px 30px;
+    font-size:16px;
+    border-radius:4px;
+  }
+
+  .smtitles
+  {
+    font-size:11px;
+    color: #888;
+
+  }
+  .smdescription
+  {
+    font-size:11px;
+    color:#666;
+    line-height:16px !important;
+  
+  }
+
+
+  .communitycard
+  {
+    background-color: #fbfbfb;
+    padding:0px 0px;
+  }
+
+  .communityblubox
+  {
+    background-color: #58559C;
+    color: #fff;
+    padding: 20px 0px;
+  }
+  .smdescript
+  {
+    font-size: 12px;
+    line-height:18px;
+    letter-spacing:0.5px;
+  }
+
+  .nav.nav-tabs.likes-btn > li a.active
+  {
+    color:#fff !important;
+  }
+
+  .communitycard{
+  
+  max-height: 500px;
+  position: relative;
+
+  }
+
+
+.crlfit
+{
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+}
+
+
+  .content {
+    
+    width: 300px;
+    height: 850px;
+    overflow-y: scroll;
+    mask-image: linear-gradient(to top, transparent, black),
+      linear-gradient(to left, transparent 17px, black 17px);
+    mask-size: 100% 20000px;
+    mask-position: left bottom;
+    -webkit-mask-image: linear-gradient(to top, transparent, black),
+      linear-gradient(to left, transparent 17px, black 17px);
+    -webkit-mask-size: 100% 20000px;
+    -webkit-mask-position: left bottom;
+    transition: mask-position 0.3s, -webkit-mask-position 0.3s;
+  }
+  
+  .content:hover {
+    -webkit-mask-position: left top;
+  }
+  
+  @keyframes background {
+    from {
+      background: transparent;
+    }
+    to {
+      background:transparent;
+    }
+  }
+  
+  .wrapper {
+    float: left;
+    animation: background 5s infinite alternate;
+  }
+
+  .requestsntbtn
+  {
+    background-color: #a8adcd ;
+color: #fff;
+font-size: 14px;
+padding: 5px 20px;
+border: 0px;
+border-radius: 4px;
+  }
+  .requestsntbtn:hover
+  {
+    background-color: #a2a8c9 ;
+
+  }
+
+  .circular_admin { 
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* commented for demo
+    float: left;
+    margin-left: 125px;
+    margin-top: 20px;
+    */
+    
+    /*for demo*/
+    display:inline-block;
+    vertical-align:top;
+    border: 1px solid #eee;
+  }
+  .circular_admin img{
+    width:100%;
+    width: 25px !important;
+    height: 25px !important;
+    object-fit: cover;
+  }
+
+  .your-page
+  {
+    padding-bottom:0px;
+  }
+

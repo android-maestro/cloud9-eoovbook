@@ -1,0 +1,147 @@
+<app-header></app-header>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">							
+                        <div class="col-lg-4">
+                            <aside class="sidebar static right">	
+                                <div class="widget widgetcustombg">
+                                    
+                                    <div class="signglepagenewstitile"> Top Trending <a href="javascript:void();" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a></div>
+                                    <div id="demo" class="collapse show">
+                            <ul class="toptrendinslist">
+                                <li *ngFor="let item of trending">
+                                    <div class="toptrendimg"><img style="width:100px !important; height:65px !important; border-radius:5px !important;" alt="" src="{{item.ImageName}}"></div>
+                                    <div class="toptrendingtext">
+                                        <h6><a title="" href="javascript:void(0)"  (click)="singleNews(item.Id)">{{item.NewsHeadline}}</a></h6>
+                                        <a class="pubdate" title="" href="javascript:void();"> {{item.PulishDays}}</a>
+                                    </div>
+                                </li>
+                      
+                            
+                                  </ul>	
+                                </div>
+                                </div>									
+
+                                <!-- <div style="clear:both;"></div>
+                                <div class="widgetcustombg roundboder">
+                                    <ul class="sociaz-media">
+                                        <li><a title="" href="javascript:void();" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a title="" href="javascript:void();" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a title="" href="javascript:void();" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a title="" href="javascript:void();" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div> -->
+
+                            </aside>
+                        </div><!-- sidebar -->
+                        <div class="col-lg-8">
+                            <div class="central-meta item">
+
+                                <div class="user-post">
+                                    <div class="friend-info">
+                                        
+                                        <div class="friend-name">
+                                            
+                                            <ins><h1 class="bigtitle">{{data.NewsHeadline}}</h1></ins>
+                                            <span>published: {{data.PulishDays}}</span>
+                                        </div>	
+                                                                            
+                                        <div class="post-meta">
+                                            <figure>
+                                                <img src="{{data.ImageName}}" alt="">													
+                                            </figure>
+                                            <div class="description descrippara" [innerHTML]="data.NewsBody">
+                                            
+                                            </div>
+                                            
+                                            <div id="commentclick" class="we-video-info">
+                                                <ul>
+                                                    <li>
+                                                        <span class="views" title="views">
+                                                            <i class="fa fa-eye"></i>
+                                                            <ins>{{data.ViewsCount}}</ins>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="like" title="Like/Dislike" ><i class="fa fa-thumbs-o-up"></i> <ins>{{data.LikesCount}}</ins></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="comment" title="Comments" (click)="fetchcomment()">
+                                                            <i class="ti-comments"></i>
+                                                            <ins>{{newsCount}}</ins>
+                                                        </span>
+                                                    </li>
+
+                                                    <li (click)="copyMessage(data.Id)">
+                                                        <span title="Copy News link" data-toggle="tooltip" class="Copy">
+                                                            <i class="fa fa-copy"></i>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>																	
+                                                        <span class="more-post-optns"><i class="fa fa-share-alt"></i>
+                                                            <ul>
+                                                                <li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/newsdetail?newsId={{data.Id}}" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+                                                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/newsdetail?newsId={{data.Id}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+                                                                            <li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{data.NewsHeadline}}&url={{baseUrl}}/newsdetail?newsId={{data.Id}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+                                                                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{data.Id}}&title={{data.NewsHeadline}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>
+                                                                                                                          
+                                                            </ul>
+                                                        </span>																	
+                                                </li>
+
+                                                    <!-- <li>
+                                                        <span>
+                                                            <a class="share-pst" href="javascript:void();" title="Share">
+                                                                <i class="fa fa-share-alt"></i>
+                                                            </a>
+                                                            <ins></ins>
+                                                        </span>	
+                                                    </li> -->
+                                                </ul>
+                                                
+                                            </div>	
+                                        </div>
+                                        <div class="coment-area" style="display: block">
+                                            <ul class="we-comet">
+                                                <li *ngFor="let comment of commentnews" >
+                                                    <div class="comet-avatar">
+                                                        <img src="{{comment.ProfileImage}}" alt="">
+                                                    </div>
+                                                    <div class="we-comment">
+                                                        <h5><a href="javascript:void();" title="">{{comment.CommentBy}}</a></h5>
+                                                        <p>{{comment.NewsComment}}</p>
+                                                        <div class="inline-itms">
+                                                            <span>{{comment.CommentOn |  date:"medium":'+1100'}}</span>
+                                                            <!-- <a class="we-reply" href="javascript:void();" title="Reply"><i class="fa fa-reply"></i></a> -->
+                                                            <!-- <a href="javascript:void();" title=""><i class="fa fa-heart"></i><span>20</span></a> -->
+                                                        </div>
+                                                    </div>
+
+                                                </li>
+                                            
+                                                <!-- <li>
+                                                    <a href="javascript:void();" title="" class="showmore underline">more comments+</a>
+                                                </li> -->
+                                            
+                                            </ul>
+                                                    <div id="footerDiv">
+                                                            <p>Please <a class="registerText" [routerLink]="['/register']">Register</a> to comment/like this news.</p>
+                                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- centerl meta -->
+                        
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>
+
+<app-footer></app-footer>

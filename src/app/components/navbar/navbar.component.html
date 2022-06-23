@@ -1,0 +1,324 @@
+<div class="theme-layout">
+
+    <div class="postoverlay"></div>
+	
+	<div class="responsive-header">
+		<div class="mh-head first mm-sticky">
+			<span class="mh-btns-left">
+				<a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
+			</span>
+			<span class="mh-text">
+				<a href="javascript:void();" title="" [routerLink]="['/dashboard']"><img src="../assets/img/logo-eoovbook.png" alt=""></a>
+			</span>
+			<span class="mh-btns-right">
+				<a class="fa fa-sliders" href="#shoppingbag"></a>
+			</span>
+		</div>
+		<div class="mh-head second">
+			<form class="mh-form">
+				<input placeholder="search" />
+				<a href="#/" class="fa fa-search"></a>
+			</form>
+		</div>
+		<nav id="menu" class="res-menu">
+			<ul>
+				<li><span>Home Pages</span>	</li>
+				<li><span>Menu 1</span> </li>
+				<li><span>Menu 2</span> </li>
+				<li><span>Manu 3</span> </li>
+				<li><span>Menu 4</span> </li>
+				<li><span>Menu 5</span> </li>
+				<li><span>Menu 6</span> </li>
+				<li><span>Menu 7</span> </li>
+				<li><span>Menu 8</span> </li>
+				<li><span>Menu 9</span> </li>
+				<li><span>Menu 10</span> </li>
+			</ul>
+		</nav>
+		
+	</div><!-- responsive header -->
+	
+	<div class="topbar transparent stick">
+		<div class="logo">
+			<a title="" class="logoalign" href="javascript:void();" [routerLink]="['/dashboard']"><img src="../assets/img/logo-eoovbook.png"></a>
+		</div>
+		<div class="top-area">
+			
+			<div class="top-search">
+				<form method="post" class="">
+					<input type="text" placeholder="Search News, People & Community around you"  #searchText (keyup)="$event.keyCode == 13?getSearch(searchText.value): null">
+					<button data-ripple><i class="ti-search"></i></button>
+				</form>
+			</div>
+			
+			<ul class="setting-area floatnone">				
+				<!-- <li>
+					<a  title="Notification" data-ripple="">
+						<img src="../assets/images/svg/bell.svg" title="" alt=""><em class="bg-purple">{{notificationsCount}}</em>
+					</a>
+					<div class="dropdowns">
+						<span>{{notificationsCount}} New Notifications <a href="javascript:void();" title="">Mark all as read</a></span>
+						<ul class="drops-menu">
+							<li *ngFor="let item of friendRequests">
+								<div  *ngIf="item.InvitationStatus=='In progress';">
+									<figure>
+										<img src="{{item.ProfileImage}}" alt="" class="reqstfrndImg">
+									</figure>
+									<div class="mesg-meta">
+										<h6><a href="javascript:void();" title="">{{item.InvitedFrom}}</a></h6>
+										<span>sent you friend request</span>										
+										<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+									</div>
+									<div class="confm-delt-frnds">
+										<a class="confirmfrnds"  (click)="confirmRequest(item.InvitationId,'Accepted')"><i class="fa fa-check"></i> Accept</a>
+										<a  class="detlfriends" (click)="confirmRequest(item.InvitationId,'Rejected')"><i class="fa fa-trash"></i> Reject</a>
+									</div>
+								</div>	
+							</li>
+
+							<li *ngFor="let item of communityNotifications">
+								<div  *ngIf="item.InvitationStatus && item.InvitationType== 'Message1';">
+									<figure>
+										<img src="{{item.ProfileImage}}" alt="" class="reqstfrndImg">
+									</figure>
+									<div  [innerHTML]="item.InvitationMessage" class="mesg-meta">
+										<!-- <h6><a href="javascript:void();" title="">{{item.FullName}}</a></h6> -->
+										<!-- {{item.InvitationMessage}} -->
+										<!-- <span><b>sandeep</b> and 2 other mutual friends</span> -->
+										<!-- <i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i> -->
+									<!-- </div> -->
+									<!-- <div class="confm-delt-frnds">
+										<a href="javascript:void();" class="confirmfrnds"  (click)="communityconfirmRequest(item.InvitationId)"><i class="fa fa-check"></i> Accept</a>
+										<a href="javascript:void();" class="detlfriends" (click)="communityRejectRequest(item.InvitationId)"><i class="fa fa-trash"></i> Reject</a>
+									</div> -->
+								<!-- </div>	 -->
+
+								<!-- <div  *ngIf="item.InvitationStatus=='In Progress' && item.InvitationType== 'Message2';">
+									<figure>
+										<img src="{{item.ProfileImage}}" alt="" class="reqstfrndImg">
+									</figure>
+									<div  [innerHTML]="item.InvitationMessage" class="mesg-meta"> -->
+										<!-- <h6><a href="javascript:void();" title="">{{item.FullName}}</a></h6> -->
+										<!-- {{item.InvitationMessage}}  -->
+										<!-- <span><b>sandeep</b> and 2 other mutual friends</span> -->
+										<!-- <i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i> -->
+									<!-- </div>
+									<div class="confm-delt-frnds">
+										<a href="javascript:void();" class="confirmfrnds"  (click)="communityconfirmRequest(item.InvitationId)"><i class="fa fa-check"></i> Accept</a>
+										<a href="javascript:void();" class="detlfriends" (click)="communityRejectRequest(item.InvitationId)"><i class="fa fa-trash"></i> Reject</a>
+									</div>
+								</div>	
+
+								<div *ngIf="item.InvitationStatus=='In Progress' && item.InvitationType== 'Message3';">
+									<figure>
+										<img src="{{item.ProfileImage}}" alt="" class="reqstfrndImg">
+									</figure>
+									<div  [innerHTML]="item.InvitationMessage" class="mesg-meta"> -->
+										<!-- <h6><a href="javascript:void();" title="">{{item.FullName}}</a></h6> -->
+										<!-- {{item.InvitationMessage}} -->
+										<!-- <span><b>sandeep</b> and 2 other mutual friends</span> -->
+										<!-- <i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+									</div>
+									<div class="confm-delt-frnds">
+										<a href="javascript:void();" class="confirmfrnds"  (click)="AcceptcommunityInvitation(item.InvitationId)"><i class="fa fa-check"></i> Accept</a>
+										<a href="javascript:void();" class="detlfriends" (click)="RejectcommunityInvitation(item.InvitationId)"><i class="fa fa-trash"></i> Reject</a>
+									</div>
+								</div>	
+
+							</li> -->
+
+							
+						<!-- </ul>
+						<a [routerLink]="['/notifications']" title="" class="more-mesg">View All</a>
+					</div>
+				</li>  -->
+				
+                <!-- <li *ngIf="userData.UserRole=='NewsAuthor' || userData.UserRole=='Administrator'">
+					<a href="javascript:void();" title="News"><img src="../assets/images/svg/news.png" alt=""></a>
+					<div class="dropdowns mcuswidth">						
+						<ul class="drops-menu">
+							<li><a class="" href="javascript:void();" [routerLink]="('/addnews')"><i class="fa fa-plus"></i> Add News</a></li>
+							<li><a class="" href="javascript:void();" [routerLink]="('/ebnews')"><i class="fa fa-eye"></i> View News Post</a></li>							
+						</ul>						
+					</div>
+				</li>				 -->
+			</ul>		
+			<div class="dropdown">
+				<button class="dropbtn"><img src="../assets/images/svg/bell.svg" alt="" class="notifictnImg"> <span class="notifycount">{{notificationsCount}}</span> </button>
+				<div class="dropdown-content">
+					<a class="dddatanotify" href="javascript:void();" *ngFor="let item of friendRequests">
+						<div class="notiicon" *ngIf="item.InvitationStatus=='In progress';">
+							<img class="notifyprofileimg" src="{{item.ProfileImage}}" alt="">
+							
+						</div>
+						<div class="mesg-meta">
+							<h6>{{item.InvitedFrom}}</h6>
+							<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+						</div>
+						<div class="confm-delt-frnds flx">
+							<a class="confirmfrnds"  (click)="confirmRequest(item.InvitationId,'Accepted')"><i class="fa fa-check"></i> Accept</a>
+							<a  class="detlfriends" (click)="confirmRequest(item.InvitationId,'Rejected')"><i class="fa fa-trash"></i> Reject</a>
+						</div>
+					</a>
+					<a class="dddatanotify" href="javascript:void();"  *ngFor="let item of communityNotifications">
+						<div class="contentalignment" *ngIf="item.InvitationStatus && item.InvitationType== 'Message1';">
+							<div class="notiicon">
+							<img class="notifyprofileimg" src="{{item.ProfileImage}}" alt="">
+							</div>
+								
+						<div [innerHTML]="item.InvitationMessage" class="mesg-meta">
+
+							{{item.InvitationMessage}}
+							
+							<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+						</div>
+					</div>
+						<!-- ------------------------------------------------------- -->
+
+					<div class="contentalignment" *ngIf="item.InvitationStatus && item.InvitationType== 'Message2';">
+						<div class="notiicon">
+							<img class="notifyprofileimg" src="{{item.ProfileImage}}" alt="">
+							
+						</div>
+								
+						<div [innerHTML]="item.InvitationMessage" class="mesg-meta">
+
+							{{item.InvitationMessage}}
+							
+							<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+						</div>
+
+						<div class="confm-delt-frnds flx">
+							<a href="javascript:void();" class="confirmfrnds"  (click)="communityconfirmRequest(item.InvitationId)"><i class="fa fa-check"></i> Accept</a>
+							<a href="javascript:void();" class="detlfriends" (click)="communityRejectRequest(item.InvitationId)"><i class="fa fa-trash"></i> Reject</a>
+						</div>
+
+					</div>
+
+						<!-- ---------------------------------------------------------- -->
+
+					<div class="contentalignment" *ngIf="item.InvitationStatus && item.InvitationType== 'Message3';">
+						<div class="notiicon">
+							<img class="notifyprofileimg" src="{{item.ProfileImage}}" alt="">
+							
+						</div>
+								
+						<div [innerHTML]="item.InvitationMessage" class="mesg-meta">
+
+							{{item.InvitationMessage}}
+							
+							<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+						</div>
+
+						<div class="confm-delt-frnds flx">
+							<a href="javascript:void();" class="confirmfrnds"  (click)="AcceptcommunityInvitation(item.InvitationId)"><i class="fa fa-check"></i> Accept</a>
+							<a href="javascript:void();" class="detlfriends" (click)="RejectcommunityInvitation(item.InvitationId)"><i class="fa fa-trash"></i> Reject</a>
+						</div>
+					</div>
+
+					</a>
+					
+					
+					<a class="dddatanotify" href="javascript:void(0);" [routerLink]="['/notifications']" style="text-align:center;font-size:11px; color:#ddd;"> View All </a>				  
+				</div>
+			  </div>
+			  <!-- New News button design start -->
+			<div class="dropdown">
+				<button class="dropbtn"><a href="javascript:void();" title="News"><img src="../assets/images/svg/news.png" alt="" class="newsImg"></a> </button>
+				<div class="dropdown-content">
+					<a class="dddata" href="javascript:void();" title="" [routerLink]="('/addnews')"><i class="fa fa-plus"></i> Add News </a>
+					<a class="dddata" href="javascript:void(0);" [routerLink]="('/ebnews')"><i class="fa fa-eye"></i> View News Post</a>				  
+				</div>
+			  </div>
+			 <!-- New News Button design end -->	
+			<!-- <div class="user-img">
+				<h5>{{userData.Name}}</h5>
+				<img src="{{profilePic}}" alt="" class="proflieImg">
+				<span class="status f-online"></span>
+				<div class="user-setting">					
+					<span class="seting-title">User setting </span>
+					<ul class="log-out">
+						<li><a href="javascript:void();" title="" [routerLink]="['/profile/'+userData.Email]"><i class="ti-user"></i> view profile</a></li>						
+						<li><a href="javascript:void(0);" (click)="logout()" title=""><i class="ti-power-off"></i>log out</a></li>
+					</ul>
+				</div>
+			</div> -->
+			 <!-- New Unser profile design start -->
+			<div class="dropdown">
+				<button class="dropbtn"><img src="{{profilePic}}" alt="" class="proflieImg"> {{userData.Name}} <i class="fa fa-chevron-down"></i></button>
+				<div class="dropdown-content">
+					<a class="dddata" href="javascript:void();" title="" [routerLink]="['/profile/'+userData.Email]"><i class="ti-user"></i>View profile</a>
+					<a class="dddata" href="javascript:void(0);" (click)="logout()" title=""><i class="ti-power-off"></i> log out</a>				  
+				</div>
+			  </div>
+			 <!-- New Unser profile design end -->
+
+			 
+		</div>
+		<nav>
+			<ul class="nav-list">
+				
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-film"></i> Videos</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-female"></i> Users</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-graduation-cap"></i> job</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-repeat"></i> Timeline</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-heart"></i> Favourit Page</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-forumbee"></i> Forum</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-star-o"></i> Featured</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-gears"></i> Account Setting</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-lock"></i> Authentication</a>
+					
+				</li>
+				<li><a class="" href="javascript:void();" title=""><i class="fa fa-wrench"></i> Tools</a>
+					
+				</li>
+			</ul>
+			
+		</nav><!-- nav menu -->
+	</div><!-- topbar -->
+	<div class="fixed-sidebar left">
+		<div class="menu-left">
+			<ul class="left-menu">				
+				<li>
+					<a href="javascript:void();" title="Home" data-toggle="tooltip" data-placement="right" (click)="dashboard()">
+						<i class="fa fa-home"></i>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void();" title="News" data-toggle="tooltip" (click)="news()" data-placement="right">
+						<i class="fa fa-globe"></i>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void();" title="Community" data-toggle="tooltip" (click)="community()" data-placement="right">
+						<i class="fa fa-users"></i>
+					</a>
+				</li>	
+				<li>
+					<a href="javascript:void();" title="Marketplace" data-toggle="tooltip" [routerLink]="['/Marketplace']" data-placement="right">
+						<i class="fa fa-shopping-cart"></i>
+					</a>
+				</li>	
+								
+			</ul>
+		</div>	
+	</div>
+	
+	<!-- left sidebar menu -->
+    

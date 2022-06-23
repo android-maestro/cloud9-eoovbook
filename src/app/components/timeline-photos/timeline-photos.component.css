@@ -1,0 +1,30 @@
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lightgallery.css');
+@import url('https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.4/css/lg-zoom.css');
+body {
+  margin: 0;
+}
+.gallery-item {
+  margin: 5px;
+}
+
+
+.pflphots li 
+{
+list-style-type: none;
+}
+.pflphots li 
+{
+display: inline-flex;
+margin-right:10px;
+margin-bottom: 10px;
+}
+
+.pflphots img
+{
+
+width: 160px;
+height: 160px;
+object-fit: cover;
+border: 1px solid #ede9e9;
+border-radius: 10px;
+}

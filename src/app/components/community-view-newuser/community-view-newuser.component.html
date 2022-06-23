@@ -1,0 +1,462 @@
+<app-navbar></app-navbar>
+
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+
+            <div class="row merged20">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row merged20" id="page-contents">
+
+                                <app-community-navbar></app-community-navbar>
+                                
+                                <div *ngIf="data.IsPublic ==true" class="col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <aside class="sidebar">
+                                                <div class="central-meta stick-widget">
+                                                    <span class="create-post">Community Info </span>
+                                                    <div class="personal-head">
+                                                        <span class="f-title"><i class="fa fa-users"></i> Community Name :</span>
+                                                        <p>{{data.GroupName}}</p>
+                                                        <span class="f-title"><i class="fa fa-user"></i> About :</span>
+                                                        <p>
+                                                           {{data.GroupDescription}}
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-calendar"></i> Created On:</span>
+                                                        <p>
+                                                            {{data.CreatedOn | date : 'medium'}}
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-link"></i> URL:</span>
+                                                        <p>
+                                                            htttps://www.eoovbook.com
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-bars"></i> Category :</span>
+                                                        <p>
+                                                            {{data.Category}}
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-male"></i> Guidelines:</span>
+                                                        <p>
+                                                            {{data.GuideLines}}
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-globe"></i> Type:</span>
+                                                        <p *ngIf="data.IsPublic==false">
+                                                            Private
+                                                        </p>
+                                                        <p *ngIf="data.IsPublic==true">
+                                                            Public
+                                                        </p>
+
+                                                        <span class="f-title"><i class="fa fa-user-plus"></i> Member count:</span>
+                                                        <p>
+                                                            {{data.MemberCount}} Member
+                                                        </p>
+                                                               
+                                                                                     
+                                                    </div>
+                                                    
+    
+                                                </div>
+                                                </aside>
+                                           
+                                           
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="central-meta postbox demoboxblur">
+                                                <div class="new-postbox">
+                                                    <div class="newpst-input">
+                                                    <figure class="postfigimg">
+                                                        <img [src]="profilePic" alt="">
+                                                    </figure>                                                
+                                                        <form method="post">
+                                                            <div class="poststatus" >
+                                                                <label class="postname">{{UserName}}</label><br/>
+                                                                <i class="fa fa-globe"></i>
+                                                                <select class="frmctrl" formControlName="PostStatus" [(ngModel)]="defaultOption"  (change)="selectChangeHandler($event)" name="items">
+                                                                    <option  *ngFor="let item of items" [ngValue]="item.DataValue" >{{item.DataText}}</option>
+                                                                </select>
+                                                            </div>  
+                                                            <textarea rows="1" placeholder="What's on your mind, {{UserName}}?" class="fontdesgn" formControlName="Description" required=""></textarea>
+                                                       
+                                                            <div class="attachments" >
+                                                        <ul>                                                                                                                
+                                                            <li>                                                            
+                                                                <label class="fileContainer displayPreview lbltextbgs">
+                                                                    <i class="fa fa-image" style="color:#5D4D99;"></i><span class="posticontitle">Add Photos</span>
+                                                                    <input #files type="File" formControlName="ImageFiles" value="ImageName" accept="image/*" multiple>
+                                                            
+                                                                </label>
+                                                            </li>
+                                                            <li>                                                            
+                                                                <label class="fileContainer displayPreview lbltextbgs">
+                                                                    <i class="fa fa-video-camera" style="color:#5D4D99;"></i><span class="posticontitle">Add Videos</span>
+                                                                    <input #file type="file" data-toggle="tooltip" data-placement="top" title="Add Videos" formControlName="VideoFile" value="VideoName" accept='video/*'>
+                                                                </label>
+                                                            </li>
+                                                           
+                                                        </ul> 
+
+                                                        <!-- <div class="imgpostdiv">
+                                                            <div *ngFor="let url of urls; let index=index" style="float:left ;">
+                                                            <img id="postimg" [src]="url" class="preview_img" multiple >    
+                                                            <span (click)="removeImage(index)"  style="position: absolute; left: 20px;" ><i class="fa fa-window-close" aria-hidden="true" style="color: white;
+                                                                font-size: 20px;"></i></span>   
+                                                            </div>                                            
+                                                        </div> -->
+                                                        <!-- <div>
+                                                            <video [src]="vdoURL" *ngIf="vdoURL" class="preview_img" controls type="video/mp4" >
+                                                                Your browser does not support the video tag.
+                                                              </video>
+                                                              <span (click)="removeVideo()"  style="position: absolute; left: 2px;" ><i class="fa fa-window-close" aria-hidden="true" style="color: white;
+                                                                font-size: 20px;"></i></span>  
+                                                        </div>      -->
+
+                                                    </div>
+
+                                                    <li class="preview-btn" style="list-style-type:none;">
+                                                        <button class="post-btn lgajbtn" type="submit" [disabled]=""  data-ripple=""> 
+                                                         Post</button>
+                                                    </li> 
+                                                
+                                                </form>
+                                            </div>
+                                                    <div class="add-location-post">
+                                                        <span>Drag map point to selected area</span>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <label class="control-label">Lat :</label>
+                                                                <input type="text" class="" id="us3-lat" />
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <label>Long :</label>
+                                                                <input type="text" class="" id="us3-lon" />
+                                                            </div>
+                                                        </div>
+                                                        <!-- map -->
+                                                        <div id="us3"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-wrap">
+                                                    You are not a member of this community, kindly <a href="javascript:void(0);" >Join Community</a>  to resume the community activity 
+                                                </div>
+                                            </div><!-- add post new box -->
+                                            <!-- top stories -->
+                                            <div class="loadMore">                                                
+                                                <div class="central-meta item" *ngFor="let item of CommunityPost">
+                                                    <div class="user-post">
+                                                        <div class="friend-info">
+                                                            <figure [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]">
+                                                                <img src="{{item.ProfileImage}}" alt="">
+                                                            </figure>
+                                                            <div class="friend-name">
+                                                                <div *ngIf="item.Email==UserEmail">
+                                                                <div class="more">
+                                                                    <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                                        <ul>
+                                                                            <!-- <li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                                                            <li (click)="deleteModal(deletetemp)"><i class="fa fa-trash-o"></i>Delete Post</li> -->
+                                                                            <!-- <li class="bad-report"><i class="fa fa-flag"></i>Report Post</li>
+                                                                            <li><i class="fa fa-address-card-o"></i>Boost This Post</li>
+                                                                            <li><i class="fa fa-clock-o"></i>Schedule Post</li>
+                                                                            <li><i class="fa fa-wpexplorer"></i>Select as featured</li>
+                                                                            <li><i class="fa fa-bell-slash-o"></i>Turn off Notifications</li> -->
+                                                                        </ul>
+
+                                                                        <!-- <ng-template #deletetemp>
+                                                                            <div class="modal-body text-center">
+                                                                              <div class="delttext">Are you sure you want to Delete this Post?</div>
+                                                                              <div class="col-lg-12">
+                                                                                <button type="button" class=" main-btn delyesbtn dltbtn" (click)="deletePostPublic(item.PostId)" >Yes</button>
+                                                                                <button type="button" class="main-btn delcancelbtn dltbtn" (click)="decline()" >Cancel</button>
+                                                                              </div>
+                                                                             
+                                                                            </div>
+                                                                          </ng-template> -->
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                                <ins><a href="javascript:void(0);" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" title="{{item.Name}}">{{item.Name}}</a> </ins>
+                                                                <span><i class="fa fa-globe"></i> published: {{(item.PostOn)| date:'medium':'+1100'}} </span>
+                                                            </div>
+                                                            <div class="post-meta">
+                                                                <p>
+                                                                    {{item.Description}}
+                                                                </p>         
+                                                                <figure class="grid-gallery">
+
+                                                                    <div *ngIf="(item.ImageCount)>=1" else templatevideo>
+                                                                        <div *ngFor="let image of item.ePostImages; let i =index; let first = first;" class="gallery-img" >
+                                                                            <div class="imagecontainer" *ngIf="i==0">
+                                                                                
+                                                                            <a class="imagepopout" href="javascript:void();" title="" data-toggle="modal" data-target="#img-comt">
+                                                                            <img src="{{image.PostImageName}}" alt=""  >
+                                                                            <div *ngIf="((item.ImageCount+item.VideoCount)-1==0)"></div>
+                                                                            
+                                                                            <div *ngIf="((item.ImageCount+item.VideoCount)-1>=1)">
+                                                                                <div class="text-block">
+                                                                                    <div [ngClass]="{ first: first }">+ {{(item.ImageCount+item.VideoCount)-1}}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                            </a>
+                                                                            
+                                                                            </div> 
+                                                                            
+                                                                        </div>
+                                                                        
+                                                                        </div>  
+                                                                        
+                                                                        <div #templatevideo [hidden]="item.ImageCount >= 1"  *ngFor="let video of item.ePostVideos" class="gallery-vid">
+                                                                            <video controls>
+                                                                                <source src="{{video.PostVideoName}}" type="video/mp4">
+                                                                            </video>
+                                                                        </div> 
+
+                                                                    <!-- <ul class="like-dislike">
+                                                                        <li><a class="bg-purple" href="#" title="Save to Pin Post"><i class="fa fa-thumb-tack"></i></a></li>
+                                                                        <li><a class="bg-blue" href="#" title="Like Post"><i class="ti-thumb-up"></i></a></li>
+                                                                        <li><a class="bg-red" href="#" title="dislike Post"><i class="ti-thumb-down"></i></a></li>
+                                                                    </ul> -->
+                                                                </figure>
+
+                                                                
+
+                                                                
+                                                                <!-- <div class="description">
+                                                                    <p>
+                                                                       {{item.Description}}
+                                                                    </p>
+                                                                </div> -->
+                                                                <div class="we-video-info">
+                                                                    <ul *ngFor="let count of item.ePostCounts;">
+                                                                        <li>
+                                                                            <!-- <span class="like" *ngIf="checked" title="Like/Dislike"  (click)="UnLikePost(item.PostId)" ><i class="fa fa-thumbs-up"></i> <ins>{{count.LikeCount}}</ins></span>
+                                                                            <span class="like"  *ngIf="!checked" title="Like/Dislike"  (click)="LikePost(item.PostId)" ><i class="fa fa-thumbs-o-up"></i> <ins>{{count.LikeCount}} </ins></span> -->
+                                                                            
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="comment" title="Comments">
+                                                                                <i class="ti-comments"></i>
+                                                                                <ins>{{count.CommentCount}}</ins>
+                                                                            </span>
+                                                                            
+                                                                        </li>
+                                                                        <!-- <li (click)="copyMessage(item.PostId)">
+                                                                            <span title="Copy News link" data-toggle="tooltip" class="Copy">
+                                                                                <i class="fa fa-copy"></i>
+                                                                            </span>
+                                                                        </li> -->
+                
+                                                                        <li>																	
+                                                                            <span class="more-post-optns"><i class="fa fa-share-alt"></i>
+                                                                                <ul>
+                                                                                    <!-- <li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+                                                                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+                                                                                    <li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{item.Description}}&url={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+                                                                                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{item.PostId}}&title={{item.Description}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>   -->
+                
+                                                                                                    
+                
+                                                                                </ul>
+                                                                            </span>																	
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="coment-area" style="display: block;">
+                                                                <ul class="we-comet">
+                                                                    <li *ngFor="let comment of item.ePostComments;">
+                                                                        <div class="comet-avatar" [routerLink]="['/profileDetail/'+  comment.Email + '/' + comment.CommentBy]">
+                                                                            <img src="{{comment.ProfileImage}}" alt="">
+                                                                        </div>
+                                                                        <div class="we-comment">
+                                                                            <h5><a href="javascript:void(0)" [routerLink]="['/profileDetail/'+  comment.Email + '/' + comment.CommentBy]" title="">{{comment.CommentByName}}</a></h5>
+                                                                            <p>{{comment.CommentDescription}}</p>
+                                                                            <div class="inline-itms">
+                                                                                <span>{{comment.CommentOn |  date:'medium':'+1100'}}</span>
+                                                                                <!-- <a class="we-reply" href="javascript:void();" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                <a href="javascript:void();" title=""><i class="fa fa-heart"></i><span>20</span></a> -->
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- <ul class="we-comet">
+                                                                            <li>
+                                                                                <div class="comet-avatar">
+                                                                                    <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                </div>
+                                                                                <div class="we-comment">
+                                                                                    <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                    <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                    <div class="inline-itms">
+                                                                                        <span>1 year ago</span>
+                                                                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                        <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                
+                                                                            </li>
+                                                                            <li>
+                                                                                <div class="comet-avatar">
+                                                                                    <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                </div>
+                                                                                <div class="we-comment">
+                                                                                    <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                    <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                    <div class="inline-itms">
+                                                                                        <span>1 year ago</span>
+                                                                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                        <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <ul class="we-comet">
+                                                                                    <li>
+                                                                                        <div class="comet-avatar">
+                                                                                            <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                        </div>
+                                                                                        <div class="we-comment">
+                                                                                            <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                            <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                            <div class="inline-itms">
+                                                                                                <span>1 year ago</span>
+                                                                                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                                <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <ul class="we-comet">
+                                                                                            <li>
+                                                                                                <div class="comet-avatar">
+                                                                                                    <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                                </div>
+                                                                                                <div class="we-comment">
+                                                                                                    <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                                    <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                                    <div class="inline-itms">
+                                                                                                        <span>1 year ago</span>
+                                                                                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                                        <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <ul class="we-comet">
+                                                                                                    <li>
+                                                                                                        <div class="comet-avatar">
+                                                                                                            <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                                        </div>
+                                                                                                        <div class="we-comment">
+                                                                                                            <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                                            <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                                            <div class="inline-itms">
+                                                                                                                <span>1 year ago</span>
+                                                                                                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                                                <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                        
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </ul> -->
+                                                                    </li>
+                                                                </ul>
+                                                                    <!-- <li>
+                                                                        <a href="javascript:void();" title="" class="showmore underline">more comments+</a>
+                                                                    </li> -->
+                                                                    <ul class="we-comet" style="width:100%;">
+                                                                    <li class="post-comment">
+                                                                        <div class="comet-avatar">
+                                                                            <img [src]="profilePic" alt="">
+                                                                        </div>
+                                                                        <div class="post-comt-box">
+                                                                            <form method="post"  novalidate>
+                                                                                <textarea placeholder="Post your comment" formControlName="Description"  [ngModelOptions]="{standalone: true}"></textarea>
+                                                                                <div class="add-smiles">
+                                                                                    <!-- <ngx-emoj
+                                                                                        (onemojipick)="handleEmoji($event)"
+                                                                                        (onchardelete)="handleCharDelete($event)"
+                                                                                        [width]="'35vh'"
+                                                                                        [height]="'50vh'"
+                                                                                        [theme]="{
+                                                                                            martShowHeader: true,
+                                                                                            martShowFooter: true,
+                                                                                            martHeaderPadding: {x: '0', y: '0'},
+                                                                                            martFooterPadding: {x: '0', y: '0'},
+                                                                                            martHeaderFontSize: '14px',
+                                                                                            martHeaderBG: '#e3e7e8',
+                                                                                            martFooterBG: '#e3e7e8',
+                                                                                            martBG: '#ebeff2',
+                                                                                            martCategoryColor: '#94a0a6',
+                                                                                            martCategoryColorActive: '#455a64',
+                                                                                            martActiveCategoryIndicatorColor: '#00897b',
+                                                                                            martEmojiFontSize: '150%',
+                                                                                            martCategoryFontSize: '20px',
+                                                                                            martBorderRadius: '5px',
+                                                                                            martActiveCategoryIndicatorHeight: '4px',
+                                                                                            martEmojiPadding: {x: '40px', y: '40px'}
+                                                                                        }"
+                                                                                        [recentEmojiStoreKey]="'String'"
+                                                                                        [searchEmojiPlaceholderText]="'String'"
+                                                                                        [emojiNotFoundText]="'String'">
+                                                                                </ngx-emoj> -->
+                                                                                    <button type="submit" class="newssndbtn lgajbtn" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                                                </div>
+                                                                            </form>	
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- video post -->
+                                            </div>
+                                        </div><!-- centerl meta -->
+                                        
+                                    <div class="col-lg-3">
+                                        <aside class="sidebar static right">
+                                            
+                                                <div class="central-meta item">
+                                                    <span class="create-post">Community Members<a title="" href="javascript:void(0);" routerLink="/friend-request">See All</a></span>
+                                                    <div>     
+                                                        <ul class="friendslistingcustom">
+                                                            <li *ngFor="let item of members" class=""><img src="{{item.ProfileImage}}"><br/><a> {{item.FullName}}</a></li>
+                                                        </ul>   
+                                                    </div>
+                                                    
+                                                </div>
+                                            
+                                        </aside>
+                                    </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row merged20" *ngIf="data.IsPublic ==false">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="text-center noRequest">
+                                            <img src="../assets/images/resources/locked.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                            <h4 class="p-3">This is a private community please join to see it</h4>
+                                        </div>
+                                    </div>
+        
+                                </div> 
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+           
+        </div>
+    </div>
+</section>

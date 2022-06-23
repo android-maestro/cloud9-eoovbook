@@ -1,0 +1,40 @@
+
+span.input-group-text{
+    margin: 5px 0 0;
+  }
+  .input-group{
+    height: fit-content;
+  }
+  .errorpass{
+    width: -webkit-fill-available;
+  }
+
+
+  .sociobox
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialicons
+{
+  width:35px;
+  background-color: #fbfbfb;
+  border: 1px solid #ddd;
+  height: 35px;
+  padding:4px;
+  margin-right:10px;
+  border-radius:4px;
+}
+
+.socialicons:hover
+{
+  width:35px;
+  background-color: #fbfbfb;
+  border: 1px solid #ddd;
+  height: 35px;
+  padding:4px;
+  margin-right:10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

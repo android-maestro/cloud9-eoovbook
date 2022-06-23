@@ -1,0 +1,181 @@
+.circular_image { 
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    /* commented for demo
+    float: left;
+    margin-left: 125px;
+    margin-top: 20px;
+    */
+    
+    /*for demo*/
+    display:inline-block;
+    vertical-align:top;
+    border: 1px solid #eee;
+  }
+  .circular_image img{
+    width:100%;
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
+  }
+
+  .joincmntybtn
+  {
+    background-color: #5B4B95;
+    color: #fff;
+    font-size: 12px;
+    padding:5px 15px;
+    border: 0px;
+    border-radius: 4px;
+    width: 120px;
+    margin-top:20px;
+  }
+
+  .joincmntybtn:hover
+  {
+    background-color: #58559C;
+    color: #fff;
+    font-size: 12px;
+    padding:5px 15px;
+    border: 0px;
+    border-radius: 4px;
+  }
+
+  
+
+  .smtitles
+  {
+    font-size:11px;
+    color: #888;
+
+  }
+  .smdescription
+  {
+    font-size:11px;
+    color:#666;
+    line-height:16px !important;
+  
+  }
+
+
+  .communitycard
+  {
+    background-color: #fbfbfb;
+    padding:0px 0px;
+  }
+
+  .communityblubox
+  {
+    background-color: #58559C;
+    color: #fff;
+    padding: 20px 0px;
+  }
+  .smdescript
+  {
+    font-size: 12px;
+    line-height:18px;
+    letter-spacing:0.5px;
+  }
+
+  
+  .communitycard{
+  
+  max-height: 500px;
+  position: relative;
+
+  }
+
+  .wrapper {
+    float: left;
+    animation: background 5s infinite alternate;
+  }
+
+  .requestsntbtn
+  {
+    background-color: #a8adcd ;
+color: #fff;
+font-size: 12px;
+padding: 5px 12px;
+border: 0px;
+border-radius: 4px;
+width: 120px;
+  }
+  .requestsntbtn:hover
+  {
+    background-color: #a2a8c9 ;
+
+  }
+
+  .circular_admin { 
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* commented for demo
+    float: left;
+    margin-left: 125px;
+    margin-top: 20px;
+    */
+    
+    /*for demo*/
+    display:inline-block;
+    vertical-align:top;
+    border: 1px solid #eee;
+  }
+  .circular_admin img{
+    width:100%;
+    width: 25px !important;
+    height: 25px !important;
+    object-fit: cover;
+  }
+
+  .right-pst-meta {
+    display: inline-block;
+    text-align: right;
+    width: 120px;
+    vertical-align: middle;
+  }
+
+
+  .communityflx
+  {
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    
+  }
+  .communitydescpbox
+  {
+      margin-right: 50px;
+      width: 320PX;
+  }
+.communitydescpbox h4
+{
+    color: #535165;
+    font-size: 20px;
+    max-width: 100%;
+    margin-bottom: 5px;
+    position: relative;
+    font-weight: 800;
+    text-transform: capitalize; 
+}
+  .imgfigure {
+      height: 80px !important;
+      width: 80px !important;
+      margin-right: 15px;
+      
+  }
+  .imgfigure img {
+    height: 80px !important;
+    width: 80px !important;
+    object-fit: cover;
+    border: 1px solid #e7e7e9;
+    border-radius: 100%;
+}
+
+

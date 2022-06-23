@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.post{
+	display: none !important;
+}
+
+button:disabled,
+button[disabled]{
+  background-color: lightgrey !important;
+  border: none !important;
+}
+
+.disabled{
+  color: lightgrey !important;
+}
+
+button.lgajbtn:focus{
+  background-color: #e5e6e7 !important;
+    color: #535165 !important;
+}
+button:active{
+	background:#5B4B94 !important;
+}
+
+.readmrtxt{
+	cursor: pointer;
+}

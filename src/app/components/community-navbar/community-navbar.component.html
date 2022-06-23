@@ -1,0 +1,68 @@
+<div class="user-profile">
+    <figure>
+        <!-- <div class="edit-pp">
+            <label class="fileContainer">
+                <i class="fa fa-camera"></i>
+                <input type="file">
+            </label>
+        </div> -->
+        <div class="coverpageimage">
+        <img src="../assets/images/resources/profile-image2.jpg" alt="">    
+    </div>  
+    <div class="row">
+        <div class="col-lg-2 col-md-2">
+            <div class="profile-author positinabslute">
+                <div class="profile-author-thumb radius">
+                    <img alt="author" src="{{thumbnail}}">
+                    <!-- <div class="edit-dp">
+                        <label class="fileContainer">
+                            <i class="fa fa-camera"></i>
+                            <input type="file">
+                        </label>
+                    </div> -->
+                </div>                                                
+            </div>     
+        </div>
+        <div class="col-lg-5 col-md-5">
+            <div class="author-content positionabtcotent">
+                <a class="h4 author-name comntynme" >{{data.GroupName}}</a>
+                <div *ngIf="data.IsPublic" class="country"><i class="fa fa-globe"></i> Public</div>
+                <div *ngIf="!data.IsPublic" class="country"><i class="fa fa-globe"></i> Private</div>
+                <div *ngIf="members" class="grpprivacy"><i class="fa fa-users"></i>  {{members[0].TotalCount}} Members </div>
+                <div *ngIf="!members" class="grpprivacy"><i class="fa fa-users"></i>  No Members </div>
+                <!-- <div class="grpprivacy"><i class="fa fa-ban"></i> Your Account is Blocked</div>                                                 -->
+            </div>
+        </div>
+    </div>
+                                                                         
+    </figure>
+    <div class="profile-section">
+        <div class="row">
+            
+            <div class="col-lg-12 col-md-12">
+                <ul class="profile-menu fltlft comunitymenu">
+                    <li>
+                        <a class="active"><i class="fa fa-home"></i>Home</a>
+                    </li>
+                    <li>
+                        <a class="" href="javascript:void();" (click)="aboutCommunity()"><i class="fa fa-info"></i> About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="javascript:void();" class="" (click)="getCommunity()"><i class="fa fa-users"></i> Members</a>
+                    </li>
+                    <!-- <li>
+                        <a class="">Events</a>
+                    </li> -->
+                    <li *ngIf="data.IsGroupAdmin == true">
+                        <a href="javascript:void();" (click)="getCommunitysetting()" class=""><i class="fa fa-gear"></i> Settings</a>
+                    </li>                                                    
+                </ul>
+                <!-- <div>
+                <button class="joincmntybtn" type="button">Join Community</button>    
+            </div> -->
+                
+            </div>
+        </div>
+    </div>
+</div><!-- user profile banner  -->

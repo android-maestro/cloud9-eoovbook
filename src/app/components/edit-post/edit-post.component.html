@@ -1,0 +1,90 @@
+
+<div class="modal-dialog " >
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit Your Post</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="hideEditModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="postbox">
+            <div class="new-postbox">            
+                <div class="newpst-input">
+                    <figure class="postfigimg">
+                        <img [src]="profilePic" alt="">
+                    </figure>
+                    <form method="post" [formGroup]="postform">
+                        <div class="poststatus">
+                            <label class="postname" style="text-transform: capitalize;">{{UserName}}</label><br/>
+                            <i class="fa fa-globe"></i>
+                            <select class="frmctrl"  formControlName="PostStatusId" (change)="selectChangeHandler($event)" >
+                                <option *ngFor="let item of items" [ngValue]="item.DataValue">{{item.DataText}}</option>
+                            </select>
+                       
+                        </div>
+                        <textarea rows="2" placeholder="Share some what you are thinking?" value="Description" formControlName="Description" class="form-control" required="" ></textarea>
+                    
+                <div class="attachments">
+                    <ul>
+                       
+                        <li>                        
+                            <label class="fileContainer displayPreview lbltextbgs">
+                                <i class="fa fa-image" style="color:#5D4D99;"></i> <span class="posticontitle">Add Photos</span>
+                                <input type="File" (change)="postImage($event)" formControlName="ImageFiles" value="ImageName" accept="image/*" multiple>
+                            </label>
+                           
+                            <!-- <img id="postimg" [src]="url" *ngFor="let url of urls" formControlName="ImageFiles"  class="preview_img" multiple> -->
+                        </li>
+                        <li>                        
+                            <label class="fileContainer displayPreview lbltextbgs">
+                                <i class="fa fa-video-camera" style="color:#5D4D99;"></i> <span class="posticontitle">Add Videos</span>
+                                <div *ngIf="(urlVideo<=0)">
+                                <input #file type="file" data-toggle="tooltip" data-placement="top" title="Add Videos"   (change)="ProcessVideo($event)" formControlName="VideoFile" value="VideoName" accept='video/*' (change)="previewvideo(file.files)">
+                                </div>
+                            </label>
+                            
+                        </li>
+                        <li class="preview-btn">
+                            <button class="post-btn lgajbtn" type="submit" data-ripple="" [disabled]="isLoading" (click)="modifyPost(SelectedPost)">Update</button>
+                        </li>     
+                    </ul>
+    
+                    <div class="imgdivpre">
+                        <div class="imgpostdiv"  *ngFor="let url of urlImage; let index=index" style="position:relative;">
+                            <img id="postimg" [src]="url.PostImageName"  class="preview_img" multiple> 
+    
+                            <span (click)="deleteImage(url.Id, index)"  style="position: absolute; left: 2px; top: 0px;" ><i class="fa fa-window-close" aria-hidden="true" style="color: white;
+                                font-size: 20px;"></i></span>                                               
+                        </div> 
+                        <div class="imgpostdiv"  >
+                            <img id="postimg" [src]="url" *ngFor="let url of urls"  class="preview_img" multiple>                                                   
+                        </div>
+    
+                        <div *ngFor="let obj of urlVideo; let i = index"  style="position:relative;">
+                            <video [src]="obj.PostVideoName" *ngIf="urlVideo" class="preview_img" controls type="video/mp4" >
+                                Your browser does not support the video tag.
+                            </video>
+                            <span (click)="deleteVideo(obj.Id, i)" style="position: absolute; left: 2px; top: 0px;"><i class="fa fa-window-close" aria-hidden="true" style="color: white;
+                                font-size: 20px;"></i></span> 
+                        </div>
+                        <div>
+                            <video [src]="vdoURL" class="preview_img" *ngIf="vdoURL" controls type="video/mp4" >
+                                Your browser does not support the video tag.
+                              </video>
+                        </div>
+                        </div>
+                        
+    
+    
+    
+                  
+                </div>
+            </form>
+    
+                </div>
+               
+            </div>	
+        </div><!-- add post new box -->
+      </div>
+    </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" >Save</button>
+      </div> -->

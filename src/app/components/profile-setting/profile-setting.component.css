@@ -1,0 +1,63 @@
+.editProfile{
+    height: 100px;
+    width: 100px;
+}
+.headerProfile{
+height: 155px;
+width: auto;
+}
+.editProfilebtn{
+font-size: 16px;
+color: #fff;
+background-color: #5B4B94;
+padding: 10px 50px;
+border: medium none;
+border-radius: 30px;
+font-weight: 500;
+transition: all 0.2s linear 0s;
+margin: 10px;
+}
+button.editProfilebtn:focus {
+background-color: #e5e6e7 !important;
+color: #535165 !important;
+}
+.friendslistingcustom
+{
+  padding-left: 0px;
+}
+.friendslistingcustom li {
+  list-style-type:none;
+  display: inline-block;
+}
+
+.friendslistingcustom li
+{
+/*width: 70px;
+height: 60px;
+font-size: 10px;
+text-align: center;
+font-weight: 500;
+margin-bottom: 30px;*/
+
+font-size: 10px;
+text-align: center;
+font-weight: 500;
+margin-bottom: 15px;
+/* border: 1px solid red; */
+width: 86px;
+}
+
+.friendslistingcustom img{
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 100%;
+  box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+  margin-bottom:5px;
+
+}
+input[type="radio"] {
+-webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+-moz-appearance: checkbox;    /* Firefox */
+-ms-appearance: checkbox;     /* not currently supported */
+}

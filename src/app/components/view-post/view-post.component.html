@@ -1,0 +1,105 @@
+<div class="modal-dialog model-xl" style="margin-top: 0rem; overflow: hidden; max-width: 100!important ;">
+    <div class="modal-header" >
+        <h4 class="modal-title" id="modal-basic-title"></h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="hideEditModal()"></button>
+      </div>
+      <div class="modal-body" style="width: 100%;">      
+        <div class="row">      
+            <div class="col-lg-8">
+                <div class="pop-image">
+                    <div class="pop-item">
+                        <carousel data-ride="carousel" [pauseOnHover]="pauseOnHover"  [pauseOnFocus]="pauseOnFocus">
+                            <slide data-interval="false" *ngFor="let image of (PostDatabyID.ePostImages)">
+                              <img src="{{image.PostImageName}}" alt="first slide" style="display: block; width: 100%;">
+                            </slide>
+                            
+                            <slide data-interval="false" *ngFor="let video of PostDatabyID.ePostVideos;">
+                                <div >
+                                <video controls loop onmouseover="this.play()" onmouseout="this.pause();"><source src="{{video.PostVideoName}}" type="video/mp4"></video>
+                                <div [hidden]="!hovering" class="showsOnHover"></div>
+                            </div>
+                            </slide>
+                        
+                          </carousel>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="pad20">
+                <div class="user">
+                    <figure><img src="{{PostDatabyID.ProfileImage}}" alt="" class="ProfileImg"></figure>
+                    <div class="user-information">
+                        <h4><a href="javascript:void();" title="">{{PostDatabyID.Name}}</a></h4>
+                        <span>{{PostDatabyID.PostOn | date:'medium'}}</span>
+                        <p >{{PostDatabyID.Description}}</p>
+                    </div>
+                    
+                    <!-- <a href="javascript:void();" title="Follow" data-ripple="">Follow</a> -->
+                </div>
+                <div class="we-video-info">
+                    <ul *ngFor="let count of PostDatabyID.ePostCounts;">
+                        <li> 
+                                <div class="likes heart" *ngIf="checked" title="Like/Dislike"  (click)="unlikePost(PostDatabyID.PostId)" >❤ <span>{{count.LikeCount}}</span></div>
+                                <div class="likes heart"  *ngIf="!checked" title="Like/Dislike"  (click)="likePost(PostDatabyID.PostId)" > ♡ <span >{{count.LikeCount}} </span></div>
+                                
+                        </li>
+                        <li>
+                            <span class="comment" title="Comments">
+                                <i class="fa fa-commenting"></i>
+                                <ins>{{count.CommentCount}}</ins>
+                            </span>
+                        </li>
+                        <!-- <li >
+                            <span class="views" title="views">
+                                <i class="fa fa-eye"></i>
+                                <ins>80</ins>
+                            </span>
+                        </li>
+                        <li>
+                            <span>
+                                <a class="share-pst" href="javascript:void();" title="Share">
+                                    <i class="fa fa-share-alt"></i>
+                                </a>
+                                <ins>20</ins>
+                            </span>	
+                        </li> -->
+                    </ul>
+                </div>
+                <div style="display: block;" class="coment-area">
+                    <ul class="we-comet ps-container ps-theme-default ps-active-y">
+                        <li *ngFor="let comment of PostDatabyID.ePostComments">
+                            <div class="comet-avatar">
+                                <img src="{{comment.ProfileImage}}" alt="">
+                            </div>
+                            <div class="we-comment">
+                                <h5><a href="time-line.html" title="">{{comment.CommentByName}}</a></h5>
+                                <p>{{comment.CommentDescription}}</p>
+                                <div class="inline-itms">
+                                    <span>{{comment.CommentOn |  date:'medium'}}</span>
+                                    <!-- <a class="we-reply" href="javascript:void();" title="Reply"><i class="fa fa-reply"></i></a>
+                                    <a href="javascript:void();" title=""><i class="fa fa-heart"></i><span>20</span></a> -->
+                                </div>
+                            </div>
+                        </li>
+                        <!-- <li>
+                            <a href="javascript:void();" title="" class="showmore underline">more comments+</a>
+                        </li> -->
+                        <li class="post-comment">
+                            <div class="comet-avatar">
+                                <img [src]="profilePic" alt="">
+                            </div>
+                            <div class="post-comt-box">
+                                <form method="post" [formGroup]="postCommentform" novalidate (ngSubmit)="submitPostComment(PostDatabyID.PostId)">
+                                    <textarea placeholder="Post your comment" formControlName="Description" (keyup.enter)="submitPostComment(PostDatabyID.PostId)"></textarea>
+                                    
+                                    <button type="submit" class="newssndbtn lgajbtn"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                </form>	
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>

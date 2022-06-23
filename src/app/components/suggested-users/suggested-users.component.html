@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+
+<section >
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <div class="central-meta paddtb10">
+                        <div class="title-block">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div class="align-left">
+                                        <h5 class="grptitle"> Eoovbook Suggested Users For Your Community</h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="row merged20">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <form >
+                                                <input type="text" class="form-control" name="search" [(ngModel)]="searchUser" placeholder="Search Friend"  autocomplete="off">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- title block -->
+                </div>
+            </div>
+            
+            <div  class="row merged20">
+                <div class="col-md-3" *ngFor="let item of suggestedUser | filter:searchUser">
+                    <div class="central-meta">
+                        <div class="friend-block">
+                            <div class="more-opotnz">
+                                <i class="fa fa-ellipsis-h"></i>
+                                <ul>
+                                    <!-- <li><a href="#" title="">Block</a></li>
+                                    <li><a href="#" title="">UnBlock</a></li>
+                                    <li><a href="#" title="">Mute Notifications</a></li> -->
+                                    <li><a href="#" title="">hide from friend list</a></li>
+                                </ul>
+                            </div>
+                            <figure class="circular_image">
+                                <img src="{{item.ProfileImage}}" alt="">										
+                            </figure>
+    
+                            <div class="frnd-meta">
+                                <div class="frnd-name">
+                                    <a class="sugtdfrndtitle" href="javascript:void(0)" title="">{{item.FullName}}</a>
+                                   
+                                    <button class="sendinvitebtn"  type="button" (click)="inviteCommunity(item.UserId, item.Email)">Send Invite</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 
+            </div>
+           
+        </div>
+    </div>
+</section>

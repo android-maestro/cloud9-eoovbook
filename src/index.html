@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Eoovbook</title>
+  <base href="/">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/main.min.css">
+  <!-- <link rel="stylesheet" href="../assets/css/weather-icon.css"> -->
+  <link rel="stylesheet" href="../assets/css/weather-icons.min.css">
+  <link rel="stylesheet" href="../assets/css/home/toast-notification.css">
+	<link rel="stylesheet" href="../assets/css/home/page-tour.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/color.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+
+<meta property="og:title" content="Eoovbook | Home">
+<meta property="og:type" content="website">
+<meta property="og:image" content="http://localhost:4200/assets/img/logo-eoovbook.png">
+<meta property="og:url" content="http://localhost:4200/index">
+ 
+  
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+  <!-- Latest compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+  <link href="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/css/lightgallery.css" rel="stylesheet">
+
+  <!-- <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/inline/ckeditor.js"></script> -->
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <script src="../assets/js/main.min.js"></script>
+   <!-- <script src="../assets/js/script.js"></script>  -->
+  <script src="../assets/js/home/jquery-stories.js"></script>
+  <script src="../assets/js/home/toast-notificatons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script><!-- For timeline slide show -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script><!-- for location picker map -->
+
+  
+  <script src="../assets/js/home/locationpicker.jquery.js"></script><!-- for loaction picker map -->
+	<script src="../assets/js/home/map-init.js"></script><!-- map initilasition -->
+	 <!-- <script src="../assets/js/home/page-tourintro.js"></script> -->
+	 <!-- <script src="../assets/js/home/page-tour-init.js"></script>  -->
+	<script src="../assets/js/home/script.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css">
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.3.2/css/lightgallery.css" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/1.3.2/js/lightgallery.js"></script>
+
+
+
+
+</head>
+<body>
+  <app-root></app-root>
+  <script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
+<script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>
+<script>
+  lightGallery(document.getElementById('lightgallery'));
+
+//   setInterval(function(){
+//     $('#trend').load(location.href + " #trend");
+// }, 30 * 1000);
+
+</script>
+</body>
+
+<script>
+  function remove_img(){
+  document.getElementById('postimg').remove();
+}
+
+var $workGrid = $("#work-grid");
+
+$workGrid.lightGallery({
+    mode: 'lg-fade',
+    cssEasing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+    download: false,
+     share: false,
+     selector: 'this'
+});
+
+$workGrid.on('onBeforeOpen.lg', function (event, prevIndex, index) {
+  alert($(".ecp-thumbnail").eq(index).attr('data-src'));
+
+});
+</script>
+</html>

@@ -1,0 +1,246 @@
+<app-navbar></app-navbar>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-3">
+                    <aside class="sidebar static left">
+                        <div class="widget widgetcustombg">
+                            <div class="friendinvite">
+                                <div class="text-center">
+                                    <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                </div>
+                                <h3>Invite Friends</h3>
+                                <h4 *ngIf="friends==0;">
+                                    Hey! Your Friend List seems empty.<br/> Invite your friends now.
+                                </h4>
+                                <h4 *ngIf="friends!=0;">
+                                    Invite Your Friends to<br/> Grow your friends Network.
+                                </h4>
+                                
+                                <div class="text-center">
+                                    <form method="post" name="emailForm">
+                                         <tag-input [(ngModel)]="emails" [theme]="'bootstrap'"
+                                                   (onAdd)="onSelect($event)"
+                                                   (onRemove)="change($event)" allowed-tags-pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                                   name="emails" [placeholder]="'Add more email address'" [secondaryPlaceholder]="'Enter email addresses'">
+                                        </tag-input>
+                                        <tags-input ng-model="mailVm.cc" 
+                                                    display-property="email" 
+                                                    placeholder="Add Email Address" 
+                                                    allowed-tags-pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+                                        </tags-input> 
+                                        <div *ngIf="emailValidation!='null'">
+                                                <p 
+                                                    class="alert alert-danger">
+                                                    <i class="fa fa-exclamation-circle"></i>&nbsp;{{emailValidation}}
+                                                </p>
+                                        </div>
+                                        <div class="mt-2">&nbsp;</div>
+                                        <button *ngIf="!clicked" [disabled]="added==0" type="button" (click)="submit()" class="">Send Invite</button>
+                                        <button *ngIf="clicked"  class="lgajbtn btn-block"><div class="spinner-border  spinner-border-sm" role="status">
+                                                      <span class="sr-only">Loading...</span>
+                                                    </div></button>
+                                    </form>
+                                </div>
+                                  
+                        
+                            </div>    
+                        </div>
+                        <div class="central-meta item">
+                            <span class="create-post">Friends<a title="" href="javascript:void(0);" routerLink="/friends">See All</a></span>
+                            <div *ngIf="friends!=0;">     
+                                <ul class="friendslistingcustom">
+                                    <li [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" class="" *ngFor="let item of friends"><img src="{{item.ProfileImage}}"><br/><a> {{item.Name}}</a></li>
+                                </ul>   
+                            </div>
+                            <div *ngIf="friends==0;" class="nofriend">
+                                <div class="text-center noRequest">
+                                    <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                    <h4 class="p-3">No Friends!!</h4>
+                                </div>
+                            </div> 
+                        </div>
+                        <!-- page invitation widget -->	
+                        
+                        <!-- recent activites -->
+                        
+                        
+                        <!-- who's following -->
+                    </aside>
+                </div><!-- sidebar -->
+                    <div class="col-lg-6 col-md-3">
+                        <div class="loadMore">
+                                <div class="central-meta item" >
+                                    <div class="user-post">
+                                        <div class="friend-info">
+                                            <figure>
+                                                <img src="{{singlePostData.ProfileImage}}" alt="">
+                                            </figure>
+                                            <div class="friend-name">
+                                                <div *ngIf="singlePostData.Email==UserEmail">
+                                                <div class="more">
+                                                    <!-- <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                        <ul>
+                                                            <li class="modl-box create-pst" data-target="myModal" (click)="editPost(item.PostId)"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                                            <li (click)="deleteModal(deletetemp)"><i class="fa fa-trash-o"></i>Delete Post</li>  
+                                                                                                                    
+                                                        </ul>
+                                                        <ng-template #deletetemp>
+                                                            <div class="modal-body text-center">
+                                                            <div class="delttext">Are you sure you want to Delete this Post?</div>
+                                                            <div class="col-lg-12">
+                                                                <button type="button" class=" main-btn delyesbtn dltbtn" (click)="deletePostPublic(item.PostId)" >Yes</button>
+                                                                <button type="button" class="main-btn delcancelbtn dltbtn" (click)="decline()" >Cancel</button>
+                                                            </div>
+                                                            
+                                                            </div>
+                                                        </ng-template>
+                                                    </div> -->
+                                                </div>
+                                                </div>
+                                                <ins><a href="javascript:void();" title="">{{singlePostData.Name}}</a> </ins>
+                                                <span><i class="fa fa-globe"></i> published: {{(singlePostData.PostOn)| date:'medium':'+1100'}} </span>
+                                            </div>
+                                            <div class="post-meta">
+                                                <p>
+                                                    {{singlePostData.Description}}
+                                                </p>                                                       
+                                                <figure class="grid-gallery" (click)="viewPost(singlePostData.PostId)">                                                           
+                                                    <!-- <div *ngIf="(singlePostData.ImageCount)>=1" else templatevideo> -->
+                                                    <div *ngFor="let image of singlePostData.ePostImages; let i =index; let first = first;" class="gallery-img" >
+                                                        <div class="imagecontainer" *ngIf="i==0">
+                                                            
+                                                        <a class="imagepopout" href="javascript:void();" title="" data-toggle="modal" data-target="#img-comt">
+                                                        <img src="{{image.PostImageName}}" alt=""  >
+                                                        <div *ngIf="((singlePostData.ImageCount+singlePostData.VideoCount)-1==0)"></div>
+                                                        
+                                                        <div *ngIf="((singlePostData.ImageCount+singlePostData.VideoCount)-1>=1)">
+                                                            <div class="text-block">
+                                                                <div [ngClass]="{ first: first }">+ {{(singlePostData.ImageCount+singlePostData.VideoCount)-1}}</div>
+                                                            </div>
+                                                        </div>
+                                                        </a>
+                                                        
+                                                        </div> 
+                                                        
+                                                    </div>
+                                                    
+                                                    <!-- </div>                   -->
+                                                                                            
+                                    </figure>
+                                        
+                                    <div #templatevideo [hidden]="singlePostData.ImageCount >= 1"  *ngFor="let video of singlePostData.ePostVideos" class="gallery-vid">
+                                        <video controls>
+                                            <source src="{{video.PostVideoName}}" type="video/mp4">
+                                        </video>
+                                    </div> 
+
+
+                                                <div class="we-video-info">
+                                                    <ul *ngFor="let count of singlePostData.ePostCounts;">
+                                                        <li>
+                                                            <span class="like" *ngIf="checked" title="Like/Dislike"  (click)="unlikePost(singlePostData.PostId)" ><i class="fa fa-thumbs-up"></i> <ins>{{count.LikeCount}}</ins></span>
+                                                            <span class="like"  *ngIf="!checked" title="Like/Dislike"  (click)="likePost(singlePostData.PostId)" ><i class="fa fa-thumbs-o-up"></i> <ins>{{count.LikeCount}} </ins></span>
+                                                            
+                                                        </li>
+                                                        <li>
+                                                            <span class="comment" title="Comments">
+                                                                <i class="ti-comments"></i>
+                                                                <ins>{{count.CommentCount}}</ins>
+                                                            </span>
+                                                            
+                                                        </li>
+                                                        <li (click)="copyMessage(singlePostData.PostId)">
+															<span title="Copy link" data-toggle="tooltip" class="Copy">
+																<i class="fa fa-copy"></i>
+															</span>
+														</li>
+                                                        <li>																	
+															<span class="more-post-optns"><i class="fa fa-share-alt"></i>
+																<ul>
+																	<li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/singlepost/{{singlePostData.PostId}}" target="_blank" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+																	<li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/singlepost/{{singlePostData.PostId}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+																	<li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{singlePostData.Description}}&url={{baseUrl}}/singlepost/{{singlePostData.PostId}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+																	<li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{singlePostData.PostId}}&title={{singlePostData.Description}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>  
+
+																					
+
+																</ul>
+															</span>																	
+														</li>
+                                                    </ul>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="coment-area" style="display: block;">
+                                                <ul class="we-comet">
+                                                    <li *ngFor="let comment of singlePostData.ePostComments;">
+                                                        <div class="comet-avatar">
+                                                            <img src="{{comment.ProfileImage}}" alt="">
+                                                        </div>
+                                                        <div class="we-comment">
+                                                            <h5><a href="javascript:void(0)" title="">{{comment.CommentByName}}</a></h5>
+                                                            <p>{{comment.CommentDescription}}</p>
+                                                            <div class="inline-itms">
+                                                                <span>{{comment.CommentOn |  date:'medium':'+1100'}}</span>
+                                                                <!-- <a class="we-reply" href="javascript:void();" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                <a href="javascript:void();" title=""><i class="fa fa-heart"></i><span>20</span></a> -->
+                                                            </div>
+                                                        </div>
+
+                                                    </li>
+                                                    <!-- <li>
+                                                        <a href="javascript:void();" title="" class="showmore underline">more comments+</a>
+                                                    </li> -->
+                                                    <li class="post-comment">
+                                                        <div class="comet-avatar">
+                                                            <img [src]="profilePic" alt="">
+                                                        </div>
+                                                        <div class="post-comt-box">
+                                                            <form method="post" [formGroup]="postCommentform" novalidate (ngSubmit)="submitPostComment(singlePostData.PostId)">
+                                                                <textarea placeholder="Post your comment" formControlName="Description" (keyup.enter)="submitPostComment(singlePostData.PostId)"></textarea>
+                                                                <div class="add-smiles">
+                                                                    <button type="submit" class="newssndbtn lgajbtn" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                                </div>
+                                                            </form>	
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div><!-- album post -->
+                                
+                            
+                        
+                            
+                        </div>	
+                    </div>
+                    <div class="col-lg-3">
+                        <aside class="sidebar static right">
+                        <div class="widget widgetcustombg">
+                            <h4 class="widget-title">Top Trending <a [routerLink]="('/ebnews')" class="viewallnewsbtn">View All News</a> </h4>                                   
+                            <ul class="toptrendinslist">
+                                <li *ngFor="let item of trending">
+                                    <div class="toptrendimg"><img class="timg" style="width:85px !important; height:55px !important;" src="{{item.ImageName}}"></div>
+                                    <div class="toptrendingtext">
+                                        <h6><a title="" href="javascript:void();" (click)="singleNews(item.Id)">{{item.NewsHeadline}}</a></h6>
+                                        <a href="javascript:void(0);" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]"  style="font-size:11px; font-weight:600;">{{item.AuthorName}}</a> | <span>{{item.PulishDays}} </span>
+                                        <!-- <div class="circular_image">
+                                            <img src="{{item.ProfileImage}}">
+                                        </div> -->                                                                                        
+                                    </div>
+                                </li>
+                            </ul>                                  
+                        </div><!-- top trending -->                        
+                        </aside>
+
+                    </div><!-- sidebar -->
+                
+            </div>
+        </div>
+    </div>
+</section>

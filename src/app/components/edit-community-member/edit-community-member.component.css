@@ -1,0 +1,1098 @@
+
+.marbot15
+{
+    margin-bottom: 20px;
+}
+
+.invitebox
+{
+    overflow: hidden;
+    text-align: right;
+}
+
+.invitefrndsbtn
+{
+background-color: #5D4E96;
+color: #fff !important;
+padding: 6px 10px;
+font-size: 16px;
+font-weight: 500;
+border-radius: 4px;
+display: block;
+text-align: center;
+margin-top: 16px;
+}
+
+
+.friendImage{
+    height: 45px;
+    width: 45px;
+}
+
+.poststatus{
+   /* position: absolute !important;
+    right: 25px !important;*/
+    /* width: 135px; */
+    margin-left: 54px;
+}
+.preview_img{
+    height: 125px;
+    width: auto;
+}
+.displayPreview{
+    display: flex;
+}
+
+.frmctrl
+{
+    background-color: #fff;
+    border: 1px solid #fff;
+    padding:0px 0px;
+    border-radius:4px;
+    font-size: 11px;
+    font-weight:500;
+    color: #444;
+}
+.fontdesgn
+{
+    font-size: 16px !important;
+    color: #888;
+}
+.postfigimg
+{
+    position: absolute;
+    
+}
+.postfigimg img
+{
+    width: 45px !important;
+    height: 45px !important;
+    border-radius:100% !important;
+}
+
+.postname
+{
+    margin-bottom:0px;
+    font-size:15px;
+    color: #444;
+    font-weight: 500;
+}
+
+.attachments li.preview-btn .lgajbtn
+{
+    background: #64549C none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 0px;
+    padding: 16px 25px;
+    width: 100%;
+    transition: all 0.2s linear 0s;
+    font-size: 16px;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+}
+
+/* .postbox
+{
+background: #fff none repeat scroll 0 0;
+border: 0px solid #ede9e9;
+border-radius: 15px;
+display: inline-block;
+width: 100%;
+margin-bottom: 20px;
+padding: 20px 20px;
+position: relative;
+box-shadow: 6px 6px 12px #b8b9be,-6px -6px 12px #fff !important;
+box-shadow: 1px 1px 3px #b8b9be,-1px -1px 3px #fff !important;
+} */
+
+.fileContainer {
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    text-align: center;
+    text-transform: capitalize;
+}
+.posticontitle
+{
+    font-size:12.5px; margin-left:5px;
+    font-weight: 500;
+}
+.lbltextbgs
+{
+    background-color: #fbfbfb;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    
+}
+.lbltextbgs:hover
+{
+    background-color: #fbfbfb;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+}
+
+.button:disabled, button[disabled]
+{
+    background-color: #0CA5F0!important;
+border: none !important;
+}
+.friendslistingcustom
+{
+    padding-left: 0px;
+}
+.friendslistingcustom li {
+    list-style-type:none;
+    display: inline-block;
+}
+
+.friendslistingcustom li
+{
+width: 60px;
+height: 60px;
+font-size: 10px;
+text-align: center;
+font-weight: 500;
+margin-bottom: 10px;
+}
+
+.friendslistingcustom img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+    margin-bottom:5px;
+
+}
+.communityjoined
+{
+    margin-bottom: 15px;
+}
+.communitytitle {
+    font-size: 18px;
+}
+  .community
+  {
+      margin-bottom: 10px;
+  }
+.communitygrp a
+{
+    display: flex;
+    justify-content:space-around
+}
+
+.communityimg
+{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 100% !important;
+}
+.communityimg img
+{
+    width:60px;
+    height:60px;
+    object-fit: cover;
+    border-radius: 100% !important;
+}
+
+.communitygrp span{
+    color: #888;
+    font-weight: 400;
+}
+
+.communitygrp .mesg-meta h6:hover
+{
+text-decoration: underline;
+}
+
+.txtsm
+{
+    font-size: 12px;
+    line-height: 18px !important;
+}
+
+span{
+    line-height: 18px;
+}
+
+.padd712
+{
+    padding:7px 12px !important;
+}
+.iconsdesgn
+{
+    font-size:16px;
+    font-weight:600;
+}
+.iconsdesgn i
+{
+font-size: 18px;
+margin-right: 5px;
+width: 30px;
+}
+.gen-metabox {
+    display: inline-block;
+    margin-bottom: 0px;
+    width: 100%;
+  }
+  .gen-metabox
+  {
+      margin-bottom: 15px;
+  }
+
+  .gen-metabox > span
+  {
+      margin-bottom: 5px;
+  }
+.smtitle
+{
+    font-size:15px;
+    font-weight:400;
+}
+
+.anclnk
+{
+    color: #5F5096 !important;
+}
+.anclnk:hover
+{
+    color: #5F5096 !important;
+    text-decoration: underline !important;
+}
+
+.mdtitle
+{
+    font-size: 20px;
+    font-weight:600;
+}
+
+.flex
+{
+    display: flex;
+}
+
+.bld{
+    font-weight: 500;
+}
+
+.editinfopage
+{
+    font-size:16px;
+    color: #000 !important;
+    font-weight: 500;
+    background-color: #f0f2f5;
+    width: 100%;
+    display: block;
+    padding:6px 10px;
+    text-align: center;    
+    border-radius:5px;
+}
+.editinfopage:hover
+{
+    font-size:16px;
+    color: #000 !important;
+    font-weight: 500;
+    background-color: #E4E6E9;
+    width: 100%;
+    display: block;
+    padding:6px 10px;
+    text-align: center;    
+    border-radius:5px;
+}
+.pit-groups
+{
+    border-bottom: 0px dashed #cfcfcf;
+    margin-bottom: 0px;
+}
+.pit-groups .add-remove-frnd
+{
+    top:-10px;
+}
+
+.pit-groups > figure
+{
+display: inline-block;
+margin-top: 0 !important;
+vertical-align: middle;
+width: 45px;
+}
+
+.frmctrl
+{
+    background-color: #fff;
+    border: 1px solid #fff;
+    padding:0px 0px;
+    border-radius:4px;
+    font-size: 11px;
+    font-weight:500;
+    color: #444;
+}
+.fontdesgn
+{
+    font-size: 16px !important;
+    color: #888;
+}
+.postfigimg
+{
+    position: absolute;
+    
+}
+.postfigimg img
+{
+    width: 45px !important;
+    height: 45px !important;
+    border-radius:100% !important;
+}
+
+.postname
+{
+    margin-bottom:0px;
+    font-size:15px;
+    color: #444;
+    font-weight: 500;
+}
+
+.attachments li.preview-btn .lgajbtn
+{
+    background: #64549C none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 0px;
+    padding: 16px 25px;
+    width: 100%;
+    transition: all 0.2s linear 0s;
+    font-size: 16px;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+}
+
+/* .postbox
+{
+background: #fff none repeat scroll 0 0;
+border: 0px solid #ede9e9;
+border-radius: 15px;
+display: inline-block;
+width: 100%;
+margin-bottom: 20px;
+padding: 20px 20px;
+position: relative;
+box-shadow: 6px 6px 12px #b8b9be,-6px -6px 12px #fff !important;
+box-shadow: 1px 1px 3px #b8b9be,-1px -1px 3px #fff !important;
+} */
+
+.fileContainer {
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    text-align: center;
+    text-transform: capitalize;
+}
+.posticontitle
+{
+    font-size:12.5px; margin-left:5px;
+    font-weight: 500;
+}
+.lbltextbgs
+{
+    background-color: #fbfbfb;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    
+}
+.lbltextbgs:hover
+{
+    background-color: #fbfbfb;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+}
+
+.button:disabled, button[disabled]
+{
+    background-color: #0CA5F0!important;
+border: none !important;
+}
+.friendslistingcustom
+{
+    padding-left: 0px;
+}
+.friendslistingcustom li {
+    list-style-type:none;
+    display: inline-block;
+}
+
+.friendslistingcustom li
+{
+width: 60px;
+height: 60px;
+font-size: 10px;
+text-align: center;
+font-weight: 500;
+margin-bottom: 10px;
+}
+
+.friendslistingcustom img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+    margin-bottom:5px;
+
+}
+.communityjoined
+{
+    margin-bottom: 15px;
+}
+.communitytitle {
+    font-size: 18px;
+}
+  .community
+  {
+      margin-bottom: 10px;
+  }
+.communitygrp a
+{
+    display: flex;
+    justify-content:space-around
+}
+
+.communityimg
+{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 100% !important;
+}
+.communityimg img
+{
+    width:60px;
+    height:60px;
+    object-fit: cover;
+    border-radius: 100% !important;
+}
+
+.communitygrp span{
+    color: #888;
+    font-weight: 400;
+}
+
+.communitygrp .mesg-meta h6:hover
+{
+text-decoration: underline;
+}
+.PrivacySet{
+    position: absolute;
+    bottom: 10px;
+    right: 120px;
+}
+.coverpageimage {
+    height: 320px;
+    width: 100%;
+    object-fit: cover;
+   
+  }
+
+.comntynme
+{
+    font-size:1.5rem !important;
+    color: #222 !important;
+    font-weight: 600;
+}
+.fltlft
+{
+    float: left;
+}
+.marbot15
+{
+    margin-bottom: 20px;
+}
+
+.invitebox
+{
+    overflow: hidden;
+    text-align: right;
+}
+
+.invitefrndsbtn
+{
+background-color: #5D4E96;
+color: #fff !important;
+padding: 6px 10px;
+font-size: 16px;
+font-weight: 500;
+border-radius: 4px;
+display: block;
+text-align: center;
+margin-top: 16px;
+}
+
+
+
+.country {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .grpprivacy {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+.radius img
+{
+    border-radius: 100%;
+}
+
+.friendImage{
+    height: 45px;
+    width: 45px;
+}
+
+.poststatus{
+   /* position: absolute !important;
+    right: 25px !important;*/
+    /* width: 135px; */
+    margin-left: 54px;
+}
+.preview_img{
+    height: 125px;
+    width: auto;
+}
+.displayPreview{
+    display: flex;
+}
+
+.frmctrl
+{
+    background-color: #fff;
+    border: 1px solid #fff;
+    padding:0px 0px;
+    border-radius:4px;
+    font-size: 11px;
+    font-weight:500;
+    color: #444;
+}
+.fontdesgn
+{
+    font-size: 16px !important;
+    color: #888;
+}
+.postfigimg
+{
+    position: absolute;
+    
+}
+.postfigimg img
+{
+    width: 45px !important;
+    height: 45px !important;
+    border-radius:100% !important;
+}
+
+.postname
+{
+    margin-bottom:0px;
+    font-size:15px;
+    color: #444;
+    font-weight: 500;
+}
+
+.attachments li.preview-btn .lgajbtn
+{
+    background: #64549C none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 0px;
+    padding: 16px 25px;
+    width: 100%;
+    transition: all 0.2s linear 0s;
+    font-size: 16px;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+}
+
+/* .postbox
+{
+background: #fff none repeat scroll 0 0;
+border: 0px solid #ede9e9;
+border-radius: 15px;
+display: inline-block;
+width: 100%;
+margin-bottom: 20px;
+padding: 20px 20px;
+position: relative;
+box-shadow: 6px 6px 12px #b8b9be,-6px -6px 12px #fff !important;
+box-shadow: 1px 1px 3px #b8b9be,-1px -1px 3px #fff !important;
+} */
+
+.fileContainer {
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    text-align: center;
+    text-transform: capitalize;
+}
+.posticontitle
+{
+    font-size:12.5px; margin-left:5px;
+    font-weight: 500;
+}
+.lbltextbgs
+{
+    background-color: #fbfbfb;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    
+}
+.lbltextbgs:hover
+{
+    background-color: #fbfbfb;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+}
+
+.button:disabled, button[disabled]
+{
+    background-color: #0CA5F0!important;
+border: none !important;
+}
+.friendslistingcustom
+{
+    padding-left: 0px;
+}
+.friendslistingcustom li {
+    list-style-type:none;
+    display: inline-block;
+}
+
+.friendslistingcustom li
+{
+width: 60px;
+height: 60px;
+font-size: 10px;
+text-align: center;
+font-weight: 500;
+margin-bottom: 10px;
+}
+
+.friendslistingcustom img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+    margin-bottom:5px;
+
+}
+.communityjoined
+{
+    margin-bottom: 15px;
+}
+.communitytitle {
+    font-size: 18px;
+}
+  .community
+  {
+      margin-bottom: 10px;
+  }
+.communitygrp a
+{
+    display: flex;
+    justify-content:space-around
+}
+
+.communityimg
+{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 100% !important;
+}
+.communityimg img
+{
+    width:60px;
+    height:60px;
+    object-fit: cover;
+    border-radius: 100% !important;
+}
+
+.communitygrp span{
+    color: #888;
+    font-weight: 400;
+}
+
+.communitygrp .mesg-meta h6:hover
+{
+text-decoration: underline;
+}
+
+.txtsm
+{
+    font-size: 12px;
+    line-height: 18px !important;
+}
+
+span{
+    line-height: 18px;
+}
+
+.padd712
+{
+    padding:7px 12px !important;
+}
+.iconsdesgn
+{
+    font-size:16px;
+    font-weight:600;
+}
+.iconsdesgn i
+{
+font-size: 18px;
+margin-right: 5px;
+width: 30px;
+}
+.gen-metabox {
+    display: inline-block;
+    margin-bottom: 0px;
+    width: 100%;
+  }
+  .gen-metabox
+  {
+      margin-bottom: 15px;
+  }
+
+  .gen-metabox > span
+  {
+      margin-bottom: 5px;
+  }
+.smtitle
+{
+    font-size:15px;
+    font-weight:400;
+}
+
+.anclnk
+{
+    color: #5F5096 !important;
+}
+.anclnk:hover
+{
+    color: #5F5096 !important;
+    text-decoration: underline !important;
+}
+
+.mdtitle
+{
+    font-size: 20px;
+    font-weight:600;
+}
+
+.flex
+{
+    display: flex;
+}
+
+.bld{
+    font-weight: 500;
+}
+
+.editinfopage
+{
+    font-size:16px;
+    color: #000 !important;
+    font-weight: 500;
+    background-color: #f0f2f5;
+    width: 100%;
+    display: block;
+    padding:6px 10px;
+    text-align: center;    
+    border-radius:5px;
+}
+.editinfopage:hover
+{
+    font-size:16px;
+    color: #000 !important;
+    font-weight: 500;
+    background-color: #E4E6E9;
+    width: 100%;
+    display: block;
+    padding:6px 10px;
+    text-align: center;    
+    border-radius:5px;
+}
+.pit-groups
+{
+    border-bottom: 0px dashed #cfcfcf;
+    margin-bottom: 0px;
+}
+.pit-groups .add-remove-frnd
+{
+    top:-10px;
+}
+
+.pit-groups > figure
+{
+display: inline-block;
+margin-top: 0 !important;
+vertical-align: middle;
+width: 45px;
+}
+
+.positinabslute
+{
+    position: absolute;
+    margin-top: -180px;
+    z-index: 99;
+}
+
+.joincmntybtn
+  {
+    background-color: #5B4B95;
+    color: #fff;
+    font-size: 14px;
+    padding:5px 20px;
+    border: 0px;
+    border-radius: 4px;
+  }
+
+  .joincmntybtn:hover
+  {
+    background-color: #58559C;
+    color: #fff;
+    font-size: 14px;
+    padding:5px 20px;
+    border: 0px;
+    border-radius: 4px;
+  }
+
+  .pitdate-user > .innnerptbox
+  {
+  
+  width:18%;
+  border: 0px solid red;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+  
+  }
+  
+  .innnerptbox img{
+      min-width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 2px;
+      border: 1px solid #ede9e9;
+      margin-bottom:5px;
+  }
+  .pitdate-user > .innnerptbox a{
+      font-size: 14px;
+      color: #000;
+      font-weight: 500;
+      margin-top:5px;
+  }
+
+  .comunitymemeber
+  {
+      background-color:#f7f7f7;
+      padding: 5px;
+  }
+
+  .flxdiv
+  {
+    display:flex; justify-content:space-between;align-items:center;
+  }
+
+
+  .profile-menu > li > a > i
+  {
+      font-size: 14px !important;
+     color:#5C4C94;
+  }
+
+
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 27px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #58559C;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #5B4B95;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .remvbtn
+  {
+      font: size 14px;
+      color: #fff !important;
+      padding: 7px 15px;
+      background-color: #58559C;
+      border-radius:20px;
+      border:1px solid #545195;
+      margin-right:10px;
+      margin-left: 10px;
+  }
+  .remvbtn:hover
+  {
+      background-color: #504d92;
+      border: 1px solid #545195;
+      
+  }
+
+  .toggle {
+    --width: 80px;
+    --height: calc(var(--width) / 3);
+
+    position: relative;
+    display: inline-block;
+    width: var(--width);
+    height: var(--height);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: var(--height);
+    cursor: pointer;
+  }
+
+  .toggle input {
+    display: none;
+  }
+
+  .toggle .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--height);
+    background-color: #ccc;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .toggle .slider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--height));
+    height: calc(var(--height));
+    border-radius: calc(var(--height) / 2);
+    background-color: #fff;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease-in-out;
+  }
+
+  .toggle input:checked+.slider {
+    background-color: #2196F3;
+  }
+
+  .toggle input:checked+.slider::before {
+    transform: translateX(calc(var(--width) - var(--height)));
+  }
+
+  .toggle .labels {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-family: sans-serif;
+    transition: all 0.4s ease-in-out;
+  }
+
+  .toggle .labels::after {
+    content: attr(data-off);
+    position: absolute;
+    right: 5px;
+    color: #4d4d4d;
+    opacity: 1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease-in-out;
+  }
+
+  .toggle .labels::before {
+    content: attr(data-on);
+    position: absolute;
+    left: 5px;
+    color: #ffffff;
+    opacity: 0;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+    transition: all 0.4s ease-in-out;
+  }
+
+  .toggle input:checked~.labels::after {
+    opacity: 0;
+  }
+
+  .toggle input:checked~.labels::before {
+    opacity: 1;
+  }
+  

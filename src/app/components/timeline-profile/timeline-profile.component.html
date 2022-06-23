@@ -1,0 +1,114 @@
+<app-timeline-header></app-timeline-header>
+<section>
+    <div class="gap-min gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="col-lg-3 col-md-3">
+                            <aside class="sidebar">
+                            <div class="central-meta stick-widget">
+                                <span class="create-post">Personal Info <a data-toggle="tooltip" title="Edit Profile"><i class="fa fa-edit" style="float: right; font-size: 16px;" (click)="editProfile()"></i> </a></span>
+                                <div class="personal-head">
+                                    <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
+                                    <p>
+                                        {{personalInfo.AboutMe}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
+                                    <p>
+                                        {{personalInfo.Birthday}} 
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
+                                    <p>
+                                        {{personalInfo.ContactNo}} 
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
+                                    <p>
+                                        {{personalInfo.BloodGroup}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
+                                    <p>
+                                        {{personalInfo.Gender}}  
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
+                                    <p>
+                                        {{personalInfo.Country}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
+                                    <p>
+                                        {{personalInfo.OccupationName}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
+                                    <p>
+                                        {{personalInfo.JoinedOn}}  
+                                    </p>
+                                    
+                                    <span class="f-title"><i class="fa fa-envelope"></i> Email</span>
+                                    <p>
+                                        <a href="javascript:void();" title="">{{personalInfo.Email}}</a> <a href="javascript:void();" class="__cf_email__" data-cfemail=""></a> 
+                                    </p>                                    
+                                </div>
+                            </div>
+                            </aside>	
+                        </div>	
+                        <div class="col-lg-9 col-md-9">
+                            <div class="central-meta">
+                                <span class="create-post">General Info</span>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="gen-metabox">
+                                            <span><i class="fa fa-puzzle-piece"></i> Hobbies</span>
+                                            <p>
+                                                {{personalInfo.Hobbies}}
+                                            </p>
+                                        </div>
+                                        <div class="gen-metabox">
+                                            <span><i class="fa fa-plus"></i> Highest Education</span>
+                                            <p>
+                                                {{personalInfo.HighestEducation}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="gen-metabox">
+                                            <span><i class="fa fa-mortar-board"></i> Education</span>
+                                            <p>
+                                                {{personalInfo.Education}}
+                                            </p>
+                                        </div>
+                                        <div class="gen-metabox">
+                                            <span><i class="fa fa-certificate"></i> Work and experience</span>
+                                            <p>
+                                                {{personalInfo.WorkExperience}}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="gen-metabox no-margin">
+                                            <span><i class="fa fa-sitemap"></i> Social Networks</span>
+                                            <ul class="sociaz-media">
+                                                <li *ngIf="personalInfo.FacebookLink"><a class="facebook" href="{{personalInfo.FacebookLink}}"  target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a class="facebook" href="javascript:void(0);"  title="facebook"><i class="fa fa-facebook"></i></a></li>
+                                                <li *ngIf="personalInfo.TwitterLink" ><a class="twitter" href="{{personalInfo.TwitterLink}}" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a class="twitter" href="javascript:void(0);" title="twitter"><i class="fa fa-twitter"></i></a></li>
+                                                <li *ngIf="personalInfo.VKLink"><a class="vk" href="{{personalInfo.VKLink}}" target="_blank" title="vk"><i class="fa fa-vk"></i></a></li>
+                                                <li><a class="vk" href="javascript:void(0);" title="vk"><i class="fa fa-vk"></i></a></li>
+                                                <li  *ngIf="personalInfo.InstragramLink"><a class="instagram" href="{{personalInfo.InstragramLink}}" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+                                                <li><a class="instagram" href="javascript:void(0);" title="instagram"><i class="fa fa-instagram"></i></a></li>
+                                                <li *ngIf="personalInfo.LinkedInLink"><a class="linkedin" href="{{personalInfo.LinkedInLink}}" target="_blank" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                                <li><a class="linkedin" href="javascript:void(0);" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>	
+                            </div>
+                           
+                        </div>
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>

@@ -1,0 +1,246 @@
+<app-navbar></app-navbar>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+
+            <div class="row merged20">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row merged20" id="page-contents">
+
+                                <!-- Community Navbar -->
+                                <app-community-navbar></app-community-navbar>
+
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+
+                                            <aside>
+                                                <div class="widget widgetcustombg">
+                                                    <div class="friendinvite">
+                                                        <div class="text-center">
+                                                            <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                        </div>
+                                                        <h3>Invite Friends</h3>
+                                                        <h4>
+                                                            Hey! Your Community seems empty.<br/> Invite your friends now.
+                                                                                                       
+                                                        </h4>
+                                                        
+                                                        <div class="text-center">
+                                                            
+                                                        </div>
+                                                          
+                                                
+                                                    </div>    
+                                                </div>
+
+                                                <div class="central-meta item">
+                                                    <button class="joincmntybtn" type="button">Invite Eoovbook User</button>
+                                                </div>
+                                                <!-- page invitation widget -->	
+                                                
+                                                <!-- recent activites -->
+                                                
+                                                
+                                                <!-- who's following -->
+                                            </aside>
+                                           
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <!-- <div class="central-meta paddtb10">
+                                                <div class="title-block">
+                                                    <div class="row"> -->
+                                                        <!-- <div class="col-lg-6">
+                                                            <div class="align-left">
+                                                                <h5>Members</h5>
+                                                            </div>
+                                                        </div> -->
+                                                        <!-- <div class="col-lg-6">
+                                                            <div class="row merged20"> -->
+                                                               
+                                                                <!-- <div class="col-lg-4 col-md-4 col-sm-4">
+                                                                    <div class="select-options">
+                                                                        <select class="select" class="form-control" (change)="sorting()" [(ngModel)]="selectedOption" name="sorting">
+                                                                            <option selected disabled>Sort by</option>
+                                                                            <option value="new">Newest</option>
+                                                                            <option value="old">oldest</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-1 col-md-1 col-sm-1">
+                                                                    <div class="option-list">
+                                                                        <i class="fa fa-ellipsis-v"></i>
+                                                                        <ul>
+                                                                            <li><a title="" href="#">Show Friends Public</a></li>
+                                                                            <li><a title="" href="#">Show Friends Private</a></li>
+                                                                            <li><a title="" href="#">Mute Notifications</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div> -->
+                                                            <!-- </div>
+                                                        </div> -->
+                                                    <!-- </div>
+                                                </div> -->
+                                            <!--</div> --><!-- title block -->
+                                            <div class="central-meta" *ngIf="!members">
+                                            <div class="row merged20 remove-ext">
+                                                
+                                            <div class="col-lg-12 col-md-6 col-sm-6 item">
+                                                <!-- <div class="row">
+                                                    <div class="col-md-4"> -->
+                                                        <!-- <div class="central-meta" style="padding:5px;" >
+                                                        <div class="comunitymemeber flxdiv">
+                                                            <div class="flxdiv">
+                                                                <div>
+                                                                    <img src="" alt="" style="width:50px; height:50px; border:1px solid #eee; border-radius:100%; object-fit:cover; margin-right:10px;">
+                                                                </div>
+                                                                <div>
+                                                                    <a href="javascript(void)"  title="" style="text-transform:capitalize;">thfghgfh</a>
+                                                                </div>  
+                                                                                                                          
+                                                            </div>
+                                                            <div class="more-opotnz">
+                                                                <i class="fa fa-ellipsis-h"></i>
+                                                                <ul>
+                                                                    <li><a href="javascript:void();" data-toggle="modal" data-target=""  title="">Remove</a></li>
+                                                                    <li><a href="javascript:void();"  title="">Block</a></li>
+                                                                    <li><a href="javascript:void();" (click)="UnblockMember(item.InvitationId)" title="">UnBlock</a></li>                                                                    
+                                                                </ul>
+                                                            </div>    
+                                                        </div>
+                                                    </div> -->
+                                                       
+                                                    <!-- </div>
+                                                </div> -->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="nofriend">
+                                                        <div class="text-center noRequest">
+                                                            <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                            <h4 class="p-3">No Members!!</h4>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            
+                                            </div>
+                                           
+                                            </div>
+                                            </div>
+
+                                             <!-- Today's Edit -->
+
+                                             <div *ngIf="members!=0;">
+
+                                             <div class="col-lg-6">
+                                                <div class="align-left">
+                                                    <h5>Active Community Members</h5>
+                                                </div>
+                                            </div>
+
+                                             <div class="central-meta" *ngFor="let member of blockmember">
+                                                <div class="row merged20 remove-ext">
+                                                    
+                                                <div class="col-lg-12 col-md-6 col-sm-6 item">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="central-meta" style="padding:5px;" >
+                                                            <div class="comunitymemeber flxdiv">
+                                                                <div class="flxdiv">
+                                                                    <div>
+                                                                        <img src="{{member.ProfileImage}}" alt="" style="width:50px; height:50px; border:1px solid #eee; border-radius:100%; object-fit:cover; margin-right:10px;">
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="javascript:void(0);" [routerLink]="['/profileDetail/'+  member.Email + '/' + member.UserId]" title="" style="text-transform:capitalize;">{{member.FullName}}</a>
+                                                                    </div>  
+                                                                                                                              
+                                                                </div>
+                                                                <div>
+                                                                    <!-- <ng-toggle [value]="member.IsBlock" [width]="95"
+                                                                        [height]="32" [margin]="4" [fontSize]="13"
+                                                                        [color]="{unchecked: '#BFCBD9',checked: '#58559C'}" 
+                                                                        [labels]="{unchecked: 'Block',checked: 'Unblock'}"
+                                                                        [switchColor]="{checked: '#fff',unchecked: '#58559C'}"
+                                                                        [fontColor]="{checked: '#fff',unchecked: '#fff'}"
+                                                                        [values]="{
+                                                                            'unchecked': 0,
+                                                                            'checked': 1
+                                                                          }"
+                                                                        >
+                                                                    </ng-toggle> -->
+                                                                    <!-- [values]="{checked: 'BlockMember(member.InvitationId)', unchecked: 'UnblockMember(member.InvitationId)'}" -->
+
+                                                                    <label class="toggle">
+                                                                        <input *ngIf="member.IsBlock" (click)="UnblockMember(member.InvitationId)" type="checkbox" checked>
+													                    <input *ngIf="!member.IsBlock" (click)="BlockMember(member.InvitationId)" type="checkbox" >
+                                                                        <span class="slider"></span>
+                                                                        <span class="labels" data-on="Block" data-off="UnBlock"></span>
+                                                                      </label>
+
+                                                                    <a class="remvbtn" href="javascript:void(0);" (click)="removeMember(member.InvitationId)"> <i class="fa fa-trash"> </i> Remove</a>
+                                                                    
+                                                                </div>
+                                                                   
+                                                            </div>
+                                                        </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                
+                                                
+                                                </div>
+                                               
+                                                </div>
+                                                </div>
+                                                </div>
+
+
+                                               
+       
+                                                    
+                
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+           
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End -->

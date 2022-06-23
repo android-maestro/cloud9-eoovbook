@@ -1,0 +1,592 @@
+<app-timeline-header></app-timeline-header>
+<section>
+    <div class="gap-min gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="col-lg-3 col-md-3">
+                            <aside class="sidebar static right">	
+                                <div class="widget widgetcustombg">
+                                    
+                                    <div class="signglepagenewstitile"> Personal Info <a href="javascript:void();" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a></div>
+                                    <div id="demo" class="collapse show">                                        
+                                <div class="personal-head">
+                                    <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
+                                    <p>
+                                       {{personalInfo.AboutMe}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
+                                    <p>
+                                        {{personalInfo.Birthday}} 
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
+                                    <p>
+                                        {{personalInfo.ContactNo}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
+                                    <p>
+                                        {{personalInfo.BloodGroup}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
+                                    <p>
+                                        {{personalInfo.Gender}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
+                                    <p>
+                                        {{personalInfo.Country}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
+                                    <p>
+                                        {{personalInfo.OccupationName}} 
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
+                                    <p>
+                                        {{personalInfo.JoinedOn}} 
+                                    </p>
+                                    
+                                    <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
+                                    <p>
+                                        <a href="javascript:void();" title="">{{personalInfo.Email}}</a> <a href="javascript:void();" class="__cf_email__" data-cfemail=""></a> 
+                                    </p>                                    
+                                </div>
+                                    </div>
+
+                                    
+
+                                </div>									
+
+                                    <div style="clear:both;"></div>
+                                        <div class="central-meta item">
+                                            
+                                            <div class="signglepagenewstitile"> Friends <a href="javascript:void();" data-toggle="collapse" data-target="#frndreqtabs"><i class="fa fa-chevron-down"></i></a>
+                                            </div>
+                                            <div id="frndreqtabs" class="collapse show">  
+                                                <div *ngIf="friends!=0;"> 
+                                                    <ul class="friendslistingcustom">
+                                                        <li [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" class="" *ngFor="let item of friends"><img src="{{item.ProfileImage}}"><br/><a>{{item.Name}}</a></li>
+                                                    </ul>                                    
+                                                </div>
+                                                <div *ngIf="friends==0;" class="nofriend">
+                                                    <div class="text-center noRequest">
+                                                        <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                        <h4 class="p-3">No Friends!!</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    
+                                
+                                
+
+                            </aside>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="central-meta">
+                                <div class="about">
+                                    <div class="d-flex flex-row mt-2">
+                                        <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" >
+                                            <li class="nav-item">
+                                                <a href="#gen-setting" class="nav-link active" data-toggle="tab" ><i class="fa fa-gear"></i> General Setting</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#edit-profile" class="nav-link" data-toggle="tab" ><i class="fa fa-pencil"></i> Edit Profile</a>
+                                            </li>
+                                            <!-- <li class="nav-item">
+                                                <a href="#notifi" class="nav-link" data-toggle="tab" ><i class="fa fa-bell"></i> Notification</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#messages" class="nav-link" data-toggle="tab" ><i class="fa fa-comment"></i> Messages</a>
+                                            </li>                                            
+                                            
+                                            <li class="nav-item">
+                                                <a href="#privacy" class="nav-link" data-toggle="tab"  ><i class="fa fa-shield"></i> Privacy & Data</a>
+                                            </li>                                             -->
+
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade show active" id="gen-setting" >
+                                                <div class="set-title">
+                                                    <h5>General Setting</h5>
+                                                    <span>Set your Privacy Settings to protect your Profile.</span>
+                                                </div>
+                                                <div class="onoff-options ">
+                                                    <form method="post" [formGroup]="privacyform" novalidate >
+                                                        
+                                                        <div class="setting-row">
+                                                            <span style="font-size:16px;"> <i class="fa fa-globe"></i> Public</span>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                  <!-- <input type="radio"    (click)="personalInfo.AccessType = true" name="Privacy" value="3816f000-e23b-4be1-a58d-f740c2da153d" formControlName="AccessType"> <i class="check-box"></i> -->
+                                                                  <input type="radio"   name="Privacy" value="3816f000-e23b-4be1-a58d-f740c2da153d" formControlName="Privacy"> <i class="check-box"></i>
+                                                                    Anyone can see the photos, posts and stories on your profile 
+                                                                </label>                                                                                                                    
+                                                            </div>
+
+                                                              <!-- <div *ngIf="personalInfo.AccessTypeId == '3816f000-e23b-4be1-a58d-f740c2da153d'"  class="checkbox">
+                                                                <label>
+                                                                  <input type="radio" name="Privacy" value="3816f000-e23b-4be1-a58d-f740c2da153d" formControlName="Privacy"><i class="check-box" checked></i>
+                                                                    Anyone can see the photos, posts and stories on your profile 
+                                                                </label>                                                                                                                    
+                                                              </div> -->
+
+                                                        </div>
+
+                                                        <div class="setting-row">
+                                                            <span style="font-size:16px;"> <i class="fa fa-users"></i> Friends</span>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                  <input type="radio" name="Privacy"  value="7ba5e03e-166a-44e8-92d6-4c2897833908" formControlName="Privacy"><i class="check-box"></i>
+                                                                    Only Friends can see the photos, posts and stories on your profile 
+                                                                </label>                                                                                                                    
+                                                              </div>
+                                                        </div>
+
+                                                        <div class="setting-row">
+                                                            <span style="font-size:16px;"> <i class="fa fa-lock"></i> Only me</span>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                  <input type="radio" name="Privacy"    value="c62838a7-53b9-43fb-81a7-2c8cf835d2c3" formControlName="Privacy"><i class="check-box"></i>
+                                                                    Only Me
+                                                                </label>                                                                                                                    
+                                                              </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        <div class="submit-btns">
+                                                            <button type="button" class="main-btn lgajbtn" (click)="savePrivacy()" data-ripple=""><span>Save</span></button>
+                                                            <button type="button" class="main-btn3 lgajbtn" data-ripple=""><span>Cancel</span></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="account-delete">
+                                                    <h5>Account Changes</h5>
+                                                    <div>
+                                                        <span>Hide Your Posts and profile </span>
+                                                        <button type="button" class=""><span>Deactivate account</span></button>
+                                                    </div>	
+                                                    <div>
+                                                        <span>Delete your account and data </span>
+                                                        <button type="button" class=""><span>Delete account</span></button>
+                                                    </div>
+                                                </div>
+                                            </div><!-- general setting -->
+                                            <div class="tab-pane fade" id="edit-profile" >
+                                                <div class="set-title">
+                                                    <h5>Edit Profile</h5>
+                                                    <span>People on eoovbook will get to know you with the info below</span>
+                                                </div>
+                                                <div class="setting-meta">
+                                                    <div class="change-photo">
+                                                        <figure><img src="{{profilePic}}" alt="" class="editProfile"></figure>
+                                                        <div class="edit-img">
+                                                            <form class="edit-phto" (click)="openModal(template)"   >
+                                                                
+                                                                <label class="fileContainer">
+                                                                    <i class="fa fa-camera-retro"></i>
+                                                                    Change DP
+                                                                
+                                                                </label>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="stg-form-area">
+                                                    <form method="post" class="c-form">
+                                                        
+                                                        <div class="row">
+                                                          <div class="col-md-6">
+                                                            <div>
+                                                              <label>First Name</label>
+                                                              <input type="text" placeholder="Jack">
+                                                          </div>
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div>
+                                                              <label>Last Name</label>
+                                                              <input type="text" placeholder="Carter">
+                                                          </div>
+                                                          </div>
+                                                        </div>
+                                                        <div class="uzer-nam">
+                                                            <label>User Name</label>
+                                                            <span>www.eoovbook.com/</span><input type="text" placeholder="jackcarter4023">
+                                                        </div>
+                                                        <div class="row">
+                                                          <div class="col-md-6">
+                                                            <div>
+                                                              <label>Email Address</label>
+                                                              <input type="text" placeholder="abc@gmailmail.com">
+                                                          </div>
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <div>
+                                                              <label>Mobile Number</label>
+                                                              <input type="text" placeholder="Mobile Number">
+                                                          </div>
+                                                          </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <label>Gender</label>
+                                                            <div class="form-radio">
+                                                              <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" checked="checked" name="radio"><i class="check-box"></i>Male
+                                                                </label>
+                                                              </div>
+                                                              <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name="radio"><i class="check-box"></i>Female
+                                                                </label>
+                                                              </div>
+                                                                <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name="radio"><i class="check-box"></i>Custom
+                                                                </label>
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                          <label>Relationship Status</label>
+                                                          <div class="form-radio">
+                                                            <div class="radio">
+                                                              <label>
+                                                                <input type="radio" checked="checked" name="radio"><i class="check-box"></i>Single
+                                                              </label>
+                                                            </div>
+                                                            <div class="radio">
+                                                              <label>
+                                                                <input type="radio" name="radio"><i class="check-box"></i>Married
+                                                              </label>
+                                                            </div>
+                                                              <div class="radio">
+                                                              <label>
+                                                                <input type="radio" name="radio"><i class="check-box"></i>In Relationship
+                                                              </label>
+                                                            </div>
+                                                            <div class="radio">
+                                                              <label>
+                                                                <input type="radio" name="radio"><i class="check-box"></i>Complicated
+                                                              </label>
+                                                            </div>
+                                                          </div>
+                                                      </div>
+                                                      <div>
+                                                        <label>Occupation</label>
+                                                        <input type="text" placeholder="Occupation">
+                                                    </div>
+                                                        <div>
+                                                            <label>about your profile</label>
+                                                            <textarea rows="3" placeholder="write someting about yourself"></textarea>
+                                                        </div>	
+                                                        <div class="row">
+                                                          <div class="col-md-6">
+                                                            <label>Hobies & Interests</label>
+                                                            <textarea rows="3" placeholder="Hobies & Interests"></textarea>
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <label>Favourite Music Bands / Artists</label>
+                                                            <textarea rows="3" placeholder="Favourite Music Bands / Artists"></textarea>
+                                                          </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                          <div class="col-md-6">
+                                                            <label>Favourite Movies / TV Shows</label>
+                                                            <textarea rows="3" placeholder="Favourite Movies / TV Shows"></textarea>
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                            <label>Favourite Books / Writers</label>
+                                                            <textarea rows="3" placeholder="Favourite Books / Writers"></textarea>
+                                                          </div>
+                                                        </div>
+
+
+                                                        <div class="uzer-nam">
+                                                          <label><i class="fa fa-facebook fbicons"></i> Facebook link</label>
+                                                          <span>www.facebook.com/</span><input type="text" placeholder="jackcarter4023">
+                                                      </div>
+                                                      <div class="uzer-nam">
+                                                        <label><i class="fa fa-twitter twticons"></i> Twitter link</label>
+                                                        <span>www.twitter.com/</span><input type="text" placeholder="jackcarter4023">
+                                                    </div>
+                                                    <div class="uzer-nam">
+                                                      <label><i class="fa fa-linkedin linkedinicons"></i> Linkedin link</label>
+                                                      <span>www.linkedin.com/</span><input type="text" placeholder="jackcarter4023">
+                                                  </div>
+
+                                                        <form method="post" class="again-login"  novalidate>
+                                                            <div class="row merged10">
+                                                                <div class="col-lg-12">
+                                                                    <div class="demographictxt">What are your interest?</div>
+                
+                                                                    <div >
+                                                                     <label class="checkbox-inline tagssdesign" *ngFor="let value of data;">       
+                                                                        <input type="checkbox" (change)="onItemSelectItem($event)"  value="{{value.DataValue}}" class="checkmark"  required> {{value.DataText}}
+                                                                      </label>
+                                                                  
+                                                                      </div>
+                
+                                                                </div>
+                                                               
+                                                               <div class="col-lg-12">
+                                                                <div class="mt-2"></div>
+                                                                </div>
+                                                               <div class="col-lg-4 demo-select">
+                                                                   <div class="demographictxt">Country</div>
+                                                                  <select name="country" #countryy [(ngModel)]="postData.CountryId" (change)="fetchState($event,countryy.value)" class="form-control">
+                                                                        <option *ngFor="let st of country" value="{{st.DataValue}}" style="padding: 5px !important;">{{st.DataText}}</option>
+                                                                    </select>
+                
+                                                               </div>
+                                                               <div class="col-lg-4">
+                                                                   <div class="demographictxt">State</div>
+                                                                   <select name="state" #statee [(ngModel)]="postData.StateId"  (change)="fetchCity($event,statee.value)" class="form-control">
+                                                                        <option *ngFor="let st of state" value="{{st.DataValue}}">{{st.DataText}}</option>
+                                                                    </select>
+                                                               </div>
+                                                               <div class="col-lg-4">
+                                                                   <div class="demographictxt">City</div>
+                                                                    <select name="city" #cityy [(ngModel)]="postData.CityId" class="form-control">
+                                                                        <option *ngFor="let st of city" value="{{st.DataValue}}">{{st.DataText}}</option>
+                                                                    </select>
+                                                               </div>
+                                                               <div class="col-lg-12">
+                                                                <div class="mt-1">&nbsp;</div>
+                                                                </div>
+                
+                                                                <div class="col-lg-12">
+                                                                <div class="mt-2">  
+                                                                    <div *ngIf="validate!='null'">
+                                                                    <p  class="alert alert-danger">
+                                                                        <i class="fa fa-exclamation-circle"></i>&nbsp; {{validate}}</p>
+                                                                    </div>
+                                                                </div>
+                                                                </div>                                                                                           
+                                                            </div>
+                                                        </form>
+
+                                                        <div>
+                                                            <button type="submit" class="lgajbtn" data-ripple="">Cancel</button>
+                                                            <button type="submit" class="lgajbtn" data-ripple="">Save</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div><!-- edit profile -->
+                                            <div class="tab-pane fade" id="notifi" role="tabpanel">
+                                                <div class="set-title">
+                                                    <h5>Notification Setting</h5>
+                                                    <span>Select push and email notifications you'd like to receive.</span>
+                                                </div>
+                                                <div class="notifi-seting">
+                                                    <div class="form-radio">
+                                                      <div class="radio">
+                                                        <label>
+                                                          <input type="radio" checked="checked" name="radio"><i class="check-box"></i>
+                                                            Send Me emails about my activity except emails i have unsubscribe from
+                                                        </label>
+                                                      </div>
+                                                      <div class="radio">
+                                                        <label>
+                                                          <input type="radio" name="radio"><i class="check-box"></i>
+                                                            Only send me required services announcements.
+                                                        </label>
+                                                      </div>
+                                                    </div>
+                                                    <div class="set-title">
+                                                        <h6>i'd like to receive emails and updates from eoovbook about</h6>
+                                                    </div>	
+                                                    <div class="checkbox">
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Always General announcement, updates, posts, and videos. 
+                                                      </label>
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Personalise tips for my page. 
+                                                      </label>
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Announcements and recommendations. 
+                                                      </label>
+                                                        <p><a href="javascript:void();" title="">learn more</a> about emails from eoovbook</p>
+                                                    </div>
+                                                    <div class="set-title">
+                                                        <h6>Other Notifications</h6>
+                                                    </div>	
+                                                    <div class="checkbox">
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Recommended videos. 
+                                                      </label>
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          activity on my page or channel. 
+                                                      </label>
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Activity on my comments. 
+                                                      </label>
+                                                        <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Reply to comments. 
+                                                      </label>
+                                                        <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Mentions. 
+                                                      </label>
+                                                        
+                                                    </div>
+                                                    <div class="set-title">
+                                                        <h6>Language Preference</h6>
+                                                        <span>Select your email language</span>
+                                                    </div>
+                                                    <select class="select">
+                                                        <option value="">Eglish US</option>
+                                                        <option value="">Eglish UK</option>
+                                                        <option value="">Russia</option>
+                                                    </select>
+                                                    <p>
+                                                        you will always get notifications you have turned on for individual <a href="javascript:void();" title="">Manage All Subscriptions</a>
+                                                    </p>
+                                                </div>
+                                            </div><!-- notification -->
+                                            <div class="tab-pane fade" id="messages" role="tabpanel">
+                                                <div class="set-title">
+                                                    <h5>Messages Setting</h5>
+                                                    <span>Set your login preference, help us personalize your experience and make big account change here.</span>
+                                                    <div class="mesg-seting">
+                                                    
+                                                    <div class="set-title">
+                                                        <h6>i'd like to receive emails and updates from eoovbook about</h6>
+                                                    </div>	
+                                                    <div class="checkbox">
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Always General announcement, updates, posts, and videos. 
+                                                      </label>
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Personalise tips for my page. 
+                                                      </label>
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Announcements and recommendations. 
+                                                      </label>
+                                                        <p><a href="javascript:void();" title="">learn more</a> about emails from eoovbook</p>
+                                                    </div>
+                                                    <div class="set-title">
+                                                        <h6>Other Messages</h6>
+                                                    </div>	
+                                                    <div class="checkbox">
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          From Recommended videos. 
+                                                      </label>
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Messages from activity on my page or channel. 
+                                                      </label>
+                                                      <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Message me the replyer Activity on my comments. 
+                                                      </label>
+                                                        <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Reply to comments. 
+                                                      </label>
+                                                        <label>
+                                                        <input type="checkbox" checked="checked"><i class="check-box"></i>
+                                                          Mentions. 
+                                                      </label>
+                                                        
+                                                    </div>
+                                                    <div class="set-title">
+                                                        <h6>Language Preference</h6>
+                                                        <span>Select your Messages language</span>
+                                                    </div>
+                                                    <select class="select">
+                                                        <option value="">Eglish US</option>
+                                                        <option value="">Eglish UK</option>
+                                                        <option value="">Russia</option>
+                                                    </select>
+                                                    <p>
+                                                        you will always get notifications you have turned on for individual <a href="javascript:void();" title="">Manage All Subscriptions</a>
+                                                    </p>
+                                                </div>
+                                                </div>
+                                            </div><!-- messages -->
+                                            
+                                            <div class="tab-pane fade" id="privacy" role="tabpanel">
+                                                <div class="set-title">
+                                                    <h5>Privacy & data</h5>
+                                                    <span>Deceide whether your profile will be hidden from search engine and what kind of data you want to use to imporve the recommendation and ads you see <a href="javascript:void();" title="">Learn more</a></span>
+                                                </div>
+                                                <div class="onoff-options ">
+                                                    <form method="post">
+                                                        <div class="setting-row">
+                                                            <span>Search Privacy</span>
+                                                            <p>Hide your profile from search engine (Ex.google) <a href="javascript:void();" title="">Learn more</a>
+                                                            </p>
+                                                            <input type="checkbox" id="switch0001" /> 
+                                                            <label for="switch0001"  data-off-label="OFF"></label>
+                                                        </div>
+                                                        <div class="set-title">
+                                                            <h5>Personalization</h5>
+                                                        </div>	
+                                                        <div class="setting-row">
+                                                            <span>Search Privacy</span>
+                                                            <p>use sites you visit to improve which recommendation and ads you see. <a href="javascript:void();" title="">Learn more</a>
+                                                            </p>
+                                                            <input type="checkbox" id="switch0002" /> 
+                                                            <label for="switch0002"  data-off-label="OFF"></label>
+                                                        </div>
+                                                        <div class="setting-row">
+                                                            <span>Search Privacy</span>
+                                                            <p>use information from our partners to improve which ads you see<a href="javascript:void();" title="">Learn more</a>
+                                                            </p>
+                                                            <input type="checkbox" id="switch0003" /> 
+                                                            <label for="switch0003"  data-off-label="OFF"></label>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div><!-- privacy -->
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>	
+                        </div><!-- centerl meta -->
+                        
+                        
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Upload Profile</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <input type="file" #avatarInput (change)="processFile($event)"  value="ImageName" accept="image/*">
+        <image-cropper [imageChangedEvent]="imageChangedEvent" 
+        [maintainAspectRatio]="true"
+		[aspectRatio]="4 / 3"
+		format="png"
+		(imageCropped)="imageCropped($event)"
+		(imageLoaded)="imageLoaded()"
+		(cropperReady)="cropperReady()"
+		(loadImageFailed)="loadImageFailed()"
+		></image-cropper>
+        <img [src]="thumbnail" alt="" class="editNewsImage" *ngIf="thumbnail" >
+        <button class="main-btn editProfilebtn" (click)="upload()" type="submit" data-ripple="">Update DP</button>
+    </div>
+  </ng-template>

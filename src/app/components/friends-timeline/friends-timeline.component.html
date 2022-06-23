@@ -1,0 +1,332 @@
+<app-friends-header></app-friends-header>
+<section>
+    <div class="gap-min gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="row merged20" *ngIf="personalInfo.IsAccessible==true">
+                            <div class="col-lg-3 col-md-3">
+                                <aside class="sidebar static right">	
+                                    <div class="widget widgetcustombg">
+                                        
+                                        <div class="signglepagenewstitile"> Personal Info <a href="javascript:void();" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a></div>
+                                        <div id="demo" class="collapse show">                                        
+                                    <div class="personal-head">
+                                        <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
+                                        <p>
+                                        {{personalInfo.AboutMe}}
+                                        </p>
+                                        <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
+                                        <p>
+                                            {{personalInfo.Birthday}} 
+                                        </p>
+                                        <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
+                                        <p>
+                                            {{personalInfo.ContactNo}}
+                                        </p>
+                                        <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
+                                        <p>
+                                            {{personalInfo.BloodGroup}}
+                                        </p>
+                                        <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
+                                        <p>
+                                            {{personalInfo.Gender}}
+                                        </p>
+                                        <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
+                                        <p>
+                                            {{personalInfo.Country}}
+                                        </p>
+                                        <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
+                                        <p>
+                                            {{personalInfo.OccupationName}} 
+                                        </p>
+                                        <span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
+                                        <p>
+                                            {{personalInfo.JoinedOn}} 
+                                        </p>
+                                        
+                                        <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
+                                        <p>
+                                            <a href="javascript:void();" title="">{{personalInfo.Email}}</a> <a href="javascript:void();" class="__cf_email__" data-cfemail=""></a> 
+                                        </p>                                    
+                                    </div>
+                                        </div>
+
+                                        
+
+                                    </div>									
+
+                                        <div style="clear:both;"></div>
+                                            <div class="central-meta item">
+                                                
+                                                <div class="signglepagenewstitile"> Friends <a href="javascript:void();" data-toggle="collapse" data-target="#frndreqtabs"><i class="fa fa-chevron-down"></i></a>
+                                                </div>
+                                                <div id="frndreqtabs" class="collapse show">  
+                                                    <div *ngIf="friendsOfFriend!=0;"> 
+                                                        <ul class="friendslistingcustom">
+                                                            <li class="" *ngFor="let item of friendsOfFriend"><img src="{{item.ProfileImage}}"><br/><a>{{item.Name}}</a></li>
+                                                        </ul>                                    
+                                                    </div>
+                                                    <div  class="nofriend" *ngIf="friendsOfFriend==0;">
+                                                        <div class="text-center noRequest">
+                                                            <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                            <h4 class="p-3">Oops!! No Friends Data!!</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        
+                                    
+                                    
+
+                                </aside>
+                            </div>
+                            <div class="col-lg-6 col-md-3">
+                                <div class="loadMore" >
+                                    <div class="central-meta item" *ngFor="let item of friendsPost">
+                                        <div class="user-post">
+                                            <div class="friend-info">
+                                                <figure>
+                                                    <img src="{{item.ProfileImage}}" alt="" class="UserProfile"> 
+                                                </figure>
+                                                <div class="friend-name">
+                                                    <!-- <div class="more">
+                                                        <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                            <ul>
+                                                                <li (click)="editPost(item.PostId)" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                                                <li (click)="deleteModal(deletetemp)"><i class="fa fa-trash-o"></i>Delete Post</li>                                                   
+                                                            </ul>
+                                                            <ng-template #deletetemp>
+                                                                <div class="modal-body text-center">
+                                                                    <div class="delttext">Are you sure you want to Delete this Post?</div>
+                                                                    <div class="col-lg-12">
+                                                                    <button type="button" class=" main-btn delyesbtn dltbtn" (click)="deletePost(item.PostId)" >Yes</button>
+                                                                    <button type="button" class="main-btn delcancelbtn dltbtn" (click)="decline()" >Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </ng-template>
+                                                        </div>
+                                                    </div> -->
+                                                    <ins><a href="javascript:void();" title="">{{item.Name}}</a> </ins>
+                                                    <span><i class="fa fa-globe"></i> published: {{item.PostOn | date:'medium'}} </span>
+                                                </div>
+                                                <div class="post-meta">
+                                                    <p>
+                                                        {{item.Description}}
+                                                    </p>
+                                                    <figure class="grid-gallery" (click)="viewPost(item.PostId)">
+                                                    
+                                                                    <div *ngIf="(item.ImageCount)>=1" else templatevideo  >
+                                                                    <div *ngFor="let image of item.ePostImages; let i =index; let first = first;" class="gallery-img" >
+                                                                        <div class="imagecontainer" *ngIf="i==0">
+                                                                        <a href="javascript:void();" title="" data-toggle="modal" data-target="#img-comt">
+                                                                        <img src="{{image.PostImageName}}" alt="">
+                                                                        <div *ngIf="((item.ImageCount+item.VideoCount)-1==0)"></div>
+                                                                        <div *ngIf="((item.ImageCount+item.VideoCount)-1>=1)">
+                                                                            <div class="text-block">
+                                                                                <div class="" [ngClass]="{ first: first }"> + {{(item.ImageCount+item.VideoCount)-1}}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                        
+                                                                        </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                        <div #templatevideo [hidden]="item.ImageCount >= 1"  *ngFor="let video of item.ePostVideos" class="gallery-vid">
+                                                                            <video controls>
+                                                                                <source src="{{video.PostVideoName}}" type="video/mp4">
+                                                                            </video>
+                                                                        </div>
+                    
+                                                                    
+                                                                                                            
+                                                    </figure>
+                                                    <div class="we-video-info">
+                                                        <ul *ngFor="let count of item.ePostCounts;">
+                                                            <li> 
+                                                                <span class="like" *ngIf="checked" title="Like/Dislike"  (click)="unlikePost(item.PostId)" ><i class="fa fa-thumbs-up"></i> <ins>{{count.LikeCount}}</ins></span>
+                                                                <span class="like"  *ngIf="!checked" title="Like/Dislike"  (click)="likePost(item.PostId)" ><i class="fa fa-thumbs-o-up"></i> <ins >{{count.LikeCount}} </ins></span>
+                                                                    
+                                                            </li>
+                                                            <li>
+                                                                <span class="comment" title="Comments">
+                                                                    <i class="ti-comments"></i>
+                                                                    <ins>{{count.CommentCount}}</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li (click)="copyMessage(item.PostId)">
+                                                                <span title="Copy News link" data-toggle="tooltip" class="Copy">
+                                                                    <i class="fa fa-copy"></i>
+                                                                </span>
+                                                            </li>
+
+                                                            <li>																	
+                                                                <span class="more-post-optns"><i class="fa fa-share-alt"></i>
+                                                                    <ul>
+                                                                        <li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+                                                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+                                                                        <li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{item.Description}}&url={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+                                                                        <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{item.PostId}}&title={{item.Description}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>  
+
+                                                                                        
+
+                                                                    </ul>
+                                                                </span>																	
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="coment-area" style="display: block;">
+                                                    <ul class="we-comet" >
+                                                        <li *ngFor="let comment of item.ePostComments;">
+                                                            <div class="comet-avatar">
+                                                                <img src="{{comment.ProfileImage}}" alt="">
+                                                            </div>
+                                                            <div class="we-comment">
+                                                                <h5><a href="time-line.html" title="">{{comment.CommentByName}}</a></h5>
+                                                                <p>{{comment.CommentDescription}}</p>
+                                                                <div class="inline-itms">
+                                                                    <span>{{comment.CommentOn |  date:'medium'}}</span>
+                                                                    
+                                                                </div>
+                                                            </div>
+
+                                                        </li>
+                                                        <li class="post-comment">
+                                                            <div class="comet-avatar">
+                                                                <img [src]="profilePic" alt="">
+                                                            </div>
+                                                            <div class="post-comt-box">
+                                                                <form method="post" [formGroup]="postCommentform" novalidate (ngSubmit)="submitPostComment(item.PostId)" >
+                                                                    <textarea placeholder="Post your comment" formControlName="Description" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" (keyup.enter)="submitPostComment(item.PostId)"></textarea>
+                                                                    <div class="add-smiles">
+                                                                        <button type="submit" class="newssndbtn lgajbtn" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                                    </div>
+                                                                </form>	
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div  class="nofriend" *ngIf="friendsPost==0">
+                                        <div class="text-center noRequest">
+                                            <img src="../assets/images/resources/noPosts.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                            <h4 class="p-3">Oops!! No Posts Data !!</h4>
+                                        </div>
+                                    </div>
+                                    
+                                </div>	
+                            </div>
+                            <div class="col-lg-3">
+                                <aside class="sidebar static">
+                                
+                                            <!-- <h4 class="widget-title">Your page</h4>	
+                                            <div class="your-page">
+                                                <figure>
+                                                    <a title="" href="javascript:void();"><img alt="" src="../assets/images/resources/friend-avatar9.jpg"></a>
+                                                </figure>
+                                                <div class="page-meta">
+                                                    <a class="underline" title="" href="javascript:void();">My page</a>
+                                                    <span><i class="ti-comment"></i>Messages <em class="bg-blue">9</em></span>
+                                                    <span><i class="ti-bell"></i>Notifications <em class="bg-purple">2</em></span>
+                                                </div>
+                                                <div class="page-likes">
+                                                    <ul class="nav nav-tabs likes-btn">
+                                                        <li class="nav-item"><a data-toggle="tab" href="#link1" class="active">likes</a></li>
+                                                        <li class="nav-item"><a data-toggle="tab" href="#link2" class="">views</a></li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                    <div id="link1" class="tab-pane active fade show">
+                                                        <span><i class="ti-heart"></i>884</span>
+                                                        <a title="weekly-likes" href="javascript:void();">35 new likes this week</a>
+                                                        <div class="users-thumb-list">
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Anderw">
+                                                                <img alt="" src="../assets/images/resources/userlist-1.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="frank">
+                                                                <img alt="" src="../assets/images/resources/userlist-2.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Sara">
+                                                                <img alt="" src="../assets/images/resources/userlist-3.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Amy">
+                                                                <img alt="" src="../assets/images/resources/userlist-4.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Ema">
+                                                                <img alt="" src="../assets/images/resources/userlist-5.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Sophie">
+                                                                <img alt="" src="../assets/images/resources/userlist-6.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Maria">
+                                                                <img alt="" src="../assets/images/resources/userlist-7.jpg">  
+                                                            </a>  
+                                                        </div>
+                                                    </div>
+                                                    <div id="link2" class="tab-pane fade">
+                                                        <span><i class="ti-eye"></i>445</span>
+                                                        <a title="weekly-likes" href="javascript:void();">440 new views this week</a>
+                                                        <div class="users-thumb-list">
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Anderw">
+                                                                <img alt="" src="../assets/images/resources/userlist-1.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="frank">
+                                                                <img alt="" src="../assets/images/resources/userlist-2.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Sara">
+                                                                <img alt="" src="images/resources/userlist-3.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Amy">
+                                                                <img alt="" src="../assets/images/resources/userlist-4.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Ema">
+                                                                <img alt="" src="../assets/images/resources/userlist-5.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Sophie">
+                                                                <img alt="" src="../assets/images/resources/userlist-6.jpg">  
+                                                            </a>
+                                                            <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Maria">
+                                                                <img alt="" src="../assets/images/resources/userlist-7.jpg">  
+                                                            </a>  
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        <div class="central-meta item">
+                                            <span class="create-post">Friends<a title="" href="javascript:void(0);" ></a></span>
+                                            <div *ngIf="friendsOfFriend!=0;">     
+                                                <ul class="friendslistingcustom">
+                                                    <li class="" *ngFor="let item of friendsOfFriend"><img src="{{item.ProfileImage}}"><br/><a> {{item.Name}}</a></li>
+                                                </ul>   
+                                            </div>
+                                            <div  class="nofriend" *ngIf="friendsOfFriend==0;">
+                                                <div class="text-center noRequest">
+                                                    <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                    <h4 class="p-3">Oops !! No Friends Data!!</h4>
+                                                </div>
+                                            </div> 
+                                        </div>
+                                </aside>
+                            </div>
+                        </div>
+                        <div class="row merged20" *ngIf="personalInfo.IsAccessible==false">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="text-center noRequest">
+                                    <img src="../assets/images/resources/locked.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                    <h4 class="p-3">Oops!! Profile Locked!!</h4>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>

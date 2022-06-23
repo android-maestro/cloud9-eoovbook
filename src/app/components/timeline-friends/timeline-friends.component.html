@@ -1,0 +1,131 @@
+
+<app-timeline-header></app-timeline-header>
+<section>
+    <div class="gap-min gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="col-lg-4 col-md-4">
+                            <div class="central-meta padding30">
+                                <div class="row merged20">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="central-meta item">
+                                            <span class="create-post">Friend Request</span>
+                                            <div *ngIf="nofriend!=0;">
+                                            <div   *ngFor="let item of friendRequests" >
+                                                <div class="pit-friends paddbotm10" *ngIf="item.InvitationStatus=='In progress'">  
+                                                <figure><a href="#" title=""><img src="{{item.ProfileImage}}" alt=""></a></figure>
+                                                <div class="pit-frnz-meta width82">
+                                                    <a href="javascript:void(0)" title="">{{item.InvitedFrom}}</a>
+                                                    <!-- <i>Tornoto</i> -->
+                                                    <ul class="add-remove-frnd cutmaddremovefrnd">
+                                                        <li class="add-tofrndlist">
+                                                            <a title="Add friend" href="javascript:void(0)"  (click)="confirmRequest(item.InvitationId,'Accepted')"><i class="fa fa-user-plus"></i> Accept Request</a>
+                                                        </li>
+                                                        <li class="remove-frnd">
+                                                            <a title="Send Message" href="javascript:void(0)" (click)="confirmRequest(item.InvitationId,'Rejected')"><i class="fa fa-close"></i> Delete</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                </div>
+                                            </div> 
+                                            </div>
+                                            <div *ngIf="nofriend==0;" class="nofriend">
+                                                <div class="text-center noRequest">
+                                                    <img src="../assets/images/resources/norequest.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                </div>
+                                                <h3>No Requests!!</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+
+                                </div>
+                            </div>	
+                        </div>	
+                        <div class="col-lg-8 col-md-8">
+                            <div class="central-meta paddtb10">
+                                <div class="title-block">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="align-left">
+                                                <h5>Friends<span>{{friendsCount}}</span></h5>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row merged20">
+                                                <div class="col-lg-7 col-md-7 col-sm-7">
+                                                    <form >
+                                                        <input type="text" class="form-control" name="search" placeholder="Search Friend" [(ngModel)]="searchText" autocomplete="off">
+                                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                                    </form>
+                                                </div>
+                                                <!-- <div class="col-lg-4 col-md-4 col-sm-4">
+                                                    <div class="select-options">
+                                                        <select class="select" class="form-control" (change)="sorting()" [(ngModel)]="selectedOption" name="sorting">
+                                                            <option selected disabled>Sort by</option>
+                                                            <option value="new">Newest</option>
+											                <option value="old">oldest</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1 col-md-1 col-sm-1">
+                                                    <div class="option-list">
+                                                        <i class="fa fa-ellipsis-v"></i>
+                                                        <ul>
+                                                            <li><a title="" href="#">Show Friends Public</a></li>
+                                                            <li><a title="" href="#">Show Friends Private</a></li>
+                                                            <li><a title="" href="#">Mute Notifications</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- title block -->
+                            <div class="central-meta">
+							<div class="row merged20 remove-ext">
+                                
+                            <div class="col-lg-12 col-md-6 col-sm-6 item">
+                                <div *ngIf="friends!=0;">  
+                                <div class="pitdate-user">
+                                    <div class="innnerptbox" *ngFor="let item of friends | filter:searchText"><img src="{{item.ProfileImage}}" alt="">
+                                        
+                                     
+                                        
+                                        <!-- <div class="more">
+                                            <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                <ul>
+                                                    <li class="send-mesg"><i class="fa fa-comment"></i>Send Message</li>                                                    
+                                                    <li class="share-pst"><i class="fa fa-share-alt"></i>Share</li>
+                                                    <li class="get-link"><i class="fa fa-link"></i>Copy Link</li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                        <a href="javascript(void)" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" title="">{{item.Name}}</a>
+                                        <!-- <span><i class="fa fa-map-marker"></i> Gurgaon</span> -->
+                                    </div>	
+                                   
+                                    
+                                </div>
+                            </div>
+                            </div>
+                            <div *ngIf="friends==0;" class="nofriend">
+                                <div class="text-center noRequest">
+                                    <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                    <h4 class="p-3">No Friends!!</h4>
+                                </div>
+                            </div> 
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>

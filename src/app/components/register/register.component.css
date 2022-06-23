@@ -1,0 +1,86 @@
+
+.error_icon {
+    background-image: url(/../assets/images/error.png);
+       background-repeat: no-repeat;
+      background-position: 98% 8px;
+      background-size: 25px 25px;
+  }
+  
+  .error{
+      color: red;
+  }
+  .error-val{
+    float:right;
+  }
+  .flex-div{
+    display:flex;
+  }
+  .theme-green .bs-datepicker-head {
+    background-color: #5b4b94 !important;
+  }
+  div.bs-datepicker-head{
+    background-color: #5b4b94 !important;
+  }
+  span.input-group-text{
+    margin: 5px 0 0;
+  }
+  .input-group{
+    width: 50%;
+    height: fit-content;
+  }
+  .errorpass{
+    width: -webkit-fill-available;
+  }
+  
+  .sociobox
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .socialicons
+  {
+    width:35px;
+    background-color: #fbfbfb;
+    border: 1px solid #ddd;
+    height: 35px;
+    padding:4px;
+    margin-right:10px;
+    border-radius:4px;
+  }
+  
+  .socialicons:hover
+  {
+    width:35px;
+    background-color: #fbfbfb;
+    border: 1px solid #ddd;
+    height: 35px;
+    padding:4px;
+    margin-right:10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  
+  .iti--allow-dropdown input, .iti--allow-dropdown input[type=tel] {
+    padding-right: 1px !important;
+  }
+  .mobile-format{
+      display: block;
+      width: 100%;
+      padding: .375rem .75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      -webkit-appearance: none;
+      appearance: none;
+      border-radius: .25rem;
+      transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+  :host ::ng-deep .iti input, .iti input[type=text], .iti input[type=tel]{
+    border: 0 !important;
+  }
+  

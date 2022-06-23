@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+    <section >
+        <div class="gap2 gray-bg">
+            <div class="container-fluid">
+                <div class="row" style="padding-top: 60px;">
+                    <div class="offset-lg-4 col-lg-8">
+                        <div class="row border-center">
+                           
+                            <div class="col-lg-6 col-md-6 order-lg-1 order-xl-2">
+                                <div class="logout-f card p-3 text-center">
+                                    
+                                    <h4>Enter OTP</h4>
+                                    <p>4 Digit OTP has been sent to your mobile number.</p>
+                                    <div class="logout-form ">
+
+                                        <form method="post" class="again-login" [formGroup]="form"  novalidate>
+                                            <div class="row merged10">
+                                                <div class="col-lg-12">
+                                                    
+                                                    <ng-otp-input  (onInputChange)="onOtpChangeMobile($event)"   [config]="{length:4,allowNumbersOnly:true}" required></ng-otp-input> 
+
+                                                    <div *ngIf="form.controls['MobileOTP'].touched">
+                                                        <p *ngIf="form.controls['MobileOTP'].errors?.['required']"
+                                                            class="alert alert-danger">
+                                                            <i class="fa fa-exclamation-circle"></i>&nbsp; OTP is
+                                                            required.
+                                                        </p>
+                                                        <p *ngIf="form.controls['MobileOTP'].errors?.['pattern']"
+                                                            class="alert alert-danger"><i
+                                                                class="fa fa-exclamation-circle"></i>&nbsp; OTP
+                                                             is invalid
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2"></div>
+                                               
+                                               <div class="col-lg-12">
+                                                    <div class="refreshpgbtn">
+                                                        <a class="" href="javascript:void();">Resend OTP </a>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">&nbsp;</div>
+                                                <div class="col-lg-12">
+                                                <p>4 Digit OTP has been sent to your Email-Id.</p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <ng-otp-input  (onInputChange)="onOtpChangeEmail($event)"   [config]="{length:4,allowNumbersOnly:true}" required></ng-otp-input> 
+
+                                                
+                                                </div>
+                                                <div class="mt-2"></div>
+                                               <div class="col-lg-12">
+                                                    <div class="refreshpgbtn">
+                                                        <a class="" href="javascript:void();">Resend OTP </a>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div class="mt-4">&nbsp;</div>
+
+
+
+
+
+                                                <div class="col-lg-12 text-center">
+                                                    <button type="submit" *ngIf="!clicked" [disabled]="count!=8" (click)="submit()" class="lgajbtn btn-block">Continue</button>
+                                                      <button *ngIf="clicked"  class="btn btn-danger px-4 validate"><div class="spinner-border  spinner-border-sm" role="status">
+                                                          <span class="sr-only">Loading...</span>
+                                                        </div></button>
+                                                </div>                                                                                            
+                                            </div>
+                                        </form>
+                                        
+
+                                        
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    

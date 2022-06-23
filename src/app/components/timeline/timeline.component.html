@@ -1,0 +1,392 @@
+<app-timeline-header></app-timeline-header>
+<section>
+    <div class="gap-min gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="col-lg-3 col-md-3">
+                            <aside class="sidebar static right">	
+                                <div class="widget widgetcustombg">
+                                    
+                                    <div class="signglepagenewstitile"> Personal Info <a href="javascript:void();" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a></div>
+                                    <div id="demo" class="collapse show">                                        
+                                <div class="personal-head">
+                                    <!-- <div>
+                                    <a href="" class="mbcss" data-toggle="modal" data-target="#modalyesno">Modal Button</a>
+                                    <br/><br/>
+                                    </div> -->
+                                    <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
+                                    <p>
+                                       {{personalInfo.AboutMe}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-birthday-cake"></i> Birthday:</span>
+                                    <p>
+                                        {{personalInfo.Birthday}} 
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
+                                    <p>
+                                        {{personalInfo.ContactNo}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-medkit"></i> Blood group:</span>
+                                    <p>
+                                        {{personalInfo.BloodGroup}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
+                                    <p>
+                                        {{personalInfo.Gender}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-globe"></i> Country:</span>
+                                    <p>
+                                        {{personalInfo.Country}}
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
+                                    <p>
+                                        {{personalInfo.OccupationName}} 
+                                    </p>
+                                    <span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
+                                    <p>
+                                        {{personalInfo.JoinedOn}} 
+                                    </p>
+                                    
+                                    <span class="f-title"><i class="fa fa-envelope"></i> Email:</span>
+                                    <p>
+                                        <a href="javascript:void();" title="">{{personalInfo.Email}}</a> <a href="javascript:void();" class="__cf_email__" data-cfemail=""></a> 
+                                    </p>                                    
+                                </div>
+                                    </div>
+
+                                    
+
+                                </div>									
+
+                                    <div style="clear:both;"></div>
+                                        <div class="central-meta item">
+                                            
+                                            <div class="signglepagenewstitile"> Friends <a href="javascript:void();" data-toggle="collapse" data-target="#frndreqtabs"><i class="fa fa-chevron-down"></i></a>
+                                            </div>
+                                            <div id="frndreqtabs" class="collapse show">  
+                                                <div *ngIf="friends!=0;"> 
+                                                    <ul class="friendslistingcustom">
+                                                        <li [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" class="" *ngFor="let item of friends"><img src="{{item.ProfileImage}}"><br/><a>{{item.Name}}</a></li>
+                                                    </ul>                                    
+                                                </div>
+                                                <div *ngIf="friends==0;" class="nofriend">
+                                                    <div class="text-center noRequest">
+                                                        <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                        <h4 class="p-3">No Friends!!</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    
+                                
+                                
+
+                            </aside>
+                        </div>
+                        <div class="col-lg-6 col-md-3">
+                            <div class="loadMore">
+                                <div class="central-meta item" *ngFor="let item of userPosts">
+                                    <div class="user-post">
+                                        <div class="friend-info">
+                                            <figure>
+                                                <img src="{{profilePic}}" alt="" class="UserProfile"> 
+                                            </figure>
+                                            <div class="friend-name">
+                                                <div class="more">
+                                                    <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                        <ul>
+                                                            <li (click)="editPost(item.PostId)" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                                            <li><a data-toggle="modal" data-target="#modalyesno"><i class="fa fa-trash-o"></i>Delete Post</a></li>                                                   
+                                                        </ul>
+                                                          <div class="modal fade" id="modalyesno" tabindex="-1" role="dialog" aria-labelledby="modalyesnoTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-sm" role="document" style="width: 350px;">
+                                                              <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                  <h5 class="modal-title" id="modalyesnoLongTitle">Are you Sure you want to delete this post?</h5>
+                                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                  </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                   
+                                                                </div>
+                                                                <div class="modal-footer" style="display: flex; justify-content: space-between;">
+                                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="decline()">Cancel</button>
+                                                                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deletePost(item.PostId)">Delete</button>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                                <ins><a href="javascript:void();" title="">{{userData.Name}}</a> </ins>
+                                                <span><i class="fa fa-globe"></i> published: {{item.PostOn | date:'medium'}} </span>
+                                            </div>
+                                            <div class="post-meta">
+                                                <p>
+                                                    {{item.Description}}
+                                                </p>
+                                                <figure class="grid-gallery" (click)="viewPost(item.PostId)">
+                                                  
+                                                                <div *ngIf="(item.ImageCount)>=1" else templatevideo  >
+                                                                <div *ngFor="let image of item.ePostImages; let i =index; let first = first;" class="gallery-img" >
+                                                                    <div class="imagecontainer" *ngIf="i==0">
+                                                                    <a href="javascript:void();" title="" data-toggle="modal" data-target="#img-comt">
+                                                                    <img src="{{image.PostImageName}}" alt="">
+                                                                    <div *ngIf="((item.ImageCount+item.VideoCount)-1==0)"></div>
+                                                                    <div *ngIf="((item.ImageCount+item.VideoCount)-1>=1)">
+                                                                        <div class="text-block">
+                                                                            <div class="" [ngClass]="{ first: first }"> + {{(item.ImageCount+item.VideoCount)-1}}</div>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                    </a>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                                    <div #templatevideo [hidden]="item.ImageCount >= 1"  *ngFor="let video of item.ePostVideos" class="gallery-vid">
+                                                                        <video controls>
+                                                                            <source src="{{video.PostVideoName}}" type="video/mp4">
+                                                                        </video>
+                                                                    </div>
+                
+                                                                
+                                                                                                           
+                                                </figure>
+                                                <div class="we-video-info">
+                                                    <ul *ngFor="let count of item.ePostCounts;">
+                                                        <li> 
+                                                            <span class="like" *ngIf="checked" title="Like/Dislike"  (click)="unlikePost(item.PostId)" ><i class="fa fa-thumbs-up"></i> <ins>{{count.LikeCount}}</ins></span>
+                                                            <span class="like"  *ngIf="!checked" title="Like/Dislike"  (click)="likePost(item.PostId)" ><i class="fa fa-thumbs-o-up"></i> <ins >{{count.LikeCount}} </ins></span>
+                                                                
+                                                        </li>
+                                                        <li>
+                                                            <span class="comment" title="Comments">
+                                                                <i class="ti-comments"></i>
+                                                                <ins>{{count.CommentCount}}</ins>
+                                                            </span>
+                                                        </li>
+                                                        <li (click)="copyMessage(item.PostId)">
+															<span title="Copy News link" data-toggle="tooltip" class="Copy">
+																<i class="fa fa-copy"></i>
+															</span>
+														</li>
+
+														<li>																	
+															<span class="more-post-optns"><i class="fa fa-share-alt"></i>
+																<ul>
+																	<li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+																	<li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+																	<li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{item.Description}}&url={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+																	<li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{item.PostId}}&title={{item.Description}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>  
+
+																					
+
+																</ul>
+															</span>																	
+														</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="coment-area" style="display: block;">
+                                                <ul class="we-comet" >
+                                                    <li *ngFor="let comment of item.ePostComments;">
+                                                        <div class="comet-avatar">
+                                                            <img src="{{comment.ProfileImage}}" alt="">
+                                                        </div>
+                                                        <div class="we-comment">
+                                                            <h5><a href="time-line.html" title="">{{comment.CommentByName}}</a></h5>
+                                                            <p>{{comment.CommentDescription}}</p>
+                                                            <div class="inline-itms">
+                                                                <span>{{comment.CommentOn |  date:'medium'}}</span>
+                                                                <!-- <a class="we-reply" href="javascript:void();" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                <a href="javascript:void();" title=""><i class="fa fa-heart"></i><span>20</span></a> -->
+                                                            </div>
+                                                        </div>
+
+                                                    </li>
+                                                    <!-- <li>
+                                                        <a href="javascript:void();" title="" class="showmore underline">more comments+</a>
+                                                    </li> -->
+                                                    <li class="post-comment">
+                                                        <div class="comet-avatar">
+                                                            <img [src]="profilePic" alt="">
+                                                        </div>
+                                                        <div class="post-comt-box">
+                                                            <form method="post" [formGroup]="postCommentform" novalidate >
+																<textarea placeholder="Post your comment" formControlName="Description" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" (keyup.enter)="submitPostComment(item.PostId)"></textarea>
+																<div class="add-smiles">
+                                                                    <!-- <span
+                                                                        (click)="toggled = !toggled"
+                                                                        [(emojiPickerIf)]="toggled"
+                                                                        [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
+                                                                        (emojiPickerSelect)="handleSelection($event)"
+                                                                        >😄</span> -->
+                                                                    <button type="submit" class="newssndbtn lgajbtn" (ngSubmit)="submitPostComment(item.PostId)" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                                </div>
+															</form>	
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div *ngIf="userPosts==0;" class="nofriend">
+                                    <div class="text-center noRequest">
+                                        <img src="../assets/images/resources/noPosts.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                        <h4 class="p-3">No Posts!!</h4>
+                                    </div>
+                                </div>
+                                
+                            </div>	
+                        </div>
+                        <div class="col-lg-3">
+                            <aside class="sidebar static">
+                                <!-- <div class="widget widgetcustom">
+                                        <h4 class="widget-title">Your page</h4>	
+                                        <div class="your-page">
+                                            <figure>
+                                                <a title="" href="javascript:void();"><img alt="" src="../assets/images/resources/friend-avatar9.jpg"></a>
+                                            </figure>
+                                            <div class="page-meta">
+                                                <a class="underline" title="" href="javascript:void();">My page</a>
+                                                <span><i class="ti-comment"></i>Messages <em class="bg-blue">9</em></span>
+                                                <span><i class="ti-bell"></i>Notifications <em class="bg-purple">2</em></span>
+                                            </div>
+                                            <div class="page-likes">
+                                                <ul class="nav nav-tabs likes-btn">
+                                                    <li class="nav-item"><a data-toggle="tab" href="#link1" class="active">likes</a></li>
+                                                     <li class="nav-item"><a data-toggle="tab" href="#link2" class="">views</a></li>
+                                                </ul>
+                                                <div class="tab-content">
+                                                  <div id="link1" class="tab-pane active fade show">
+                                                    <span><i class="ti-heart"></i>884</span>
+                                                      <a title="weekly-likes" href="javascript:void();">35 new likes this week</a>
+                                                      <div class="users-thumb-list">
+                                                          <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Anderw">
+                                                            <img alt="" src="../assets/images/resources/userlist-1.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="frank">
+                                                            <img alt="" src="../assets/images/resources/userlist-2.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Sara">
+                                                            <img alt="" src="../assets/images/resources/userlist-3.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Amy">
+                                                            <img alt="" src="../assets/images/resources/userlist-4.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Ema">
+                                                            <img alt="" src="../assets/images/resources/userlist-5.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Sophie">
+                                                            <img alt="" src="../assets/images/resources/userlist-6.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Maria">
+                                                            <img alt="" src="../assets/images/resources/userlist-7.jpg">  
+                                                        </a>  
+                                                      </div>
+                                                  </div>
+                                                  <div id="link2" class="tab-pane fade">
+                                                      <span><i class="ti-eye"></i>445</span>
+                                                      <a title="weekly-likes" href="javascript:void();">440 new views this week</a>
+                                                      <div class="users-thumb-list">
+                                                          <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Anderw">
+                                                            <img alt="" src="../assets/images/resources/userlist-1.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="frank">
+                                                            <img alt="" src="../assets/images/resources/userlist-2.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Sara">
+                                                            <img alt="" src="images/resources/userlist-3.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Amy">
+                                                            <img alt="" src="../assets/images/resources/userlist-4.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Ema">
+                                                            <img alt="" src="../assets/images/resources/userlist-5.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Sophie">
+                                                            <img alt="" src="../assets/images/resources/userlist-6.jpg">  
+                                                        </a>
+                                                        <a data-toggle="tooltip" title="" href="javascript:void();" data-original-title="Maria">
+                                                            <img alt="" src="../assets/images/resources/userlist-7.jpg">  
+                                                        </a>  
+                                                      </div>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="central-meta item">
+                                        <span class="create-post">Photos<a title="" href="javascript:void(0);" routerLink="/friend-request">See All</a></span>
+                                        <div *ngIf="userImages!=0;">     
+                                            <ul class="photosvideosblocks">
+                                                <li class="" *ngFor="let item of userImages.slice(0, 7);"><img src="{{item.PostImageName}}"></li>
+                                                <li class="plusmorecss" [routerLink]="['/photos']"><i class="fa fa-angle-right"  title="View More Photos"></i></li>
+                                            </ul>   
+                                        </div>
+                                        <div *ngIf="userImages==0;" class="nofriend">
+                                            <div class="text-center noRequest">
+                                                <img src="../assets/images/resources/noPhotos.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                <h4 class="p-3">No Photos!!</h4>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <div class="central-meta item">
+                                        <span class="create-post">Videos<a title="" href="javascript:void(0);"></a></span>
+                                        <div *ngIf="userVideos!=0;">     
+                                            <ul class="photosvideosblocks">
+                                                <li class="" *ngFor="let item of userVideos.slice(0, 7);">
+                                                    <video style="width: 45px;
+                                                    height: 45px;
+                                                    object-fit: cover;
+                                                    border-radius: 4px;
+                                                    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+                                                    margin-bottom: -5px;">
+                                                        <source src="{{item.PostVideoName}}" type="video/mp4"  >
+                                                    </video> 
+                                                </li>
+                                                <li class="plusmorecss" [routerLink]="['/videos']"><i class="fa fa-angle-right" title="View More Videos"></i></li>
+                                            </ul>   
+                                        </div>
+                                        <div *ngIf="userVideos==0;" class="nofriend">
+                                            <div class="text-center noRequest">
+                                                <img src="../assets/images/resources/noVideos.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                <h4 class="p-3">No Videos!!</h4>
+                                            </div>
+                                        </div> 
+                                    </div>
+                            </aside>
+                        </div>
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>
+
+<div class="modal fade" id="modalyesno" tabindex="-1" role="dialog" aria-labelledby="modalyesnoTitle" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document" style="width: 350px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalyesnoLongTitle">Are you Sure you want to delete this post?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           
+        </div>
+        <div class="modal-footer" style="display: flex; justify-content: space-between;">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>

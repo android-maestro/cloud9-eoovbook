@@ -1,0 +1,214 @@
+<app-navbar></app-navbar>
+<section >
+    <div class="gap2 gap-min gray-bg">
+        <div class="container">
+            <div  class="row merged20">
+                <div class="offset-md-3 col-md-6">
+                    <div class="central-meta">
+						<div class="editing-interest">
+							<span class="create-post"><i class="ti-bell"></i> All Notifications<a title="" href="javascript:void(0);">Notifications Setting</a></span>
+							<div class="widget stick-widget">
+							<div class="notification-box">
+								<ul class="notificationss">
+									<li *ngFor="let item of friendRequests">
+										<div  *ngIf="item.InvitationStatus=='In progress';">
+											<figure>
+												<img src="{{item.ProfileImage}}" alt="" class="reqstfrndImg">
+											</figure>
+											<div class="mesg-meta">
+												<h6><a href="javascript:void();" title="">{{item.InvitedFrom}}</a></h6>
+												<span>sent you friend request</span>
+												<!-- <span><b>sandeep</b> and 2 other mutual friends</span> -->
+												<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+											</div>
+											<div class="confm-delt-frnds">
+												<a href="javascript:void;" class="confirmfrnds"  (click)="confirmRequest(item.InvitationId,'Accepted')"><i class="fa fa-check"></i> Accept</a>
+												<a  class="detlfriends" (click)="confirmRequest(item.InvitationId,'Rejected')"><i class="fa fa-trash"></i> Reject</a>
+											</div>
+										</div>	
+									</li>
+									<li *ngFor="let item of communityNotifications">
+										<div  *ngIf="item.InvitationStatus && item.InvitationType== 'Message1';">
+											<figure>
+												<img src="{{item.ProfileImage}}" alt="" class="reqstfrndImg">
+											</figure>
+											<div  [innerHTML]="item.InvitationMessage" class="mesg-meta">
+												<!-- <h6><a href="javascript:void();" title="">{{item.FullName}}</a></h6> -->
+												{{item.InvitationMessage}}
+												<!-- <span><b>sandeep</b> and 2 other mutual friends</span> -->
+												<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+											</div>
+											<!-- <div class="confm-delt-frnds">
+												<a href="javascript:void();" class="confirmfrnds"  (click)="communityconfirmRequest(item.InvitationId)"><i class="fa fa-check"></i> Accept</a>
+												<a href="javascript:void();" class="detlfriends" (click)="communityRejectRequest(item.InvitationId)"><i class="fa fa-trash"></i> Reject</a>
+											</div> -->
+										</div>	
+		
+										<div  *ngIf="item.InvitationStatus=='In Progress' && item.InvitationType== 'Message2';">
+											<figure>
+												<img src="{{item.ProfileImage}}" alt="" class="reqstfrndImg">
+											</figure>
+											<div  [innerHTML]="item.InvitationMessage" class="mesg-meta">
+												<!-- <h6><a href="javascript:void();" title="">{{item.FullName}}</a></h6> -->
+												{{item.InvitationMessage}} 
+												<!-- <span><b>sandeep</b> and 2 other mutual friends</span> -->
+												<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+											</div>
+											<div class="confm-delt-frnds">
+												<a href="javascript:void();" class="confirmfrnds"  (click)="communityconfirmRequest(item.InvitationId)"><i class="fa fa-check"></i> Accept</a>
+												<a href="javascript:void();" class="detlfriends" (click)="communityRejectRequest(item.InvitationId)"><i class="fa fa-trash"></i> Reject</a>
+											</div>
+										</div>	
+		
+										<div  *ngIf="item.InvitationStatus=='In Progress' && item.InvitationType== 'Message3';">
+											<figure>
+												<img src="{{item.ProfileImage}}" alt="" class="reqstfrndImg">
+											</figure>
+											<div  [innerHTML]="item.InvitationMessage" class="mesg-meta">
+												<!-- <h6><a href="javascript:void();" title="">{{item.FullName}}</a></h6> -->
+												{{item.InvitationMessage}}
+												<!-- <span><b>sandeep</b> and 2 other mutual friends</span> -->
+												<i>{{item.InvitationDate |  date:"dd/MM/yyyy"}}</i>
+											</div>
+											<div class="confm-delt-frnds">
+												<a href="javascript:void();" class="confirmfrnds"  (click)="AcceptcommunityInvitation(item.InvitationId)"><i class="fa fa-check"></i> Accept</a>
+												<a href="javascript:void();" class="detlfriends" (click)="RejectcommunityInvitation(item.InvitationId)"><i class="fa fa-trash"></i> Reject</a>
+											</div>
+										</div>	
+		
+									</li>
+									<div *ngIf="communityNotifications==0 || friendRequests==0;" class="nofriend">
+										<div class="text-center noRequest">
+											<img src="../assets/images/resources/noNotification.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+											<h4 class="p-3">No Notifications!!</h4>
+										</div>
+									</div>
+									<!-- <li>
+										<figure><img src="../assets/images/resources/friend-avatar3.jpg" alt=""></figure>
+										<div class="notifi-meta">
+											<p>Ashish chaturvedi commented on your new profile status. </p>
+											<span><i class="fa fa-comment"></i> 2 hours ago</span>
+										</div>
+										<div class="more">
+											<div class="more-post-optns"><i class="ti-more-alt"></i>
+												<ul>
+													<li><i class="fa fa-bell-slash-o"></i>Mute</li>
+													<li><i class="fa fa-wpexplorer"></i>Report</li>
+													<li><i class="fa fa-bell-slash-o"></i>Block</li>
+												</ul>
+											</div>
+										</div>
+										<i class="del ti-close"></i>
+									</li>
+									<li>
+										<figure><img src="../assets/images/resources/friend-avatar4.jpg" alt=""></figure>
+										<div class="notifi-meta">
+											<p>Swarnima Singh invited you to attend to his event Goo & Gotham Bar. </p>
+											<span><i class="fa fa-address-card"></i> 2 hours ago</span>
+										</div>
+										<div class="more">
+											<div class="more-post-optns"><i class="ti-more-alt"></i>
+												<ul>
+													<li><i class="fa fa-bell-slash-o"></i>Mute</li>
+													<li><i class="fa fa-wpexplorer"></i>Report</li>
+													<li><i class="fa fa-bell-slash-o"></i>Block</li>
+												</ul>
+											</div>
+										</div>
+										<i class="del ti-close"></i>
+									</li>
+									<li>
+										<figure><img src="../assets/images/resources/friend-avatar5.jpg" alt=""></figure>
+										<div class="notifi-meta">
+											<p>Chandan prasad liked your profile status. </p>
+											<span><i class="fa fa-thumbs-up"></i> 1 day ago</span>
+										</div>
+										<div class="more">
+											<div class="more-post-optns"><i class="ti-more-alt"></i>
+												<ul>
+													<li><i class="fa fa-bell-slash-o"></i>Mute</li>
+													<li><i class="fa fa-wpexplorer"></i>Report</li>
+													<li><i class="fa fa-bell-slash-o"></i>Block</li>
+												</ul>
+											</div>
+										</div>
+										<i class="del ti-close"></i>
+									</li>
+									<li>
+										<figure><img src="../assets/images/resources/friend-avatar6.jpg" alt=""></figure>
+										<div class="notifi-meta">
+											<p>You and Karishma kamboj just became friends. Write on his wall. </p>
+											<span><i class="fa fa-user"></i> 2 days ago</span>
+										</div>
+										<div class="more">
+											<div class="more-post-optns"><i class="ti-more-alt"></i>
+												<ul>
+													<li><i class="fa fa-bell-slash-o"></i>Mute</li>
+													<li><i class="fa fa-wpexplorer"></i>Report</li>
+													<li><i class="fa fa-bell-slash-o"></i>Block</li>
+												</ul>
+											</div>
+										</div>
+										<i class="del ti-close"></i>
+									</li>
+									<li>
+										<figure><img src="../assets/images/resources/friend-avatar3.jpg" alt=""></figure>
+										<div class="notifi-meta">
+											<p>Ashish Mishra commented on your new profile status. </p>
+											<span><i class="fa fa-comment"></i> 2 hours ago</span>
+										</div>
+										<div class="more">
+											<div class="more-post-optns"><i class="ti-more-alt"></i>
+												<ul>
+													<li><i class="fa fa-bell-slash-o"></i>Mute</li>
+													<li><i class="fa fa-wpexplorer"></i>Report</li>
+													<li><i class="fa fa-bell-slash-o"></i>Block</li>
+												</ul>
+											</div>
+										</div>
+										<i class="del ti-close"></i>
+									</li>
+									<li>
+										<figure><img src="../assets/images/resources/friend-avatar4.jpg" alt=""></figure>
+										<div class="notifi-meta">
+											<p>Swarnima Singh invited you to attend to his event Goo & Gotham Bar. </p>
+											<span><i class="fa fa-address-card"></i> 2 hours ago</span>
+										</div>
+										<div class="more">
+											<div class="more-post-optns"><i class="ti-more-alt"></i>
+												<ul>
+													<li><i class="fa fa-bell-slash-o"></i>Mute</li>
+													<li><i class="fa fa-wpexplorer"></i>Report</li>
+													<li><i class="fa fa-bell-slash-o"></i>Block</li>
+												</ul>
+											</div>
+										</div>
+										<i class="del ti-close"></i>
+									</li>
+									<li>
+										<figure><img src="../assets/images/resources/friend-avatar.jpg" alt=""></figure>
+										<div class="notifi-meta">
+											<p>Nikhil Pandey like your post</p>
+											<span><i class="fa fa-thumbs-up"></i> 30 mints ago</span>
+										</div>
+										<div class="more">
+											<div class="more-post-optns"><i class="ti-more-alt"></i>
+												<ul>
+													<li><i class="fa fa-bell-slash-o"></i>Mute</li>
+													<li><i class="fa fa-wpexplorer"></i>Report</li>
+													<li><i class="fa fa-bell-slash-o"></i>Block</li>
+												</ul>
+											</div>
+										</div>
+										<i class="del ti-close" title="Remove"></i>
+									</li> -->
+								</ul>
+							</div>
+						</div>
+						</div>
+					</div>				               
+                </div>             
+            </div>           
+        </div>
+    </div>
+</section>

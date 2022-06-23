@@ -1,0 +1,113 @@
+<app-navbar></app-navbar>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                    <div class="user-profile">
+                            <figure>
+                                <div class="edit-pp">
+                                    <label>
+                                        <i class="fa fa-camera" data-toggle="modal" data-target="#exampleModalCenter"></i>
+                                        
+                                    </label>
+                                </div>
+                                <div class="coverpageimage">
+                                    <img src="../assets/images/resources/profile-image.jpg" alt="">
+                                </div>
+                            </figure>
+                            
+                            <div class="profile-section">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3">
+                                        <div class="profile-author">
+                                            <div class="profile-author-thumb">
+                                                <img alt="author" src="{{profilePic}}" class="headerProfile">
+                                                <div class="edit-dp" (change)="processFile($event)">
+                                                    <label class="fileContainer" (click)="openModal(template)">
+                                                        <i class="fa fa-camera"></i>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="author-content">
+                                                <a class="h4 author-name" href="javascript:void();">{{userData.Name}}</a>
+                                                <!-- <div class="country">Ontario, CA</div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-10 col-md-9">
+                                        <ul class="profile-menu">
+                                            <li>
+                                                <a class="" href="javascript:void();" routerLink="/timeline">Timeline</a>
+                                            </li>
+                                            <li>
+                                                <a class="" href="javascript:void();" [routerLink]="['/profile/'+userData.Email]">About</a>
+                                            </li>
+                                            <li>
+                                                <a class="" href="javascript:void();" [routerLink]="['/friends']">Friends</a>
+                                            </li>
+                                            <li>
+                                                <a class="" href="javascript:void();" [routerLink]="['/photos']" >Photos</a>
+                                            </li>
+                                            <li>
+                                                <a class="" href="javascript:void();" [routerLink]="['/videos']">Videos</a>
+                                            </li>
+                                            <li>
+                                                <div class="more">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                    <ul class="more-dropdown">
+                                                        <li>
+                                                            <a href="javascript:void();" [routerLink]="['/profile-setting']"><i class="fa fa-cog"></i> Profile Settings</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void();" [routerLink]="['/create-community']"><i class="fa fa-users"></i> Create Community</a>
+                                                        </li>
+                                                        <!-- <li>
+                                                            <a href="javascript:void();" [routerLink]="['/create-brand']"><i class="fa fa-star"></i> Create Brand</a>
+                                                        </li> -->
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <!-- <ol class="folw-detail">
+                                            <li><span>Posts</span><ins>101</ins></li>
+                                            <li><span>Followers</span><ins>1.3K</ins></li>
+                                            <li><span>Following</span><ins>22</ins></li>
+                                        </ol> -->
+                                    </div>
+                                </div>
+                            </div>	
+                    </div><!-- user profile banner  -->
+                        
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>
+
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Upload Profile</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <input type="file" #avatarInput (change)="processFile($event)"  value="ImageFiles" accept="image/*" >
+        <image-cropper [imageChangedEvent]="imageChangedEvent" 
+        [maintainAspectRatio]="true"
+		[aspectRatio]="4 / 3"
+		format="png"
+		(imageCropped)="imageCropped($event)"
+		(imageLoaded)="imageLoaded()"
+		(cropperReady)="cropperReady()"
+		(loadImageFailed)="loadImageFailed()"
+		></image-cropper>
+        <img [src]="thumbnail" alt="" class="editNewsImage" *ngIf="thumbnail" >
+        <button class="main-btn editProfilebtn" (click)="upload()" type="submit" data-ripple="">Update DP</button>
+    </div>
+  </ng-template>

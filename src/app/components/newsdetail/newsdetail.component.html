@@ -1,0 +1,336 @@
+<app-navbar></app-navbar>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">							
+                        <div class="col-lg-4">
+                            <aside class="sidebar static right">	
+                                <div class="widget widgetcustombg">
+                                    
+                                    <div class="signglepagenewstitile"> Top Trending <a href="javascript:void();" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a></div>
+                                    <div id="demo" class="collapse show">
+                                        <ul class="toptrendinslist">
+                                            <li *ngFor="let item of trending">
+                                                <div class="toptrendimg"><img style="width:100px !important; height:65px !important; border-radius:5px !important;" alt="" src="{{item.ImageName}}"></div>
+                                                <div class="toptrendingtext">
+                                                    <h6><a title="" href="javascript:void(0)"   (click)="singleNews(item.Id)">{{item.NewsHeadline}}</a></h6>
+                                                    <!-- <div class="circular_image">
+                                                        <img src="{{Data.ProfileImage}}">
+                                                    </div> -->
+                                                    <a href="jazvascript:void(0);" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" style="font-size:12px;"><i class="fa fa-globe"></i>Published By: {{item.AuthorName}} &nbsp;|&nbsp; <span>{{item.PulishDays}}</span></a>
+                                                    
+                                                </div>
+                                            </li>
+                                          </ul>	
+                                    </div>
+                                    </div>									
+
+                                <!-- <div style="clear:both;"></div>
+                                <div class="widgetcustombg roundboder">
+                                    <ul class="sociaz-media">
+                                        <li><a title="" href="javascript:void();" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a title="" href="javascript:void();" class="twitter"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a title="" href="javascript:void();" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a title="" href="javascript:void();" class="instagram"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div> -->
+
+                            </aside>
+                        </div><!-- sidebar -->
+
+                        <!-- <div class="spinner-border d-flex justify-content-center" *ngIf="isLoading" >
+                            <span class="visually-hidden text-center">Loading...</span>
+                          </div> -->
+                          
+                        
+
+                        <div class="col-lg-8">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div class="spinner-border text-center paddtop50" *ngIf="isLoading" >
+                                        <span class="visually-hidden text-center">Loading...</span>
+                                      </div>
+                                </div>
+                            </div>
+                            
+                            <div class="central-meta item" *ngIf="Data">  									
+                                <div class="user-post">
+                                    <div class="friend-info">
+                                        
+                                        <div class="friend-name">
+                                            
+                                            <div class="more" *ngIf="this.role!='Normal'">
+                                                <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                    <ul>
+                                                        <li (click)="editNews()"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                                        <li (click)="deleteNews()"><i class="fa fa-trash-o"></i>Delete Post</li>															
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <h1 class="bigtitle"> {{Data.NewsHeadline}} </h1>
+                                            <!-- <div class="circular_image">
+                                            <img src="{{Data.ProfileImage}}">
+                                        </div> -->
+                                            <a href="#" style="font-size:12px;"><i class="fa fa-globe"></i> Published By: {{Data.AuthorName}} &nbsp;|&nbsp; <span>{{Data.PulishDays}}</span></a>
+
+                                        </div>	
+                                                                            
+                                        <div class="post-meta">
+                                            <figure>
+                                                <carousel data-ride="carousel">
+                                                    <slide data-interval="false">
+                                                    <img src="{{Data.ImageName}}" alt="first slide" style="display: block; width: 100%;">	
+                                                    </slide>
+                                                    <slide data-interval="false" *ngFor="let item of newsLink ">
+                                                        <img src="{{item.DataText}}" alt="">	
+                                                    </slide>
+                                                    <slide data-interval="false">
+                                                        <img src="{{Data.ImageName}}" alt="">	
+                                                    </slide>
+                                                    
+                                            </carousel>												
+                                            </figure>
+                                            <div class="description descrippara" [innerHTML]="Data.NewsBody">
+                                            
+                                            </div>
+                                            
+                                            <div id="commentclick" class="we-video-info">
+                                                <ul>
+                                                    <li>
+                                                        <span class="views" title="views">
+                                                            <i class="fa fa-eye"></i>
+                                                            <ins>{{Data.ViewsCount}}</ins>
+                                                        </span>
+                                                    </li>
+                                                    <li id="like">
+                                                        <span *ngIf="!likeclick" class="like" title="Like/Dislike" (click)="like()"><i class="fa fa-thumbs-o-up"></i> <ins>{{Data.LikesCount}}</ins></span>
+                                                        <span *ngIf="likeclick" class="dislike" title="Like/Dislike" ><i class="fa fa-thumbs-up"></i> <ins>{{Data.LikesCount}}</ins></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="comment" title="Comments" (click)="fetchcomment()">
+                                                            <i class="ti-comments"></i>
+                                                            <ins>{{newsCount}}</ins>
+                                                        </span>
+                                                    </li>
+
+                                                    <li (click)="copyMessage(Data.Id)">
+                                                        <span title="Copy News link" data-toggle="tooltip" class="Copy">
+                                                            <i class="fa fa-copy"></i>
+                                                        </span>
+                                                    </li>
+
+                                                    <li>																	
+                                                        <span class="more-post-optns"><i class="fa fa-share-alt"></i>
+                                                            <ul>
+                                                                <li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/newsdetail?newsId={{Data.Id}}" target="_blank" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+                                                                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/newsdetail?newsId={{Data.Id}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+                                                                <li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{Data.NewsHeadline}}&url={{baseUrl}}/newsdetail?newsId={{Data.Id}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+                                                                <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{Data.Id}}&title={{Data.NewsHeadline}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>  
+
+                                                                                
+
+                                                            </ul>
+                                                        </span>																	
+                                                    </li>
+                                                    
+                                                    
+
+                                                    <!-- <li>
+                                                        <span>
+                                                            <a class="share-pst" href="javascript:void();" title="Share">
+                                                                <i class="fa fa-share-alt"></i>
+                                                            </a>
+                                                            <ins></ins>
+                                                        </span>	
+                                                    </li> -->
+                                                </ul>
+                                                
+                                            </div>	
+                                        </div>
+                                        <div class="coment-area" style="display: block">
+                                            <ul class="we-comet">
+                                                <li *ngFor="let comment of commentnews" >
+                                                    <div class="comet-avatar">
+                                                        <img src="{{comment.ProfileImage}}" alt="" class="profileImg">
+                                                    </div>
+                                                    <div class="we-comment">
+                                                        <h5><a href="javascript:void();" title="">{{comment.CommentBy}}</a></h5>
+                                                        <p>{{comment.NewsComment}}</p>
+                                                        <div class="inline-itms">
+                                                            <span>{{comment.CommentOn |  date:"medium":'+1100'}}</span>
+                                                            <!-- <a class="we-reply" href="javascript:void();" title="Reply"><i class="fa fa-reply"></i></a> -->
+                                                            <!-- <a href="javascript:void();" title=""><i class="fa fa-heart"></i><span>20</span></a> -->
+                                                        </div>
+                                                    </div>
+
+                                                </li>
+                                            
+                                                <!-- <li>
+                                                    <a href="javascript:void();" title="" class="showmore underline">more comments+</a>
+                                                </li> -->
+                                                <!-- <div class="coment-area" style="display: block">
+                                                    <ul class="we-comet">
+                                                        <li>
+                                                            <div class="comet-avatar">
+                                                                <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                            </div>
+                                                            <div class="we-comment">
+                                                                <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                <div class="inline-itms">
+                                                                    <span>1 year ago</span>
+                                                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                    <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                </div>
+                                                            </div>
+                                                            <ul class="we-comet">
+                                                                <li>
+                                                                    <div class="comet-avatar">
+                                                                        <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                    </div>
+                                                                    <div class="we-comment">
+                                                                        <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                        <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                        <div class="inline-itms">
+                                                                            <span>1 year ago</span>
+                                                                            <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                            <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </li>
+                                                                <li>
+                                                                    <div class="comet-avatar">
+                                                                        <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                    </div>
+                                                                    <div class="we-comment">
+                                                                        <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                        <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                        <div class="inline-itms">
+                                                                            <span>1 year ago</span>
+                                                                            <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                            <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <ul class="we-comet">
+                                                                        <li>
+                                                                            <div class="comet-avatar">
+                                                                                <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                            </div>
+                                                                            <div class="we-comment">
+                                                                                <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                <div class="inline-itms">
+                                                                                    <span>1 year ago</span>
+                                                                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                    <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <ul class="we-comet">
+                                                                                <li>
+                                                                                    <div class="comet-avatar">
+                                                                                        <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                    </div>
+                                                                                    <div class="we-comment">
+                                                                                        <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                        <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                        <div class="inline-itms">
+                                                                                            <span>1 year ago</span>
+                                                                                            <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                            <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                </li>
+                                                                                <li>
+                                                                                    <div class="comet-avatar">
+                                                                                        <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                    </div>
+                                                                                    <div class="we-comment">
+                                                                                        <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                        <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                        <div class="inline-itms">
+                                                                                            <span>1 year ago</span>
+                                                                                            <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                            <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="comet-avatar">
+                                                                        <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                    </div>
+                                                                    <div class="we-comment">
+                                                                        <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                        <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                        <div class="inline-itms">
+                                                                            <span>1 year ago</span>
+                                                                            <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                            <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <div class="comet-avatar">
+                                                                <img src="../assets/images/resources/comet-2.jpg" alt="">
+                                                            </div>
+                                                            <div class="we-comment">
+                                                                <h5><a href="time-line.html" title="">Sophia</a></h5>
+                                                                <p>we are working for the dance and sing songs. this video is very awesome for the youngster.
+                                                                    <i class="em em-smiley"></i>
+                                                                </p>
+                                                                <div class="inline-itms">
+                                                                    <span>1 year ago</span>
+                                                                    <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                    <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" title="" class="showmore underline">more comments+</a>
+                                                        </li>
+                                                        
+                                                    </ul>
+                                                </div> -->
+                                                <li class="post-comment">
+                                                    <div class="comet-avatar">
+                                                        <img [src]="profilePic" alt="" class="profileImg">
+                                                    </div>
+                                                    <div class="post-comt-box">
+                                                        <form method="post" [formGroup]="commentform" novalidate>
+                                                            <textarea placeholder="Post your comment" formControlName="NewsComment"  [(ngModel)]="message" ></textarea>
+                                                            <div class="add-smiles">
+                                                            <span
+                                                                (click)="toggled = !toggled"
+                                                                [(emojiPickerIf)]="toggled"
+                                                                [emojiPickerDirection]="'bottom' || 'top' || 'left' || 'right'"
+                                                                (emojiPickerSelect)="handleSelection($event)"
+                                                                >😄</span>
+                                                            <button type="submit" class="newssndbtn lgajbtn"  (click)="submitcomment()"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                        </div>
+                                                        </form>	
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- centerl meta -->
+                        
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>

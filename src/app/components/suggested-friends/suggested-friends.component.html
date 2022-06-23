@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<section >
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-12">
+                    <div class="central-meta paddtb10">
+                        <div class="title-block">
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <div class="align-left">
+                                        <h5 class="grptitle"> Suggested Friends </h5>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="row merged20">
+                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <form >
+                                                <input type="text" class="form-control" name="search" placeholder="Search Friend" [(ngModel)]="searchFriend" autocomplete="off">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </form>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- title block -->
+                </div>
+            </div>
+            
+            <div  class="row merged20">
+                <div class="col-md-2" *ngFor="let item of Suggestedfriends; let index=index">
+                    <div class="suggstbgs">
+                        
+                        <img class="suggestfrndimg" src="{{item.ProfileImage}}">
+                        
+                    <div class="sugtd-frnd-meta">
+                        
+                        <a href="javascript:void();" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" title="">{{item.Name}}</a>
+                        <ul class="add-remove-frnd margintop10">                            
+                            <li class="add-tofrndlist" *ngIf="!item.IsInvited;"><a class="send-mesg" title="Send Message" (click)="addfriend(item.UserId,item.Email)">Add</a></li>
+                            <li class="add-tofrndlist" *ngIf="item.IsInvited;"><a class="send-mesg" href="javascript:void();" title="Send Message">Sent</a></li>
+                            <li class="remove-frnd" (click)="ShowHide(item.UserId)"><a title="remove friend">Remove</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                </div> 
+
+
+                </div>              
+            </div>           
+        </div>
+</section>

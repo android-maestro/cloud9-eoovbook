@@ -1,0 +1,64 @@
+.joincmntybtn
+  {
+    background-color: #5B4B95;
+    color: #fff;
+    font-size: 14px;
+    padding:5px 20px;
+    border: 0px;
+    border-radius: 4px;
+  }
+
+  .joincmntybtn:hover
+  {
+    background-color: #58559C;
+    color: #fff;
+    font-size: 14px;
+    padding:5px 20px;
+    border: 0px;
+    border-radius: 4px;
+  }
+
+  .circular_image { 
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* commented for demo
+    float: left;
+    margin-left: 125px;
+    margin-top: 20px;
+    */
+    
+    /*for demo*/
+    display:inline-block;
+    vertical-align:top;
+    border: 1px solid #eee;
+  }
+  .circular_image img{
+    width:100%;
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
+  }
+
+  .sendinvitebtn
+  {
+    background-color: #5B4B95;
+    color: #fff;
+    font-size:12px;
+    padding:2px 6px;
+    border-radius:4px;
+    border: 1px solid #58559C;
+    margin-top:10px;
+  }
+
+  .sugtdfrndtitle
+  {
+    font-size:14px;
+    margin-bottom:0px;
+    text-transform: capitalize;
+  }
+
+  .friend-block {
+    margin-bottom: 0px;
+  }

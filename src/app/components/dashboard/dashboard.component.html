@@ -1,0 +1,884 @@
+<app-navbar></app-navbar>
+
+<div class=""></div>    
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row merged20">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="col-lg-3">
+                            <aside class="sidebar static left">
+                                <div class="widget widgetcustombg">
+                                    <div class="friendinvite">
+                                        <div class="text-center">
+                                            <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                        </div>
+                                        <h3>Invite Friends</h3>
+                                        <h4 *ngIf="friends==0;">
+                                            Hey! Your Friend List seems empty.<br/> Invite your friends now.
+                                        </h4>
+                                        <h4 *ngIf="friends!=0;">
+                                            Invite Your Friends to<br/> Grow your friends Network.
+                                        </h4>
+                                        
+                                        <div class="text-center">
+                                            <form method="post" name="emailForm">
+                                                 <tag-input [(ngModel)]="emails" [theme]="'bootstrap'"
+                                                           (onAdd)="onSelect($event)"
+                                                           (onRemove)="change($event)" allowed-tags-pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                                           name="emails" [placeholder]="'Add more email address'" [secondaryPlaceholder]="'Enter email addresses'">
+                                                </tag-input>
+                                                <tags-input ng-model="mailVm.cc" 
+                                                            display-property="email" 
+                                                            placeholder="Add Email Address" 
+                                                            allowed-tags-pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+                                                </tags-input> 
+                                                <div *ngIf="emailValidation!='null'">
+                                                        <p 
+                                                            class="alert alert-danger">
+                                                            <i class="fa fa-exclamation-circle"></i>&nbsp;{{emailValidation}}
+                                                        </p>
+                                                </div>
+                                                <div class="mt-2">&nbsp;</div>
+                                                <button *ngIf="!clicked" [disabled]="added==0" type="button" (click)="submit()" class="">Send Invite</button>
+                                                <button *ngIf="clicked"  class="lgajbtn btn-block"><div class="spinner-border  spinner-border-sm" role="status">
+                                                              <span class="sr-only">Loading...</span>
+                                                            </div></button>
+                                            </form>
+                                        </div>
+                                          
+                                
+                                    </div>    
+                                </div>
+                                <div class="central-meta item">
+                                    <span class="create-post">Friends<a title="" href="javascript:void(0);" routerLink="/friends">See All</a></span>
+                                    <div *ngIf="friends!=0;">     
+                                        <ul class="friendslistingcustom">
+                                            <li [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" class="" *ngFor="let item of friends"><img src="{{item.ProfileImage}}"><br/><a> {{item.Name}}</a></li>
+                                        </ul>   
+                                    </div>
+                                    <div *ngIf="friends==0;" class="nofriend">
+                                        <div class="text-center noRequest">
+                                            <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                            <h4 class="p-3">No Friends!!</h4>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <!-- page invitation widget -->	
+                                
+                                <!-- recent activites -->
+                                
+                                
+                                <!-- who's following -->
+                            </aside>
+                        </div><!-- sidebar -->
+                        <div class="col-lg-6">
+                            <div class="central-meta postbox">                                
+                                <div class="new-postbox">                                    
+                                    <div class="newpst-input">
+                                        <figure class="postfigimg">
+                                            <img [src]="profilePic" alt="">
+                                        </figure>
+                                        <div *ngIf="postError==true">
+                                            <p  class="alert alert-danger">
+                                                <i class="fa fa-exclamation-circle"></i>&nbsp; Invalid Credentials.</p>
+                                            </div>
+                                        <form  method="post"  [formGroup]="postform" novalidate>   
+                                            <div class="poststatus" >
+                                                <label class="postname">{{UserName}}</label><br/>
+                                                <i class="fa fa-globe"></i>
+                                                <select class="frmctrl" formControlName="PostStatus" [(ngModel)]="defaultOption"  (change)="selectChangeHandler($event)" name="items">
+                                                    <option  *ngFor="let item of items" [ngValue]="item.DataValue" >{{item.DataText}}</option>
+                                                </select>
+                                            </div>                                         
+                                            <textarea rows="1" placeholder="What's on your mind, {{UserName}}?" class="fontdesgn" formControlName="Description" [(ngModel)]="Description" required=""></textarea>                                                                                                                                      
+                                            <div class="attachments" >
+                                                <ul>                                                                                                
+                                                    <li>                                                        
+                                                        <label class="fileContainer displayPreview lbltextbgs">
+                                                            <i class="fa fa-image" style="color:#5D4D99;"></i> <span class="posticontitle">Add Photos</span>
+                                                            <!-- <input #file type="file" formControlName="ImageFiles" value="ImageName" accept='image/*' (change)="preview(file.files)" multiple>                                                             -->
+                                                            <input #files type="File" (change)="postImage($event)" [(ngModel)]="ImageFiles" formControlName="ImageFiles" value="ImageName" accept="image/*" multiple>
+                                                            
+                                                        </label>
+                                                       
+                                                    </li>
+                                                    <li>                                                        
+                                                        <label class="fileContainer displayPreview lbltextbgs">
+                                                            <i class="fa fa-video-camera" style="color:#5D4D99;"></i><span class="posticontitle">Add Videos</span>
+                                                            <input #file type="file" data-toggle="tooltip" data-placement="top" title="Add Videos" [(ngModel)]="VideoFile" (change)="ProcessVideo($event)" formControlName="VideoFile" value="VideoName" accept='video/*' (change)="previewvideo(file.files)">
+                                                        </label>
+                                                       
+                                                    </li> 
+                                                                                                                                                          
+                                                </ul> 
+                                                
+                                                <div class="imgpostdiv">
+                                                    <div *ngFor="let url of urls; let index=index" style="float: left;">
+                                                    <img id="postimg" [src]="url" class="preview_img" multiple>    
+                                                    <span (click)="removeImage(index)"  style="position: absolute; left: 20px;" ><i class="fa fa-window-close" aria-hidden="true" style="color: white;
+                                                        font-size: 20px;"></i></span> 
+                                                    </div>                                              
+                                                </div>
+                                                <div>
+                                                    <video [src]="vdoURL" *ngIf="vdoURL" class="preview_img" controls type="video/mp4" >
+                                                        Your browser does not support the video tag.
+                                                      </video>
+                                                      <span (click)="removeVideo()"  style="position: absolute; left: 2px;" ><i class="fa fa-window-close" aria-hidden="true" style="color: white;
+                                                        font-size: 20px;"></i></span>  
+                                                </div>
+                                            </div>
+                                            <li class="preview-btn" style="list-style-type:none;"> 
+                                                <button class="post-btn lgajbtn" type="submit" [disabled]="!VideoFile || !ImageFiles || !Description" [disabled]="isLoading" (click)="addPost()" data-ripple=""> Post</button>
+                                            </li> 
+                                        </form>                                        
+                                    </div>                                    
+                                    <div class="add-location-post">
+                                        <span>Drag map point to selected area</span>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                  <label class="control-label">Lat :</label>
+                                                  <input type="text" class="" id="us3-lat"/>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                  <label>Long :</label>
+                                                  <input type="text" class="" id="us3-lon" />
+                                            </div>
+                                        </div>
+                                          <!-- map -->
+                                          <div id="us3"></div>
+                                    </div>
+                                </div>	
+                            </div><!-- add post new box -->
+                            <div class="central-meta" [hidden]="IsHidden">
+                                <span class="create-post sugstftndtitle">Suggested Friend's 
+                                    <a title="" href="javascript:void(0);" routerLink="/suggested-friends">See All</a>
+                                    <a class="sugstclose" title="close" (click)="onSelectclose()" style="position: absolute;top: -30px;bottom: 20;bottom: 20;right: -28px;"><i class="fa fa-close"></i></a>
+                                </span>  
+                            
+                            <carousel [itemsPerSlide]="itemsPerSlide" [noWrap]="noWrap"
+                            [singleSlideOffset]="singleSlideOffset"
+                            [interval]="0"[showIndicators]="false" >
+                            <slide *ngFor="let item of Suggestedfriends; let index=index">
+                                <div class="suggstbgs">
+                                    <img class="suggestfrndimg" src="{{item.ProfileImage}}">
+                                    <div class="sugtd-frnd-meta">
+                                        <a href="javascript:void();" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" title="{{item.Name}}">{{item.Name}}</a>
+                                        <ul class="add-remove-frnd margintop10">
+                                            <li class="add-tofrndlist" *ngIf="!item.IsInvited;"><a class="send-mesg" title="Send Message" (click)="addfriend(item.UserId,item.Email,index)">Add</a></li>
+                                            <li class="add-tofrndlist" *ngIf="item.IsInvited;"><a class="send-mesg" href="javascript:void();" title="Send Message">Sent</a></li>
+                                            <li class="remove-frnd" (click)="ShowHide(index)"><a title="remove friend">Remove</a></li>
+                                        </ul>
+                                    </div>
+                                </div> 
+                            </slide>
+                            </carousel>
+                            
+                        </div>
+
+                        <div style="display:flex; justify-content: space-between;">
+                            <div>
+                                <h6>Filter your post to ease your life</h6>
+                            </div>
+                           
+                                <ul class="pull-right" style="list-style-type: none;">
+                                    <li style="background-color: #fff; padding:5px 10px; border-radius:4px; border:1px solid #ede9e9;">																	
+                                        <span class="more-post-optns"><i class="fa fa-filter voilet"></i> Filter
+                                            <ul>
+                                                <li class="nav-item"><a class="active" href="#trend" data-toggle="tab">All Posts</a></li>
+                                                <li class="nav-item"><a class="" href="#hot" data-toggle="tab">Your Posts</a></li>                                                                                                        
+                                            </ul>
+                                        </span>																	
+                                </li>
+                                </ul>
+                       
+                        </div>
+                            <div class="loadMore">
+                                
+                                <div class="tab-content" 
+                                infiniteScroll
+                                [infiniteScrollDistance]="2"
+                                [infiniteScrollThrottle]="150"
+                                (scrolled)="onScroll()">
+
+                                    <div class="tab-pane active fade show " id="trend" > 
+                                        <div class="central-meta item" *ngFor="let item of AllPosts">
+                                            <div class="user-post">
+                                                <div class="friend-info">
+                                                    <figure [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]">
+                                                        <img src="{{item.ProfileImage}}" alt="">
+                                                    </figure>
+                                                    <div class="friend-name">
+                                                        <div *ngIf="item.Email==UserEmail">
+                                                        <div class="more">
+                                                            <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                                <ul>
+                                                                    <!-- <li class="modl-box create-pst" data-target="myModal"><i class="fa fa-pencil-square-o"></i>Edit Post</li> -->
+                                                                    <li class="modl-box create-pst" data-target="myModal" (click)="editPost(item.PostId)"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                                                    <li><a data-toggle="modal" data-target="#modalyesno"><i class="fa fa-trash-o"></i>Delete Post</a></li>  
+                                                                                                                              
+                                                                </ul>
+                                                                <!-- <ng-template #deletetemp>
+                                                                    <div class="modal-body text-center">
+                                                                      <div class="delttext">Are you sure you want to Delete this Post?</div>
+                                                                      <div class="col-lg-12">
+                                                                        <button type="button" class=" main-btn delyesbtn dltbtn" (click)="deletePostPublic(item.PostId)" >Yes</button>
+                                                                        <button type="button" class="main-btn delcancelbtn dltbtn" (click)="decline()" >Cancel</button>
+                                                                      </div>
+                                                                     
+                                                                    </div>
+                                                                  </ng-template> -->
+                                                                  <div class="modal fade" id="modalyesno" tabindex="-1" role="dialog" aria-labelledby="modalyesnoTitle" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-sm" role="document" style="width: 350px;">
+                                                                      <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                          <h5 class="modal-title" id="modalyesnoLongTitle">Are you Sure you want to delete this post?</h5>
+                                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                          </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                           
+                                                                        </div>
+                                                                        <div class="modal-footer" style="display: flex; justify-content: space-between;">
+                                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="decline()">Cancel</button>
+                                                                          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deletePostPublic(item.PostId)">Delete</button>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+                                                        <ins><a href="javascript:void();" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" title="{{item.Name}}">{{item.Name}}</a> </ins>
+                                                        <span><i class="fa fa-globe"></i> published: {{(item.PostOn)| date:'medium':'+1100'}} </span>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <p>
+                                                            {{item.Description}}
+                                                        </p>                                                       
+                                                        <!-- <figure class="grid-gallery"> -->
+                                                            <figure class="grid-gallery" (click)="viewPost(item.PostId)">                                                          
+                                                            <div *ngIf="(item.ImageCount)>=1" else templatevideo>
+                                                            <div *ngFor="let image of item.ePostImages; let i =index; let first = first;" class="gallery-img" >
+                                                                <div class="imagecontainer" *ngIf="i==0">
+                                                                    
+                                                                <a class="imagepopout" href="javascript:void();" title="" data-toggle="modal" data-target="#img-comt">
+                                                                <img src="{{image.PostImageName}}" alt=""  >
+                                                                <div *ngIf="((item.ImageCount+item.VideoCount)-1==0)"></div>
+                                                                
+                                                                <div *ngIf="((item.ImageCount+item.VideoCount)-1>=1)">
+                                                                    <div class="text-block">
+                                                                        <div [ngClass]="{ first: first }">+ {{(item.ImageCount+item.VideoCount)-1}}</div>
+                                                                    </div>
+                                                                </div>
+                                                                </a>
+                                                                
+                                                                </div> 
+                                                                
+                                                            </div>
+                                                            
+                                                            </div>                  
+                                                                                                    
+                                            </figure>
+                                                
+                                            <div #templatevideo [hidden]="item.ImageCount >= 1"  *ngFor="let video of item.ePostVideos" class="gallery-vid">
+                                                <video controls>
+                                                    <source src="{{video.PostVideoName}}" type="video/mp4">
+                                                </video>
+                                            </div> 
+
+
+                                                        <div class="we-video-info">
+                                                            <ul *ngFor="let count of item.ePostCounts;">
+                                                                <li>
+                                                                    <span class="like" *ngIf="checked" title="Like/Dislike"  (click)="unlikePost(item.PostId)" ><i class="fa fa-thumbs-up"></i> <ins>{{count.LikeCount}}</ins></span>
+                                                                    <span class="like"  *ngIf="!checked" title="Like/Dislike"  (click)="likePost(item.PostId)" ><i class="fa fa-thumbs-o-up"></i> <ins>{{count.LikeCount}} </ins></span>
+                                                                    
+                                                                </li>
+                                                                <li>
+                                                                    <span class="comment" title="Comments">
+                                                                        <i class="ti-comments"></i>
+                                                                        <ins>{{count.CommentCount}}</ins>
+                                                                    </span>
+                                                                    
+                                                                </li>
+                                                                <li (click)="copyMessage(item.PostId)">
+                                                                    <span title="Copy link" data-toggle="tooltip" class="Copy">
+                                                                        <i class="fa fa-copy"></i>
+                                                                    </span>
+                                                                </li>
+        
+                                                                <li>																	
+                                                                    <span class="more-post-optns"><i class="fa fa-share-alt"></i>
+                                                                        <ul>
+                                                                            <li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+                                                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+                                                                            <li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{item.Description}}&url={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+                                                                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{item.PostId}}&title={{item.Description}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>  
+        
+                                                                                            
+        
+                                                                        </ul>
+                                                                    </span>																	
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="coment-area" style="display: block;">
+                                                        <ul class="we-comet">
+                                                            <li *ngFor="let comment of item.ePostComments;">
+                                                                <div class="comet-avatar" [routerLink]="['/profileDetail/'+  comment.Email + '/' + comment.CommentBy]">
+                                                                    <img src="{{comment.ProfileImage}}" alt="">
+                                                                </div>
+                                                                <div class="we-comment">
+                                                                    <h5><a href="javascript:void(0)" [routerLink]="['/profileDetail/'+  comment.Email + '/' + comment.CommentBy]" title="">{{comment.CommentByName}}</a></h5>
+                                                                    <p>{{comment.CommentDescription}}</p>
+                                                                    <div class="inline-itms">
+                                                                        <span>{{comment.CommentOn |  date:'medium':'+1100'}}</span>
+                                                                        <!-- <a class="we-reply" href="javascript:void();" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                        <a href="javascript:void();" title=""><i class="fa fa-heart"></i><span>20</span></a> -->
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <ul class="we-comet">
+                                                                    <li>
+																		<div class="comet-avatar">
+																			<img src="../assets/images/resources/comet-1.jpg" alt="">
+																		</div>
+																		<div class="we-comment">
+																			<h5><a href="time-line.html" title="">Jason borne</a></h5>
+																			<p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+																			<div class="inline-itms">
+																				<span>1 year ago</span>
+																				<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+																				<a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+																			</div>
+																		</div>
+																		
+																	</li>
+                                                                    <li>
+																		<div class="comet-avatar">
+																			<img src="../assets/images/resources/comet-1.jpg" alt="">
+																		</div>
+																		<div class="we-comment">
+																			<h5><a href="time-line.html" title="">Jason borne</a></h5>
+																			<p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+																			<div class="inline-itms">
+																				<span>1 year ago</span>
+																				<a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+																				<a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+																			</div>
+																		</div>
+																		<ul class="we-comet">
+                                                                            <li>
+                                                                                <div class="comet-avatar">
+                                                                                    <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                </div>
+                                                                                <div class="we-comment">
+                                                                                    <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                    <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                    <div class="inline-itms">
+                                                                                        <span>1 year ago</span>
+                                                                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                        <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <ul class="we-comet">
+                                                                                    <li>
+                                                                                        <div class="comet-avatar">
+                                                                                            <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                        </div>
+                                                                                        <div class="we-comment">
+                                                                                            <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                            <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                            <div class="inline-itms">
+                                                                                                <span>1 year ago</span>
+                                                                                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                                <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <ul class="we-comet">
+                                                                                            <li>
+                                                                                                <div class="comet-avatar">
+                                                                                                    <img src="../assets/images/resources/comet-1.jpg" alt="">
+                                                                                                </div>
+                                                                                                <div class="we-comment">
+                                                                                                    <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                                                                                    <p>we are working for the dance and sing songs. this video is very awesome for the youngster. please vote this video and like our channel</p>
+                                                                                                    <div class="inline-itms">
+                                                                                                        <span>1 year ago</span>
+                                                                                                        <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                                                        <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </ul>
+																	</li>
+                                                                </ul> -->
+                                                            </li>
+                                                        </ul>
+                                                            <!-- <li>
+                                                                <a href="javascript:void();" title="" class="showmore underline">more comments+</a>
+                                                            </li> -->
+                                                            <ul class="we-comet" style="width:100%;">
+                                                            <li class="post-comment">
+                                                                <div class="comet-avatar">
+                                                                    <img [src]="profilePic" alt="">
+                                                                </div>
+                                                                <div class="post-comt-box">
+                                                                    <form method="post" [formGroup]="postCommentform" novalidate (ngSubmit)="submitPostComment(item.PostId)">
+                                                                        <textarea placeholder="Post your comment" formControlName="Description"  [(ngModel)]="message" [ngModelOptions]="{standalone: true}" (keyup.enter)="submitPostComment(item.PostId)"></textarea>
+                                                                        <div class="add-smiles">
+                                                                            <!-- <ngx-emoj
+                                                                                (onemojipick)="handleEmoji($event)"
+                                                                                (onchardelete)="handleCharDelete($event)"
+                                                                                [width]="'35vh'"
+                                                                                [height]="'50vh'"
+                                                                                [theme]="{
+                                                                                    martShowHeader: true,
+                                                                                    martShowFooter: true,
+                                                                                    martHeaderPadding: {x: '0', y: '0'},
+                                                                                    martFooterPadding: {x: '0', y: '0'},
+                                                                                    martHeaderFontSize: '14px',
+                                                                                    martHeaderBG: '#e3e7e8',
+                                                                                    martFooterBG: '#e3e7e8',
+                                                                                    martBG: '#ebeff2',
+                                                                                    martCategoryColor: '#94a0a6',
+                                                                                    martCategoryColorActive: '#455a64',
+                                                                                    martActiveCategoryIndicatorColor: '#00897b',
+                                                                                    martEmojiFontSize: '150%',
+                                                                                    martCategoryFontSize: '20px',
+                                                                                    martBorderRadius: '5px',
+                                                                                    martActiveCategoryIndicatorHeight: '4px',
+                                                                                    martEmojiPadding: {x: '40px', y: '40px'}
+                                                                                }"
+                                                                                [recentEmojiStoreKey]="'String'"
+                                                                                [searchEmojiPlaceholderText]="'String'"
+                                                                                [emojiNotFoundText]="'String'">
+                                                                        </ngx-emoj> -->
+                                                                            <button type="submit" class="newssndbtn lgajbtn" ><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                                        </div>
+                                                                    </form>	
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>        
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                    <div class="tab-pane fade" id="hot" >
+                                        <div class="central-meta item" *ngFor="let item of userPosts">
+                                            <div class="user-post">
+                                                <div class="friend-info">
+                                                    <figure [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]">
+                                                        <img src="{{profilePic}}" alt="" class="UserProfile">
+                                                    </figure>
+                                                    <div class="friend-name">
+                                                        <div class="more">
+                                                            <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                                <ul>
+                                                                    <!-- <li class="modl-box"  data-target="#myModal"><i class="fa fa-pencil-square-o"></i>Edit Post</li> -->
+                                                                    <li class="modl-box"  data-target="#myModal" (click)="editPost(item.PostId)"><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                                                                    <li><a data-toggle="modal" data-target="#modalyesno"><i class="fa fa-trash-o"></i>Delete Post</a></li>                                                            
+                                                                </ul>
+                                                                <!-- <ng-template #deletetemp>
+                                                                    <div class="modal-body text-center">
+                                                                        <div class="delttext">Are you sure you want to Delete this Post?</div>
+                                                                        <div class="col-lg-12">
+                                                                          <button type="button" class=" main-btn delyesbtn dltbtn" (click)="deletePost(item.PostId)" >Yes</button>
+                                                                          <button type="button" class="main-btn delcancelbtn dltbtn" (click)="decline()" >Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                                  </ng-template> -->
+                                                                  <div class="modal fade" id="modalyesno" tabindex="-1" role="dialog" aria-labelledby="modalyesnoTitle" aria-hidden="true">
+                                                                    <div class="modal-dialog modal-sm" role="document" style="width: 350px;">
+                                                                      <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                          <h5 class="modal-title" id="modalyesnoLongTitle">Are you Sure you want to delete this post?</h5>
+                                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                          </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                           
+                                                                        </div>
+                                                                        <div class="modal-footer" style="display: flex; justify-content: space-between;">
+                                                                          <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="decline()">Cancel</button>
+                                                                          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deletePost(item.PostId)">Delete</button>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                            </div>
+                                                        </div>
+                                                        <ins><a href="javascript:void();" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" title="{{UserName}}">{{UserName}}</a></ins>
+                                                        <span> {{item.PostOn | date:'medium':'+1100'}}</span>
+                                                    </div>
+                                                    <div class="post-meta">
+                                                        <div class="description">
+                                                            <p>
+                                                                {{item.Description}}
+                                                            </p>
+                                                        </div>
+                                                        <figure class="grid-gallery" >
+                                                            <!-- <figure class="grid-gallery" (click)="viewPost(item.PostId)"></figure> -->
+                                                            <div class="img-bunch ">
+                                                                <div class="gallery-lightbox-container">
+                                                                    <div class="gallery">
+                                                                        <div *ngIf="(item.ImageCount)>=1" else templatevideo>
+                                                                        <div *ngFor="let image of item.ePostImages; let i =index; let first = first;" class="gallery-img" >
+                                                                            <div *ngIf="i==0">
+                                                                            <a href="javascript:void();" title="" data-toggle="modal" data-target="#img-comt">
+                                                                            <img src="{{image.PostImageName}}" alt=""  >
+                                                                            <div *ngIf="((item.ImageCount+item.VideoCount)-1==0)"></div>
+                                                                
+                                                                            <div *ngIf="((item.ImageCount+item.VideoCount)-1>=1)">
+                                                                                <div class="text-block">
+                                                                                    <div [ngClass]="{ first: first }"> + {{(item.ImageCount+item.VideoCount)-1}}</div>
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                            <div #templatevideo [hidden]="item.ImageCount >= 1"  *ngFor="let video of item.ePostVideos" class="gallery-vid">
+                                                                                <video controls>
+                                                                                    <source src="{{video.PostVideoName}}" type="video/mp4">
+                                                                                </video>
+                                                                            </div>
+                        
+                                                                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>	                                                    
+                                                        </figure>
+                                                        
+                                                        <div class="we-video-info">
+                                                            <ul *ngFor="let count of item.ePostCounts;">
+                                                                <li>
+                                                                    <span class="like" *ngIf="checked" title="Like/Dislike"  (click)="unlikeUserPost(item.PostId)" ><i class="fa fa-thumbs-up"></i> <ins>{{count.LikeCount}}</ins></span>
+                                                                    <span class="like"  *ngIf="!checked" title="Like/Dislike"  (click)="likeUserPost(item.PostId)" ><i class="fa fa-thumbs-o-up"></i> <ins>{{count.LikeCount}} </ins></span>
+                                                                </li>
+                                                                <li>
+                                                                    <span class="comment" title="Comments">
+                                                                        <i class="ti-comments"></i>
+                                                                        <ins>{{count.CommentCount}}</ins>
+                                                                    </span>
+                                                                </li>
+                                                                <li (click)="copyMessage(item.PostId)">
+                                                                    <span title="Copy News link" data-toggle="tooltip" class="Copy">
+                                                                        <i class="fa fa-copy"></i>
+                                                                    </span>
+                                                                </li>
+        
+                                                                <li>																	
+                                                                    <span class="more-post-optns"><i class="fa fa-share-alt"></i>
+                                                                        <ul>
+                                                                            <li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+                                                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+                                                                            <li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{item.Description}}&url={{baseUrl}}/singlepost/{{item.PostId}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+                                                                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{item.PostId}}&title={{item.Description}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>  
+        
+                                                                                            
+        
+                                                                        </ul>
+                                                                    </span>																	
+                                                                </li>
+                                                            </ul>
+                                                            <!-- <div class="users-thumb-list">
+                                                                <a data-toggle="tooltip" title="Anderw" href="javascript:void();">
+                                                                    <img alt="" src="../assets/images/resources/userlist-1.jpg">  
+                                                                </a>
+                                                                <a data-toggle="tooltip" title="frank" href="javascript:void();">
+                                                                    <img alt="" src="../assets/images/resources/userlist-2.jpg">  
+                                                                </a>
+                                                                <a data-toggle="tooltip" title="Sara" href="javascript:void();">
+                                                                    <img alt="" src="../assets/images/resources/userlist-3.jpg">  
+                                                                </a>
+                                                                <a data-toggle="tooltip" title="Amy" href="javascript:void();">
+                                                                    <img alt="" src="../assets/images/resources/userlist-4.jpg">  
+                                                                </a>
+                                                                <a data-toggle="tooltip" title="Ema" href="javascript:void();">
+                                                                    <img alt="" src="../assets/images/resources/userlist-5.jpg">  
+                                                                </a>
+                                                                <span><strong>You</strong>, <b>Sarah</b> and <a href="javascript:void();" title="">24+ more</a> liked</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="coment-area" style="display: block;">
+                                                        <ul class="we-comet">
+                                                            <li *ngFor="let comment of item.ePostComments;">
+                                                                <div class="comet-avatar" [routerLink]="['/profileDetail/'+  comment.Email + '/' + comment.CommentBy]">
+                                                                    <img src="{{comment.ProfileImage}}" alt="">
+                                                                </div>
+                                                                <div class="we-comment">
+                                                                    <h5><a href="javascript:void(0)" title="" [routerLink]="['/profileDetail/'+  comment.Email + '/' + comment.CommentBy]">{{comment.CommentByName}}</a></h5>
+                                                                    <p>{{comment.CommentDescription}}</p>
+                                                                    <div class="inline-itms">
+                                                                        <span>{{comment.CommentOn |  date:'medium':'+1100'}}</span>
+                                                                        <!-- <a class="we-reply" href="javascript:void();" title="Reply"><i class="fa fa-reply"></i></a>
+                                                                        <a href="javascript:void();" title=""><i class="fa fa-heart"></i><span>20</span></a> -->
+                                                                    </div>
+                                                                </div>
+        
+                                                            </li>
+                                                            <li class="post-comment">
+                                                                <div class="comet-avatar">
+                                                                    <img [src]="profilePic" alt="">
+                                                                </div>
+                                                                <div class="post-comt-box">
+                                                                    <form method="post" [formGroup]="postCommentform" novalidate (ngSubmit)="submitPostComment(item.PostId)">
+                                                                        <textarea placeholder="Post your comment" formControlName="Description" (keyup.enter)="submitPostComment(item.PostId)"></textarea>
+                                                                        
+                                                                        <button type="submit" class="newssndbtn lgajbtn"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                                    </form>	
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="userPosts==0;" class="nofriend">
+                                            <div class="text-center noRequest">
+                                                <img src="../assets/images/resources/noPosts.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                                <h4 class="p-3">No Posts!!</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <!-- spinner -->
+                            <div class="row pb-5">
+                                <div class="col-md-12 p-5">
+                                <ngx-spinner>
+                                </ngx-spinner>
+                              </div>
+                            </div>
+                            
+                        </div><!-- centerl meta -->
+                        <div class="col-lg-3">
+                            <aside class="sidebar static right">
+                            <div class="widget widgetcustombg">
+                                <h4 class="widget-title">Top Trending <a [routerLink]="('/ebnews')" class="viewallnewsbtn">View All News</a> </h4>                                   
+                                <ul class="toptrendinslist">
+                                    <li *ngFor="let item of trending">
+                                        <div class="toptrendimg"><img class="timg" style="width:85px !important; height:55px !important;" src="{{item.ImageName}}"></div>
+                                        <div class="toptrendingtext">
+                                            <h6><a title="" href="javascript:void();" (click)="singleNews(item.Id)">{{item.NewsHeadline}}</a></h6>
+                                            <a href="javascript:void(0);" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]"  style="font-size:11px; font-weight:600;">{{item.AuthorName}}</a> | <span>{{item.PulishDays}} </span>
+                                            <!-- <div class="circular_image">
+												<img src="{{item.ProfileImage}}">
+											</div> -->                                                                                        
+                                        </div>
+                                    </li>
+                                </ul>                                  
+                            </div><!-- top trending -->                        
+                            </aside>
+
+                        </div><!-- sidebar -->
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>
+<div class="popup-wraper2">
+    <div class="popup post-sharing">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head">
+                <select data-placeholder="Share to friends..." multiple class="chosen-select multi">
+                    <option>Share in your feed</option>
+                    <option>Share in friend feed</option>
+                    <option>Share in a page</option>
+                    <option>Share in a group</option>
+                    <option>Share in message</option>
+                </select>
+                <div class="post-status">
+                    <span><i class="fa fa-globe"></i></span>
+                    <ul>
+                        <li><a href="javascript:void();" title=""><i class="fa fa-globe"></i> Post Globaly</a></li>
+                        <li><a href="javascript:void();" title=""><i class="fa fa-user"></i> Post Private</a></li>
+                        <li><a href="javascript:void();" title=""><i class="fa fa-user-plus"></i> Post Friends</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="postbox">
+                <div class="post-comt-box">
+                    <form method="post">
+                        <input type="text" placeholder="Search Friends, Pages, Groups, etc....">
+                        <textarea placeholder="Say something about this..."></textarea>
+                        <div class="add-smiles">
+                            <span title="add icon" class="em em-expressionless"></span>
+                            <div class="smiles-bunch">
+                                <i class="em em---1"></i>
+                                <i class="em em-smiley"></i>
+                                <i class="em em-anguished"></i>
+                                <i class="em em-laughing"></i>
+                                <i class="em em-angry"></i>
+                                <i class="em em-astonished"></i>
+                                <i class="em em-blush"></i>
+                                <i class="em em-disappointed"></i>
+                                <i class="em em-worried"></i>
+                                <i class="em em-kissing_heart"></i>
+                                <i class="em em-rage"></i>
+                                <i class="em em-stuck_out_tongue"></i>
+                            </div>
+                        </div>
+
+                        <button type="submit"></button>
+                    </form>	
+                </div>
+                <figure><img src="../assets/images/resources/share-post.jpg" alt=""></figure>
+                <div class="friend-info">
+                    <figure>
+                        <img alt="" src="../assets/images/resources/admin.jpg">
+                    </figure>
+                    <div class="friend-name">
+                        <ins><a title="" href="time-line.html">Jack Carter</a> share <a title="" href="javascript:void();">link</a></ins>
+                        <span>Yesterday with @Jack Piller and @Emily Stone at the concert of # Rock'n'Rolla in Ontario.</span>
+                    </div>
+                </div>
+                <div class="share-to-other">
+                    <span>Share to other socials</span>
+                    <ul>
+                        <li><a class="facebook-color" href="javascript:void();" title=""><i class="fa fa-facebook-square"></i></a></li>
+                        <li><a class="twitter-color" href="javascript:void();" title=""><i class="fa fa-twitter-square"></i></a></li>
+                        <li><a class="dribble-color" href="javascript:void();" title=""><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="instagram-color" href="javascript:void();" title=""><i class="fa fa-instagram"></i></a></li>
+                        <li><a class="pinterest-color" href="javascript:void();" title=""><i class="fa fa-pinterest-square"></i></a></li>
+                    </ul>
+                </div>
+                <div class="copy-email">
+                    <span>Copy & Email</span>
+                    <ul>
+                        <li><a href="javascript:void();" title="Copy Post Link"><i class="fa fa-link"></i></a></li>
+                        <li><a href="javascript:void();" title="Email this Post"><i class="fa fa-envelope"></i></a></li>
+                    </ul>
+                </div>
+                <div class="we-video-info">
+                    <ul>
+                        <li>
+                            <span title="" data-toggle="tooltip" class="views" data-original-title="views">
+                                <i class="fa fa-eye"></i>
+                                <ins>1.2k</ins>
+                            </span>
+                        </li>
+                        <li>
+                            <span title="" data-toggle="tooltip" class="views" data-original-title="views">
+                                <i class="fa fa-share-alt"></i>
+                                <ins>20k</ins>
+                            </span>
+                        </li>
+                    </ul>
+                    <button class="main-btn color lgajbtn" data-ripple="">Submit</button>
+                    <button class="main-btn cancel lgajbtn" data-ripple="">Cancel</button>
+                </div>
+            </div>
+        </div>	
+    </div>
+</div><!-- share popup -->
+
+
+
+
+
+<div class="popup-wraper3">
+    <div class="popup">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head">
+                <h5>Report Post</h5>
+            </div>
+            <div class="Rpt-meta">
+                <span>We're sorry something's wrong. How can we help?</span>
+                <form method="post" class="c-form">
+                    <div class="form-radio">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="radio" checked="checked"><i class="check-box"></i>It's spam or abuse
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="radio"><i class="check-box"></i>It breaks r/technology's rules
+                        </label>
+                      </div>
+                        <div class="radio">
+                        <label>
+                          <input type="radio" name="radio"><i class="check-box"></i>Not Related
+                        </label>
+                      </div>
+                        <div class="radio">
+                        <label>
+                          <input type="radio" name="radio"><i class="check-box"></i>Other issues
+                        </label>
+                      </div>
+                    </div>
+                <div>
+                    <label>Write about Report</label>
+                    <textarea placeholder="write someting about Post" rows="2"></textarea>
+                </div>
+                <div>
+                    <button data-ripple="" type="submit" class="main-btn">Submit</button>
+                    <a href="javascript:void();" data-ripple="" class="main-btn3 cancel">Close</a>
+                </div>
+                </form>	
+            </div>
+        </div>	
+    </div>
+</div><!-- report popup -->
+
+<div class="popup-wraper1">
+    <div class="popup direct-mesg">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head">
+                <h5>Send Message</h5>
+            </div>
+            <div class="send-message">
+                <form method="post" class="c-form">
+                    <input type="text" placeholder="Sophia">
+                    <textarea placeholder="Write Message"></textarea>
+                    <button type="submit" class="main-btn">Send</button>
+                </form>
+                <div class="add-smiles">
+                    <div class="uploadimage">
+                        <i class="fa fa-image"></i>
+                        <label class="fileContainer">
+                            <input type="file">
+                        </label>
+                    </div>
+                    <span title="add icon" class="em em-expressionless"></span>
+                    <div class="smiles-bunch">
+                        <i class="em em---1"></i>
+                        <i class="em em-smiley"></i>
+                        <i class="em em-anguished"></i>
+                        <i class="em em-laughing"></i>
+                        <i class="em em-angry"></i>
+                        <i class="em em-astonished"></i>
+                        <i class="em em-blush"></i>
+                        <i class="em em-disappointed"></i>
+                        <i class="em em-worried"></i>
+                        <i class="em em-kissing_heart"></i>
+                        <i class="em em-rage"></i>
+                        <i class="em em-stuck_out_tongue"></i>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div><!-- send message popup -->

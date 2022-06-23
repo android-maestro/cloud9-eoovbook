@@ -1,0 +1,44 @@
+<app-header></app-header>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6" *ngFor="let item of guestCommunity">			                    
+                        <div class="central-meta item" *ngIf="item.IsPublic">                            
+                            <div class="communityflx">
+                                <div class="imgfigure">
+                                    <img src="{{item.GroupImageName}}">
+                                </div>
+                                <div class="communitydescpbox">
+                                    <h4><a href="javascript:void(0)" title="">{{item.GroupName}}</a></h4>
+                                    <ul class="post-up-time">											
+                                        <li><i class="fa fa-clock-o"></i> 7 June 2022</li>
+                                        <!-- <li><i class="fa fa-link">&nbsp;</i> <a href="javascript:void();" (click)="getCommunity(item.GroupId)" title="">{{baseUrl}}/community-view-newuser/</a></li> -->
+                                    </ul>
+                                    <div><span *ngIf="item.IsPublic" class="smtitles">Public group</span>  <span *ngIf="!item.IsPublic" class="smtitles">Private group</span> . <span class="smtitles">{{item.MemberCount}} members</span></div> 
+                                    <p class="comtypara">{{item.GroupDescription}}</p>
+                                    <br>
+                                    <span>Admin:</span>
+                                    <div class="circular_admin">
+                                        <img src="{{item.AdminProfileImage}}">
+                                    </div>
+                                    <a href="javascript:void(0);" [routerLink]="['/profileDetail/'+  item.GroupAdminEmail + '/' + item.UserId]"  style="font-size:11px; font-weight:600;">{{item.AdminName}}</a>
+
+                                </div>
+                                <div class="communitybtns">
+                                    <div><button routerLink="/register" class="joincmntybtn" type="button">Join Community</button></div>
+                                    <br/>
+                                    <!-- <div>
+                                        <button class="requestsntbtn" type="button" disabled >Request Sent</button>
+                                    </div> -->
+                                    
+                                </div>
+                            </div>
+                        </div>                     
+                </div>
+                
+            </div>
+        </div>
+    </div>	
+</section>
+<app-footer></app-footer>

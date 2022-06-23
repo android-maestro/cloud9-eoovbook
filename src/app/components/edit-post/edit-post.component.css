@@ -1,0 +1,158 @@
+.preview_img{
+    height: 125px;
+    width: auto;
+    margin-right:1px;
+    margin-bottom: 1px;
+}
+.displayPreview{
+    display: flex;
+}
+.poststatus{
+    /* position: absolute !important;
+     right: 25px !important;*/
+     /* width: 135px; */
+     margin-left: 54px;
+ }
+
+ .preview_img {
+    height: 125px;
+    width: auto;
+    margin-right: 1px;
+    margin-bottom: 1px;
+  }
+
+
+.frmctrl
+{
+    background-color: #fff;
+    border: 1px solid #fff;
+    padding:0px 0px;
+    border-radius:4px;
+    font-size: 11px;
+    font-weight:500;
+    color: #444;
+}
+.fontdesgn
+{
+    font-size: 16px !important;
+    color: #888;
+}
+.postfigimg
+{
+    position: absolute;
+    
+}
+.postfigimg img
+{
+    width: 45px !important;
+    height: 45px !important;
+    border-radius:100% !important;
+}
+
+.postname
+{
+    margin-bottom:0px;
+    font-size:15px;
+    color: #444;
+    font-weight: 500;
+}
+
+.attachments li.preview-btn .lgajbtn
+{
+    background: #64549C none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 500;
+    margin-top: 0px;
+    padding: 16px 25px;
+    width: 100%;
+    transition: all 0.2s linear 0s;
+    font-size: 16px;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+}
+
+/* .postbox
+{
+background: #fff none repeat scroll 0 0;
+border: 0px solid #ede9e9;
+border-radius: 15px;
+display: inline-block;
+width: 100%;
+margin-bottom: 20px;
+padding: 20px 20px;
+position: relative;
+box-shadow: 6px 6px 12px #b8b9be,-6px -6px 12px #fff !important;
+box-shadow: 1px 1px 3px #b8b9be,-1px -1px 3px #fff !important;
+} */
+
+.fileContainer {
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.posticontitle
+{
+    font-size:12.5px; margin-left:5px;
+    font-weight: 500;
+}
+.lbltextbgs
+{
+    background-color: #fbfbfb;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    
+}
+.lbltextbgs:hover
+{
+    background-color: #fbfbfb;
+    padding:5px 10px;
+    border-radius:5px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+}
+
+.button:disabled, button[disabled]
+{
+    background-color: #0CA5F0!important;
+border: none !important;
+}
+.friendslistingcustom
+{
+    padding-left: 0px;
+}
+.friendslistingcustom li {
+    list-style-type:none;
+    display: inline-block;
+}
+
+.friendslistingcustom li
+{
+width: 60px;
+height: 60px;
+font-size: 10px;
+text-align: center;
+font-weight: 500;
+margin-bottom: 30px;
+}
+
+.friendslistingcustom img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px #b8b9be,-1px -1px 2px #fff;
+    margin-bottom:5px;
+
+}
+
+.imgdivpre
+{
+    display: flex;
+}

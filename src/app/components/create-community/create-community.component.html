@@ -1,0 +1,230 @@
+<app-navbar></app-navbar>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row merged20">
+                <div class="col-lg-4">
+                    <div class="central-meta">
+                        
+                        <h6>Community </h6>
+                        <h4 *ngIf="!isAddMode">Create Community</h4>
+                        <h4 *ngIf="isAddMode">Update Community</h4>
+                        <span>Group your friends of same interest</span>
+                        <div class="mt-2">&nbsp;</div>
+                        <form method="post" class="c-form" [formGroup]="communityform" novalidate >
+                            <div class="marbot15">
+                                <label>Community Name</label>
+                                <input id="GroupName" type="text" placeholder="Community Name" formControlName="GroupName"><br>
+                            </div>
+                            <div class="marbot15">
+                                <label>Describe your Community</label>
+                                <textarea rows="3" placeholder="write someting" formControlName="GroupDescription"></textarea>
+                            </div>
+                            <div class="marbot15">
+                                <label>Community Guidelines</label>
+                                <textarea rows="3" placeholder="write someting" formControlName="GuideLines" ></textarea>
+                            </div>
+                            <div class="marbot15">
+                                <label>Community Type</label>
+                                <select class="form-control  form-select" aria-label="Default select example" formControlName="CategoryId" (change)="selectChangeHandler($event)">
+                                    <option selected>Choose Category</option>
+                                    <option  *ngFor="let demo of demographics" [ngValue]="demo.DataValue">{{demo.DataText}}</option>
+                                </select>
+                                
+                            </div>
+                            <div class="marbot15">
+                                <label>Upload your Community Profile Photo</label>
+                                <input type="file" (change)="uploadFile($event)" formControlName="GroupImage" accept="image/*">
+                            </div>
+                            <div class="marbot15">
+                                <label>Choose Privacy</label>
+                                <select class="form-control form-select" name="selectPrivacy" aria-label="Default select example" formControlName="IsPublic" (change)="selectPrivacy($event)">
+                                    <!-- <option [defaultSelected]="true">Choose Privacy</option> -->
+                                    <option value="true" [defaultSelected]="true">Public</option>
+                                    <option value="false">Private</option>
+                                    <!-- <option value="Friends">Friends</option> -->
+                                </select>
+                            </div>
+                            <!-- <div class="marbot15">
+                                <label>Invite Friends from Eoovbook</label>
+                                <div class="marbot15">
+                                    <label>Category</label>
+                                    <select class="form-control">
+                                        <option>Technology</option>
+                                        <option>Sports</option>
+                                        <option>Entertainment</option>
+                                    </select>
+                                </div>
+                            </div> -->
+                            <!-- <div class="marbot15">
+                                <label>Invite Friends via email</label>
+                                
+                            </div> -->
+                            <div class="mt-2">&nbsp;</div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <button *ngIf="!isAddMode" (click)="submit()" class="main-btn" type="submit" data-ripple="">Create Community</button>
+                                    <button *ngIf="isAddMode" (click)="update()" class="main-btn" type="submit" data-ripple="">Update Community</button>
+                                    <button class="main-btn3" (click)="cancel()" type="submit" data-ripple="">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- <pre>{{communityform.value | json}}</pre> -->
+                    
+                </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row merged20" id="page-contents">
+                                <div class="user-profile">
+                                    <figure>
+                                        <div class="edit-pp">
+                                            <label class="fileContainer">
+                                                <i class="fa fa-camera"></i>
+                                                <input type="file">
+                                            </label>
+                                        </div>
+                                        <div class="coverpageimage imggrayscale">
+                                        <img src="../assets/images/resources/profile-image2.jpg" alt="">    
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <div *ngIf="thumbnail" class="profile-author positinabslute">
+                                                <div class="profile-author-thumb radius">
+                                                    <img alt="author" src="{{thumbnail}}">
+                                                    <!-- <div class="edit-dp">
+                                                        <label class="fileContainer">
+                                                            <i class="fa fa-camera"></i>
+                                                            <input type="file">
+                                                        </label>
+                                                    </div> -->
+                                                </div>                                                
+                                            </div>    
+                                            <div *ngIf="!thumbnail" class="profile-author positinabslute">
+                                                <div class="profile-author-thumb radius">
+                                                    <img alt="author" src="../../assets/images/resources/communityicon.jpg">
+                                                    <!-- <div class="edit-dp">
+                                                        <label class="fileContainer">
+                                                            <i class="fa fa-camera"></i>
+                                                            <input type="file">
+                                                        </label>
+                                                    </div> -->
+                                                </div>                                                
+                                            </div>      
+                                        </div>
+                                        <div class="col-lg-5 col-md-5">
+                                            <div class="author-content positinabslute">
+                                                <a class="h4 author-name comntynme" href="" >{{communityform.value.GroupName}}</a>
+                                                <!-- <div class="country"><i class="fa fa-globe"></i> India , Gurgaon</div> -->
+                                                <div *ngIf="IsPublic == 'true'" class="grpprivacy"><i class="fa fa-users"></i> Public  </div>
+                                                <div *ngIf="IsPublic == 'false'" class="grpprivacy"><i class="fa fa-users"></i> Private  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                                                                         
+                                    </figure>
+                                    <div class="profile-section">
+                                        <div class="row">
+                                            
+                                            <div class="col-lg-12 col-md-12">
+                                                <ul class="profile-menu fltlft comunitymenu">
+                                                    <li>
+                                                        <a class="active">About</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="">Post</a>
+                                                    </li>
+                                                    
+                                                    <li>
+                                                        <a class="">Members</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="">Events</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="">Settings</a>
+                                                    </li>                                                    
+                                                </ul>
+                                                <!-- <div class="invitebox">
+                                                    <a class="invitefrndsbtn" href=""><i class="fa fa-comment"></i> Message</a>
+                                                </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- user profile banner  -->
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="central-meta">
+                                            <div class="signglepagenewstitile"> About <a href="javascript:void();" data-toggle="collapse" data-target="#demo"><i class="fa fa-chevron-down"></i></a></div>
+                                            <div id="demo" class="collapse show">
+                                            
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitle flex"><div><i class="fa fa-info"></i></div>{{communityform.value.GroupDescription}}</span>
+                                                       
+                                                    </div>
+                                                    <!-- <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitle"><i class="fa fa-thumbs-up"></i>1 person likes this</span>                                                        
+                                                    </div> -->
+                                                </div>
+                                                <div class="col-lg-12">
+                                                <div class="gen-metabox">
+                                                    <span class="iconsdesgn smtitle"><i class="fa fa-globe"></i> <a class="anclnk" href=""> {{communityform.value.GuideLines}} </a> </span>                                                        
+                                                </div>
+                                            </div>
+                                                <!-- <div class="col-lg-12">
+                                                    <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitle"><i class="fa fa-film"></i> 1 person follows this</span>                                                        
+                                                    </div>
+                                                    <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitle"><i class="fa fa-globe"></i> <a class="anclnk" href=""> http://eoovbook.com/ </a> </span>                                                        
+                                                    </div>
+                                                    <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitle bld"><i class="fa fa-phone"></i> <a class="anclnk" href=""> Enter Phone Number </a> </span>                                                        
+                                                    </div>
+                                                    <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitle"><i class="fa fa-comment"></i> <a class="anclnk" href=""> Send Message </a> </span>                                                        
+                                                    </div>
+                                                    <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitle bld"><i class="fa fa-envelope-o"></i> <a class="anclnk" href=""> Enter email address </a> </span>                                                        
+                                                    </div>
+                                                    <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitleb bld"><i class="fa fa-briefcase"></i> <a class="anclnk" href=""> Edit Business hours </a> </span>                                                        
+                                                    </div>
+                                                    <div class="gen-metabox">
+                                                        <span class="iconsdesgn smtitle"><i class="fa fa-file"></i> <a class="anclnk" href=""> Social / Entertainment </a> </span>                                                        
+                                                    </div>
+
+
+
+                                                    <a href="" class="editinfopage">Edit Page Info</a>
+
+                                                </div> -->
+                                                
+                                                
+                                            </div>	
+                                        </div>
+                                        </div>
+                                        
+
+                                        
+                                    </div><!-- centerl meta -->
+                                    <div class="col-lg-4">
+                                        <aside class="sidebar static right">
+                                            
+                                        </aside>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,168 @@
+<!-- <header (found)="handleResults($event)"></header> -->
+<app-navbar></app-navbar>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div  class="row merged20">
+                <div class="col-md-12">
+
+                </div>
+            </div>
+            <div  class="row merged20">
+                <span style="padding-bottom: 20px; font-size: 20px;"> <b>Search Result For: </b> "{{search}}"</span>
+                <div class="col-md-3">
+                    <div class="central-meta">
+                    <div class="widget">
+                        
+                        <h4 class="widget-title">News <a [routerLink]="('/ebnews')" class="viewallnewsbtn">View News Page</a> </h4>
+                        <div style="clear:both;"></div> 
+                        <div *ngFor="let item of newsFilter">
+                        <ul *ngIf="item.SearchType == 'News'" class="toptrendinslist">
+                            <li>
+                                <div class="toptrendimg"><img class="timg" style="width:100px !important; height:65px !important;" src="../assets/images/resources/album1.jpg"></div>
+                                <div class="toptrendingtext">
+                                    <h6><a title="" href="javascript:void();">{{item.Detail}}</a></h6>
+                                    <a href="javascript:void(0);"  style="font-size:11px; font-weight:600;">{{item.AuthorName}}</a> | <span>{{item.ModifiedOn | date:'short'}} </span>
+                                    
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                    
+                </div>
+
+                <div *ngIf="newsCount == 0" class="nofriend">
+                    <div class="text-center noRequest">
+                        <img src="../assets/images/resources/noNewsSearch.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                        <h4 class="p-3">No News found !!</h4>
+                    </div>
+                </div>
+
+                <!-- <div *ngIf="searchResults=='';" class="nofriend">
+                    <div class="text-center noRequest">
+                        <img src="../assets/images/resources/noNewsSearch.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                        <h4 class="p-3">No News found !!</h4>
+                    </div>
+                </div> -->
+                                                          
+                    </div><!-- top trending --> 
+                </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="central-meta">
+                        <div class="widget">
+                           
+                            <h4 class="widget-title">People </h4>
+                            <div style="clear:both;"></div> 
+                            <div class="notification-box" *ngFor="let item of profileFilter">
+                                <ul *ngIf="item.SearchType == 'Profile'">
+                                    <li style="margin-bottom: 25px;">
+                                        <figure><img src="{{item.AuthorPhoto}}" alt=""></figure>
+                                        <div class="notifi-meta">
+                                            <a href="javascript:void(0);" [routerLink]="['/profileDetail/'+  item.AuthorEmail + '/' + item.Id]"><p>{{item.Detail}}</p></a>
+                                            <!-- <span><i class="fa fa-thumbs-up"></i> 30 mints ago</span> -->
+                                            <button  class="invitefrndsbtn" type="button">Add friend</button>
+                                        </div>
+                                        <!-- <div class="more">
+                                            <div class="more-post-optns"><i class="ti-more-alt"></i>
+                                                <ul>
+                                                    <li><i class="fa fa-bell-slash-o"></i>Mute</li>
+                                                    <li><i class="fa fa-wpexplorer"></i>Report</li>
+                                                    <li><i class="fa fa-bell-slash-o"></i>Block</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <i class="del ti-close" title="Remove"></i> -->
+
+
+                                    </li>
+                                    
+                                  
+                                    
+                                </ul>
+                                
+                            </div>
+
+                            <div *ngIf="profileCount == 0" class="nofriend">
+                                <div class="text-center noRequest">
+                                    <img src="../assets/images/resources/noPeoplesSearch.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                    <h4 class="p-3">No User found !!</h4>
+                                </div>
+                            </div>
+
+                            <!-- <div *ngIf="searchResults=='';" class="nofriend">
+                                <div class="text-center noRequest">
+                                    <img src="../assets/images/resources/noPeoplesSearch.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                    <h4 class="p-3">No User found !!</h4>
+                                </div>
+                            </div> -->
+                       
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="central-meta">
+                        <div class="widget">
+                            <h4 class="widget-title">Community <a [routerLink]="('/community')" class="viewallnewsbtn">View Community Page</a> </h4>
+                            <div style="clear:both;"></div>
+                            <div class="central-meta" style="border-top:5px solid #5F4F9B">
+                                <div class="widget" *ngFor="let item of communityFilter" >
+                                    <div class="your-page" *ngIf="item.SearchType == 'Community'">
+                                        <div style="display:flex; justify-content:flex-start;">
+                                        <div>
+                                            <a href="#" title=""><img src="../assets/images/resources/album1.jpg" alt="" class="roundimg fiftywhmr"></a>
+                                        </div>
+                                        <div class="">
+                                            <a href="javascript:void(0)" (click)="getCommunity(item.Id)" title="" class="underline">{{item.Detail}}</a>
+                                            <!-- <div><span class="smtitles">Public group</span> <span class="smtitles">Private group</span> . <span class="smtitles">1K members</span></div>                                  -->
+                                        </div>
+                                    </div>
+                                        <!-- <span class="smdescript">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit similique incidunt qui veritatis suscipit doloremque ducimus placeat animi eaque, perferendis quam porro. Tenetur asperiores dolores commodi cum culpa ratione unde.</span> -->
+                                        <br/><br/>
+                                        <!-- <div class="btnss">
+                                            <a class="joincmntybtn" style="color: #fff !important; margin-right:5px;" href="#link1">like</a>
+                                            <a class="requestsntbtn" style="color: #fff !important; margin-right:5px;" href="#link2">view Page</a>                                           
+                                        </div> -->
+
+                                        <span>Admin:</span>
+
+                                   <div class="circular_admin">
+                                    <img src="{{item.AuthorPhoto}}">
+                                </div>
+
+                                   <a href="javascript:void(0);" [routerLink]="['/profileDetail/'+  item.AuthorEmail + '/' + item.AuthorId]"  style="font-size:11px; font-weight:600;">{{item.AuthorName}}</a>
+
+                                    </div>
+                                   
+                                </div><!-- page like widget -->
+
+                                <div *ngIf="communityCount == 0" class="nofriend">
+                                    <div class="text-center noRequest">
+                                        <img src="../assets/images/resources/noCommunitySearch.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                        <h4 class="p-3">No Community found !!</h4>
+                                    </div>
+                                </div>
+
+                                <!-- <div *ngIf="searchResults=='';" class="nofriend">
+                                    <div class="text-center noRequest">
+                                        <img src="../assets/images/resources/noCommunitySearch.svg" class="img-responsive" style="height:230px; border-bottom: 4px solid #3F3D56; margin-top: 30px;">
+                                        <h4 class="p-3">No Community found !!</h4>
+                                    </div>
+                                </div> -->
+                                
+                            <!-- <div *ngIf="!(item.InvitationStatus == 'Accepted') && item.IsGroupAdmin"></div> -->
+                                                               
+                                <!-- <a href="notifications.html" title="" class="viewallnewsbtn">View All</a> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

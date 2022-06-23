@@ -1,0 +1,269 @@
+<app-navbar></app-navbar>
+
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+
+            <div class="row merged20">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row merged20" id="page-contents">
+
+                                <app-community-navbar></app-community-navbar>
+                                
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+
+                                            <aside *ngIf="data.IsGroupAdmin" class="sidebar static left">
+                                                <div class="widget widgetcustombg">
+                                                    <div class="friendinvite">
+                                                        <div class="text-center">
+                                                            <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                        </div>
+                                                        <h3>Invite Friends</h3>
+                                                        <h4>
+                                                            Hey! Your Community seems empty.<br/> Invite your friends now.
+                                                                                                       
+                                                        </h4>
+                                                        
+                                                        <div class="text-center">
+                                                            <form method="post" name="emailForm">
+                                                                 <tag-input [(ngModel)]="emails" [theme]="'bootstrap'"
+                                                                           (onAdd)="onSelect($event)"
+                                                                           (onRemove)="change($event)" allowed-tags-pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                                                           name="emails" [placeholder]="'Add more email address'" [secondaryPlaceholder]="'Enter email addresses'">
+                                                                </tag-input>
+                                                                <tags-input ng-model="mailVm.cc" 
+                                                                            display-property="email" 
+                                                                            placeholder="Add Email Address" 
+                                                                            allowed-tags-pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?">
+                                                                </tags-input> 
+                                                                <div *ngIf="emailValidation!='null'">
+                                                                        <p 
+                                                                            class="alert alert-danger">
+                                                                            <i class="fa fa-exclamation-circle"></i>&nbsp;{{emailValidation}}
+                                                                        </p>
+                                                                </div>
+                                                                <div class="mt-2">&nbsp;</div>
+                                                                <button *ngIf="!clicked" [disabled]="added==0" type="button" (click)="submit()" class="">Send Invite</button>
+                                                                <button *ngIf="clicked"  class="lgajbtn btn-block"><div class="spinner-border  spinner-border-sm" role="status">
+                                                                              <span class="sr-only">Loading...</span>
+                                                                            </div></button>
+                                                            </form>
+                                                        </div>
+                                                          
+                                                
+                                                    </div>    
+                                                </div>
+
+                                                <div class="central-meta item">
+                                                    <button class="joincmntybtn" type="button" (click)="suggestedUserclick()">Invite Eoovbook User</button>
+                                                </div>
+                                                <!-- page invitation widget -->	
+                                                
+                                                <!-- recent activites -->
+                                                
+                                                
+                                                <!-- who's following -->
+                                            </aside>
+                                           
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="central-meta paddtb10">
+                                                <div class="title-block">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="align-left">
+                                                                <h5>Members</h5>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="row merged20">
+                                                               
+                                                                <!-- <div class="col-lg-4 col-md-4 col-sm-4">
+                                                                    <div class="select-options">
+                                                                        <select class="select" class="form-control" (change)="sorting()" [(ngModel)]="selectedOption" name="sorting">
+                                                                            <option selected disabled>Sort by</option>
+                                                                            <option value="new">Newest</option>
+                                                                            <option value="old">oldest</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-1 col-md-1 col-sm-1">
+                                                                    <div class="option-list">
+                                                                        <i class="fa fa-ellipsis-v"></i>
+                                                                        <ul>
+                                                                            <li><a title="" href="#">Show Friends Public</a></li>
+                                                                            <li><a title="" href="#">Show Friends Private</a></li>
+                                                                            <li><a title="" href="#">Mute Notifications</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- title block -->
+                                            <div class="central-meta">
+                                            <div class="row merged20 remove-ext">
+                                                
+                                            <div class="col-lg-12 col-md-6 col-sm-6 item">
+                                                <div class="row" *ngIf="members!=0;">
+                                                    <div class="col-md-4" *ngFor="let item of members">
+                                                        <div class="central-meta" style="padding:5px;" >
+                                                        <div class="comunitymemeber flxdiv">
+                                                            <div class="flxdiv">
+                                                                <div>
+                                                                    <img src="{{item.ProfileImage}}" alt="" style="width:50px; height:50px; border:1px solid #eee; border-radius:100%; object-fit:cover; margin-right:10px;">
+                                                                </div>
+                                                                <div>
+                                                                    <a href="javascript(void)" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" title="" style="text-transform:capitalize;">{{item.FullName}}</a>
+                                                                </div>  
+                                                                                                                          
+                                                            </div>
+                                                            <div class="more-opotnz" *ngIf="data.IsGroupAdmin">
+                                                                <i class="fa fa-ellipsis-h"></i>
+                                                                <ul>
+                                                                    <li><a href="javascript:void();" data-toggle="modal" data-target="#modalyesno" title="">Remove</a></li>
+                                                                    <li><a href="javascript:void();" (click)="BlockMember(item.InvitationId)" title="">Block</a></li>
+                                                                    <!-- <li><a href="javascript:void();" (click)="UnblockMember(item.InvitationId)" title="">UnBlock</a></li>                                                                     -->
+                                                                </ul>
+                                                            </div>    
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade" id="modalyesno" tabindex="-1" role="dialog" aria-labelledby="modalyesnoTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-sm" role="document" style="width: 350px;">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="modalyesnoLongTitle">Are you Sure you want to delete this post?</h5>
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                              </button>
+                                                            </div>
+                                                            <div class="modal-footer" style="display: flex; justify-content: space-between;">
+                                                              <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)="decline()">Cancel</button>
+                                                              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="removeMember(item.InvitationId)">Delete</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                       
+                                                    </div>
+                                                </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div *ngIf="members==0;" class="nofriend">
+                                                        <div class="text-center noRequest">
+                                                            <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                            <h4 class="p-3">No Members!!</h4>
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                            </div>
+                                            
+                                            </div>
+                                           
+                                            </div>
+                                            </div>
+
+                                             <!-- Today's Edit -->
+
+                                             <div class="col-lg-6" *ngIf="data.IsGroupAdmin">
+                                                <div class="align-left">
+                                                    <h5>Block Members</h5>
+                                                </div>
+                                            </div>
+
+                                             <div class="central-meta" *ngIf="data.IsGroupAdmin">
+                                                <div class="row merged20 remove-ext">
+                                                    
+                                                <div class="col-lg-12 col-md-6 col-sm-6 item">
+                                                    <div class="row" *ngIf="blockmember!=0;">
+                                                        <div class="col-md-4" *ngFor="let item of blockmember">
+                                                            <div *ngIf="item.IsBlock" class="central-meta" style="padding:5px;" >
+                                                            <div class="comunitymemeber flxdiv">
+                                                                <div class="flxdiv">
+                                                                    <div>
+                                                                        <img src="{{item.ProfileImage}}" alt="" style="width:50px; height:50px; border:1px solid #eee; border-radius:100%; object-fit:cover; margin-right:10px;">
+                                                                    </div>
+                                                                    <div>
+                                                                        <a href="javascript(void)" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" title="" style="text-transform:capitalize;">{{item.FullName}}</a>
+                                                                    </div>  
+                                                                                                                              
+                                                                </div>
+                                                                <div class="more-opotnz">
+                                                                    <i class="fa fa-ellipsis-h"></i>
+                                                                    <ul *ngIf="data.IsGroupAdmin">
+                                                                        <li><a href="javascript:void();" data-toggle="modal" data-target="" (click)="removeMember(item.InvitationId)" title="">Remove</a></li>
+                                                                        <li *ngIf="!item.IsBlock"><a href="javascript:void();" (click)="BlockMember(item.InvitationId)" title="">Block</a></li>
+                                                                        <li *ngIf="item.IsBlock"><a href="javascript:void();" (click)="UnblockMember(item.InvitationId)" title="">UnBlock</a></li>                                                                    
+                                                                    </ul>
+                                                                </div>    
+                                                            </div>
+                                                        </div>
+                                                           
+                                                        </div>
+                                                    </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div *ngIf="blockmember==0;" class="nofriend">
+                                                            <div class="text-center noRequest">
+                                                                <img src="../assets/images/resources/addfriend.svg" class="img-responsive" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                                                <h4 class="p-3">No Members!!</h4>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                
+                                                </div>
+                                               
+                                                </div>
+                                                </div>
+
+                
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+           
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- End -->

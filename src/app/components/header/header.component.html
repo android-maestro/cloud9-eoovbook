@@ -1,0 +1,46 @@
+
+        <div class="responsive-header">
+            <div class="mh-head first mm-sticky">
+                <span class="mh-btns-left">
+                    <a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
+                </span>
+                <span class="mh-text">
+                    <a href="newsfeed.html" title=""><img src="../assets/img/logo-eoovbook.png" alt=""></a>
+                </span>
+            </div>
+            <nav id="menu" class="res-menu">
+                <ul>
+                    <li><a [routerLink]="['/about']" class="menutext"><img class="menuiconrend" src="../assets/images/svg/home.svg">About</a></li>
+                    <li><a href="#" class="menutext"><img class="menuiconrend" src="../assets/images/svg/globe.svg">News</a>
+                    </li>
+                    <!-- <li><a href="javascript:void();" class="menutext"><img class="menuiconrend" src="../assets/images/svg/brand.png">Brand</a>
+                    </li> -->
+                    <li><a href="javascript:void();" class="menutext"><img class="menuiconrend" src="../assets/images/svg/community.png">Community</a>
+                    </li>
+                    <li><a [routerLink]="['/marketplace']" href="javascript:void();" class="menutext"><img class="menuiconrend" src="../assets/images/svg/marketplace.png">Marketplace</a>
+                    </li>
+                </ul>
+            </nav>
+        </div><!-- responsive header -->
+        <div class="topbar stick">
+            <div class="logo">
+                <a title="" class="logoalign" href="javascript:void();" [routerLink]="['/login']"><img src="assets/img/logo-eoovbook.png"></a>
+            </div>
+            <div class="top-area">
+                <ul class="setting-area">
+                    <li><a  class="menutext" title="Home"><img src="../assets/images/svg/home.svg" alt="" [routerLink]="['/about']"><br />About</a></li>
+                    <li><a href="javascript:void();" title="Languages" class="menutext" [routerLink]="['/news']"><img src="../assets/images/svg/globe.svg" alt="" ><br />News</a>
+                    </li>
+                    <!-- <li><a href="javascript:void();" title="Help" class="menutext"><img src="../assets/images/svg/brand.png" alt=""><br />Brand</a>
+                    </li> -->
+                    <li><a  [routerLink]="['/guest-community']" href="javascript:void();" title="Help" class="menutext"><img src="../assets/images/svg/community.png" alt=""><br />Community</a>
+                    </li>
+                    <li><a [routerLink]="['/marketplace']" href="javascript:void();" title="Help" class="menutext"><img src="../assets/images/svg/marketplace.png" alt=""><br />Marketplace</a>
+                    </li>
+                </ul>
+                <div class="loginbtnsblock">
+                    <button class="loginbtns" type="button" [routerLink]="['/login']">Login</button>
+                </div>
+            </div>
+            
+        </div><!-- topbar -->

@@ -1,0 +1,343 @@
+<app-header></app-header>
+        
+        <section>
+            <div class="gap2 gray-bg pb0">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="offset-lg-1 col-lg-10">
+                            <div class="row border-center">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="already-log">
+                                        <h4 class="lfhtt">Latest News</h4>
+
+                                        <div id="newsticker-demo">                                                
+                                            <div class="newsticker-jcarousellite">
+                                                <ul>
+                                                    <li class="newxlistticker" *ngFor="let item of trending">
+                                                        <figure><img alt="" src="{{item.ImageName}}"></figure>
+                                                        <div class="re-links-meta">
+                                                            <h6><a title="" href="javascript:void();" (click)="singleNews(item.Id)">{{item.NewsHeadline}}</a></h6>
+                                                            <span>{{item.PulishDays}}</span>
+                                                        </div>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>                                            
+                                        </div>                                                                            
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="logout-f">
+                                        <h4>Sign Up</h4>
+                                        <p>Sign Up now and meet the awesome friends around the world.</p>
+                                        <div class="logout-form">
+                                            <form method="post" [formGroup]="form" class="again-login" novalidate
+                                                >
+                                                <div class="row merged10">
+                                                    <div class="col-lg-12">
+                                                        <input type="text"
+                                                            [ngClass]="{'input-error': form.controls['Name'].touched && form.controls['Name'].invalid}"
+                                                            class="form-control" formControlName="Name"
+                                                            placeholder="Name" value="" required minlength="3"
+                                                            maxlength="20">
+                                                    </div>
+                                                    <div *ngIf="form.controls['Name'].touched">
+                                                        <p *ngIf="form.controls['Name'].errors?.['required']"
+                                                            class="alert alert-danger">
+                                                            <i class="fa fa-exclamation-circle"></i>&nbsp; Name is
+                                                            required
+                                                        </p>
+                                                        <p *ngIf="form.controls['Name'].errors?.['minlength']"
+                                                            class="alert alert-danger">
+                                                            <i class="fa fa-exclamation-circle"></i>&nbsp;Minimum 3
+                                                            characters are required!!!
+                                                        </p>
+                                                        <p *ngIf="form.controls['Name'].errors?.['maxlength']"
+                                                            class="alert alert-danger">
+                                                            <i class="fa fa-exclamation-circle"></i>&nbsp;Maximum length
+                                                            is 20 !!!
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <input type="text" (focusout)="emailVerify()"
+                                                            [ngClass]="{'input-error': form.controls['Email'].invalid && form.controls['Email'].touched}"
+                                                            pattern="^[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                                            class="form-control" placeholder="Email Id"
+                                                            formControlName="Email" value="" required>
+                                                    </div>
+                                                    <div *ngIf="form.controls['Email'].touched">
+                                                        <p *ngIf="form.controls['Email'].errors?.['required']"
+                                                            class="alert alert-danger">
+                                                            <i class="fa fa-exclamation-circle"></i>&nbsp; Email is
+                                                            required.
+                                                        </p>
+                                                        <p *ngIf="form.controls['Email'].errors?.['pattern']"
+                                                            class="alert alert-danger"><i
+                                                                class="fa fa-exclamation-circle"></i>&nbsp; Email
+                                                            address is invalid
+                                                        </p>
+                                                    </div>
+                                                    <p *ngIf="emailError!='null'" class="alert alert-danger">
+                                                        <i class="fa fa-exclamation-circle"></i>&nbsp; {{emailError}}
+                                                    </p>
+                                                    <div class="col-lg-12">
+                                                        <input type="text" (focusout)="mobileVerify()"
+                                                            [ngClass]="{'input-error': form.controls['Mobile'].invalid && form.controls['Mobile'].touched}"
+                                                            pattern="^((\\+91-?)|0)?[0-9]{10}$" class="form-control"
+                                                            formControlName="Mobile" placeholder="Mobile Number"
+                                                            value="" maxlength="10" required>
+
+                                                            <!-- <ngx-intl-tel-input (focusout)="mobileVerify()"  class="form-control mobile-format"
+                                                                [ngClass]="{'input-error': form.controls['Mobile'].invalid && form.controls['Mobile'].touched}"
+                                                                [(ngModel)]="number"
+                                                                [cssClass]="'custom'"
+                                                                [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                                                                [enableAutoCountrySelect]="false"
+                                                                [enablePlaceholder]="true"
+                                                                [searchCountryFlag]="true"
+                                                                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                                                                [selectFirstCountry]="false"
+                                                                [selectedCountryISO]="CountryISO.India"
+                                                                [maxLength]="10"
+                                                                [phoneValidation]="true"
+                                                                name="phone"
+                                                                formControlName="Mobile"
+                                                                required></ngx-intl-tel-input> -->
+
+                                                        <div *ngIf="form.controls['Mobile'].touched">
+                                                            <p *ngIf="form.controls['Mobile'].errors?.['required']"
+                                                                class="alert alert-danger">
+                                                                <i class="fa fa-exclamation-circle"></i>&nbsp; Mobile
+                                                                No. is required.
+                                                            </p>
+                                                            <p *ngIf="form.controls['Mobile'].errors?.['pattern']"
+                                                            class="alert alert-danger"><i
+                                                                class="fa fa-exclamation-circle"></i>&nbsp; mobile no. is invalid
+                                                        </p>
+                                                        </div>
+                                                        <p *ngIf="mobileError!='null'" class="alert alert-danger">
+                                                            <i class="fa fa-exclamation-circle"></i>&nbsp;
+                                                            {{mobileError}}
+                                                        </p>
+                                                    </div>
+
+
+                                                    <div class="row merged10">
+                                                    <div class="col-xs-12 col-lg-4 col-md-12 col-sm-12">
+                                                        <div class="lfdgs">Date of Birth</div>
+
+                                                        
+                                                        <input class="form-control" id="birthday" [ngClass]="{'input-error': form.controls['DateOfBirth'].invalid && form.controls['DateOfBirth'].touched}" class="form-control" formControlName="DateOfBirth" name="date" placeholder="YYYY-MM-DD" bsDatepicker [(ngModel)]="currentData" [bsValue]="bsValue"
+                                                        [minDate]="minDate" [maxDate]="maxDate"   [bsConfig]="{ containerClass:'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD', showWeekNumbers: false }"  type="text"  required/>
+                                                        <div *ngIf="form.controls['DateOfBirth'].touched">
+                                                            <p *ngIf="form.controls['DateOfBirth'].errors?.['required']"
+                                                                class="alert alert-danger">
+                                                                <i class="fa fa-exclamation-circle"></i>&nbsp; Birthdate
+                                                                is required.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-xs-12 col-md-12 col-sm-12 col-lg-8">
+                                                        <div class="row merged10">
+                                                            <div class="col-lg-12">
+                                                                <div class="lfdgs">Gender</div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-12">
+                                                                <div class="form-radio cutomradiobtncss">
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                            <input type="radio" formControlName="Gender"
+                                                                                value="Female" checked="checked"><i
+                                                                                class="check-box"></i>Female
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-12">
+                                                                <div class="form-radio cutomradiobtncss">
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                            <input type="radio" formControlName="Gender"
+                                                                                value="Male" checked="checked"><i
+                                                                                class="check-box"></i>Male
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-12">
+                                                                <div class="form-radio cutomradiobtncss">
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                            <input formControlName="Gender"
+                                                                                value="Other" type="radio"
+                                                                                checked="checked"><i
+                                                                                class="check-box"></i>Other
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="col-lg-6 input-group">
+                                                        <input [type]="fieldTextType ? 'text' : 'password'"
+                                                            [ngClass]="{'input-error': form.controls['Password'].invalid && form.controls['Password'].touched}"
+                                                            pattern="^(?=.*?[a-z])(?=.*?[0-9]).{6,}$"
+                                                            class="form-control" formControlName="Password"
+                                                            placeholder="New Password" value="" required>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i
+                                                                    class="fa"
+                                                                    [ngClass]="{
+                                                                      'fa-eye-slash': !fieldTextType,
+                                                                      'fa-eye': fieldTextType
+                                                                    }"
+                                                                    (click)="toggleFieldTextType()"
+                                                                  ></i>
+                                                                </span>
+                                                             </div>
+                                                             <div *ngIf="form.controls['Password'].touched" class="errorpass">
+                                                                <p *ngIf="form.controls['Password'].errors?.['required']"
+                                                                    class="alert alert-danger">
+                                                                    <i class="fa fa-exclamation-circle"></i>&nbsp; Password
+                                                                    is required.
+                                                                </p>
+                                                                <p *ngIf="form.controls['Password'].errors?.['pattern']"
+                                                                    class="alert alert-danger">
+                                                                    <i class="fa fa-exclamation-circle"></i>&nbsp; Please choose a strong Password(atleast 6 characters). Try a mix of letters & numbers.
+                                                                </p>
+                                                            </div>
+                                                    </div>
+                                                    
+
+
+                                                    <div class="col-lg-6 input-group">
+                                                        <input [type]="fieldTextTypeconfirm ? 'text' : 'password'" appConfirmEqualValidator="Password"
+                                                            [ngClass]="{'input-error': form.controls['ConfirmPassword'].invalid && form.controls['ConfirmPassword'].touched}"
+                                                            class="form-control" formControlName="ConfirmPassword"
+                                                            placeholder="Confirm Password" value="" required>
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i
+                                                                    class="fa"
+                                                                    [ngClass]="{
+                                                                      'fa-eye-slash': !fieldTextTypeconfirm,
+                                                                      'fa-eye': fieldTextTypeconfirm
+                                                                    }"
+                                                                    (click)="toggleFieldTextTypeConfirm()"
+                                                                  ></i>
+                                                                </span>
+                                                             </div>
+                                                             <div *ngIf="form.controls['ConfirmPassword'].touched" class="errorpass">
+                                                                <p *ngIf="form.controls['ConfirmPassword'].errors?.['required']"
+                                                                    class="alert alert-danger">
+                                                                    <i class="fa fa-exclamation-circle"></i>&nbsp; Confirm
+                                                                    password is required.
+                                                                </p>
+                                                                <p *ngIf="form.controls['ConfirmPassword'].errors?.['notEqual']"
+                                                                    class="alert alert-danger">
+                                                                    <i class="fa fa-exclamation-circle"></i>&nbsp; password
+                                                                    & confirm password does not match
+                                                                </p>
+        
+                                                            </div>
+                                                    </div>
+                                                    
+                                                    
+
+                                                    <!-- <div class="col-lg-12">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" formControlName="IsAllowWhatsUp"
+                                                                    checked="checked"><i class="check-box"></i>
+                                                                <span>Allow us to send notification on Whatsapp</span>
+                                                            </label>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-lg-12">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input type="checkbox" checked="checked"
+                                                                    class="form-control" formControlName="agree"
+                                                                    [ngClass]="{'input-error': form.controls['ConfirmPassword'].invalid && form.controls['ConfirmPassword'].touched}"
+                                                                    required><i class="check-box"></i>
+                                                                <span style=" font-size:14px; color:#222;">Agree with <i><u><b>Terms and Conditions</b></u></i></span>
+                                                            </label>
+                                                        </div>
+                                                        <div *ngIf="form.controls['agree'].touched">
+                                                            <p *ngIf="form.controls['agree'].errors?.['required']"
+                                                                class="alert alert-danger">
+                                                                <i class="fa fa-exclamation-circle"></i>&nbsp; Please
+                                                                agree with terms & conditions !!!
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-2">&nbsp;</div>
+                                                    <div class="col-lg-12 text-center">
+                                                        <button type="submit" (click)="submit()" class="lgajbtn">Agree & Join</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <br /><br />
+                                            <!-- <div class="or"></div> -->
+                                            <!-- <div class="sociobox">
+                                            <a class="socialicons" href="javascript:void(0);" title="Login with Google"><img src="../assets/images/svg/google.svg"></a>
+                                            <a class="socialicons" href="" title="Login with Facebook"><img src="../assets/images/svg/facebook.svg"></a>
+                                            <a class="socialicons" href="" title="Login with Twitter"><img src="../assets/images/svg/twitter.png"></a>
+                                            <a class="socialicons" href="" title="Login with Linkedin"><img src="../assets/images/svg/linkedin.png"></a>
+                                            </div> -->
+                                            <!-- <a class="lfgooglelbtn" href="https://www.eoovbook.com/auth/google">
+                                                <img src="../assets/images/svg/google.svg">
+                                                Login with Google</a>
+                                            
+                                            <a class="lfgooglelbtn" href="https://www.eoovbook.com/auth/google">
+                                                    <img src="../assets/images/svg/facebook.svg">
+                                                    Login with Facebook</a>
+                                            <a class="lfgooglelbtn" href="https://www.eoovbook.com/auth/google">
+                                                        <img src="../assets/images/svg/twitter.png">
+                                                        Login with Facebook</a>
+                                            <a class="lfgooglelbtn" href="https://www.eoovbook.com/auth/google">
+                                                            <img src="../assets/images/svg/linkedin.png">
+                                                            Login with Facebook</a> -->
+
+                                            <div class="lfalsignin">Already on EOOVBOOK? <a class=""
+                                                    [routerLink]="['/login']">Sign in</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="bottombar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span></span>
+                        <span class="copyright">© EOOVBOOK 2022. All rights reserved.</span>
+                    </div>                                        
+                    <div class="col-md-6">
+                        <a class="footerlinks" routerLink="/privacy-policy">Privacy Policy</a>
+                        <a class="footerlinks" routerLink="/terms-of-use">Terms & conditions</a>
+                        <a class="footerlinks" routerLink="/">Support / Help me</a>
+                        <a class="footerlinks" routerLink="/">Faqs</a>
+                        <a class="footerlinks" routerLink="/">Jobs</a>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+
+
+
+    
+
+    <script src="js/main.min.js"></script>
+    <script src="js/script.js"></script>
+
+

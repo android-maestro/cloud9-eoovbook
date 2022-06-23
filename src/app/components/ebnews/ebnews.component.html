@@ -1,0 +1,253 @@
+<app-navbar></app-navbar>
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">			
+                    <div class="mt-40">&nbsp;</div>				
+                    <div class="row merged20" id="page-contents">							
+                        <div class="col-lg-3">
+                    <aside class="sidebar static left">
+                        <div class="widget widgetcustom">
+                            <h5 class="refinetitle">Filters</h5>
+                            <div class="padd10">
+                            <div class="title-block">
+                                <form method="post">
+                                    <input type="text" placeholder="Search News" #nameText (keyup)="search(nameText.value)">
+                                    <button type="submit"  class="lgajbtn"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                            </div>
+                            <div class="mt-4"></div>
+                            <form class="c-form search" method="post">									
+                                <div class="select-options">
+                                    <select class="form-control" (change)="sorting()" [(ngModel)]="selectedOption" name="sorting">
+                                        <option selected disabled>Sort by</option>
+                                        <!-- <option selected value="all">See All</option> -->
+                                        <option value="new">Newest</option>
+                                        <option value="old">oldest</option>
+                                        <!-- <option value="order">A to Z</option> -->
+                                    </select>
+                                </div>
+                                <div class="mt-2"></div>
+                                <div>	
+                                    <h5 class="categorytitle">Categories</h5>									
+                                    <div class="form-radio">
+                                        
+                                        
+                                          <!-- <div class="radio rdiobtncustom"  >
+                                            <label class="lblcustom">
+                                            
+                                                <input type="radio"  [(ngModel)]="categoryId"  (change)="newsByCat()"  name="radio"><i class="check-box"></i>All Categories
+                                              </label>
+                                          </div> -->
+                                        
+                                      <div class="radio rdiobtncustom"  *ngFor="let value of categories;">
+                                        <label class="lblcustom">
+                                            
+                                          <input type="radio"  [(ngModel)]="categoryId" (change)="newsByCat(value)" name="radio" value="{{value.DataValue}}"><i class="check-box"></i>{{value.DataText}}
+                                        </label>
+                                      </div>
+                                     
+                                    </div>
+                                </div>
+                            </form>	
+                        </div>
+                    </aside>
+                </div>
+                        <div class="col-lg-9" *ngIf="!data.length"><div class="text-center noRequest">
+                            <img src="../assets/images/resources/noNews.svg" class="img-responsive imgerror" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                        </div>
+                        <h3 class="errortext text-center">No News for selected Category!!</h3>
+                    </div>
+                        <div class="col-lg-9" *ngIf="data.length > 0">
+                                                                                            
+                            <div class="row merged20" *ngIf="!filteredItem.length"
+                            infiniteScroll
+                            [infiniteScrollDistance]="2"
+                            [infiniteScrollThrottle]="150"
+                            (scrolled)="onScroll()"
+                            >
+                                
+                                <div class="col-lg-4 col-md-4"  *ngFor="let item of data">
+                                    <div class="central-meta centralmetacustom">
+                                        <div class="blog-post">
+                                            <div class="friend-info">																										
+                                                <div class="post-meta postmetamarg0" >
+                                                    <figure>
+                                                        <a class="ebnewsimages" title="" (click)="singleNews(item.Id)">
+                                                            <img alt="" src="{{item.ImageName}}">	
+                                                        </a>															
+                                                    </figure>	
+                                                    <div class="newspadd10">										
+                                                    <div class="description">															
+                                                        <a data-ripple="" class="learnmore" href="javascript:void();">{{item.NewsCategory}}</a>														
+                                                        <h2 class="line-clamp" (click)="singleNews(item.Id)">{{item.NewsHeadline}}</h2>
+                                                        <!-- <div class="circular_image">
+                                                            <img style="width:25px; height:25px; object-fit: cover;" src="{{item.ProfileImage}}">
+                                                        </div> -->
+                                                        
+                                                        <div class="rdmrtxtimebtn">
+                                                        <a class="readmrtxt" (click)="singleNews(item.Id)">Read more</a><span class="timingsglobe"><i class="fa fa-globe"></i> {{item.PulishDays}} </span>
+                                                        </div>
+                                                        <a href="javascript:void(0);" [routerLink]="['/profileDetail/'+  item.Email + '/' + item.UserId]" class="authrtext"><b>News By:</b> {{item.AuthorName}}</a>
+                                                    </div>
+                                                </div>	
+                                                    <div class="we-video-info">
+                                                            
+                                                        <ul>
+                                                            <li (click)="singleNews(item.Id)">
+                                                                <span title="views" data-toggle="tooltip" class="views">
+                                                                    <i class="fa fa-eye"></i>
+                                                                    <ins>{{item.ViewsCount}}</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li (click)="singleNews(item.Id)">
+                                                                <span title="like" data-toggle="tooltip" class="like">
+                                                                    <i class="fa fa-thumbs-o-up"></i>
+                                                                    <ins>{{item.LikesCount}}</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li (click)="commentClickNews(item.Id)">
+                                                                <span title="Comments" data-toggle="tooltip" class="comment">
+                                                                    <i class="ti-comments"></i>
+                                                                    <ins>{{item.CommentCount}}</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li (click)="copyMessage(item.Id)">
+                                                                <span title="Copy News link" data-toggle="tooltip" class="Copy">
+                                                                    <i class="fa fa-copy"></i>
+                                                                </span>
+                                                            </li>
+                                                            <li>																	
+                                                                    <span class="more-post-optns"><i class="fa fa-share-alt"></i>
+                                                                        <ul>
+                                                                            <li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/newsdetail?newsId={{item.Id}}" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+                                                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/newsdetail?newsId={{item.Id}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+                                                                            <li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{item.NewsHeadline}}&url={{baseUrl}}/newsdetail?newsId={{item.Id}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+                                                                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{item.Id}}&title={{item.NewsHeadline}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li>  
+
+                                                                                                                                      
+                                                                        </ul>
+                                                                    </span>																	
+                                                            </li>
+                                                            
+                                                            <!-- <button (click)="copyMessage(item.Id)" value="click to copy" >Copy this</button> -->
+                                                            
+                                                            
+                                                        </ul>
+                                                        
+                                                    </div>
+                                                
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- spinner -->
+                            <div class="row pb-5">
+                                <div class="col-md-12 p-5">
+                                <ngx-spinner>
+                                </ngx-spinner>
+                              </div>
+                            </div>
+
+                            <div *ngIf = "!notEmptyPost" class="row pb-5">
+                                <div class="col-md-12 d-flex justify-content-center">
+                                  <div class="text-muted h6 alert alert-secondary p-2">No more News to Show</div>
+                                </div>
+                                </div>
+
+                            <!-- <div *ngIf="filteredItem.length==0" class="row merged20 nofriend">
+                                <div class="text-center noRequest">
+                                    <img src="../assets/images/resources/noNews.svg" class="img-responsive imgerror" style="height:180px; border-bottom: 4px solid #3F3D56;">
+                                </div>
+                                <h3 class="errortext text-center">No News for selected Category!!</h3>
+                            </div> -->
+                            <div class="row merged20" *ngIf="filteredItem.length>0">
+                                
+                                    <div class="col-lg-4 col-md-4"  *ngFor="let item of filteredItem">
+                                    <div class="central-meta centralmetacustom">
+                                        <div class="blog-post">
+                                            <div class="friend-info">																										
+                                                <div class="post-meta postmetamarg0" >
+                                                    <figure>
+                                                        <a class="ebnewsimages" title="" (click)="singleNews(item.Id)">
+                                                            <img alt="" src="{{item.ImageName}}">	
+                                                        </a>															
+                                                    </figure>	
+                                                    <div class="newspadd10">										
+                                                    <div class="description">															
+                                                        <a data-ripple="" class="learnmore" href="javascript:void();">{{item.NewsCategory}}</a>														
+                                                        <h2 class="line-clamp" (click)="singleNews(item.Id)">{{item.NewsHeadline}}</h2>
+                                                        <div class="rdmrtxtimebtn">
+                                                        <a class="readmrtxt" (click)="singleNews(item.Id)">Read more</a><span class="timingsglobe"><i class="fa fa-globe"></i> {{item.PulishDays}} </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="we-video-info" id="newsView">
+                                                        <ul>
+                                                            <li (click)="singleNews(item.Id)" >
+                                                                <span title="views" data-toggle="tooltip" class="views">
+                                                                    <i class="fa fa-eye"></i>
+                                                                    <ins>{{item.ViewsCount}}</ins>
+                                                                </span>
+                                                            </li>
+                                                            
+                                                            <li (click)="singleNews(item.Id)">
+                                                                <span title="like" data-toggle="tooltip" class="like">
+                                                                    <i class="fa fa-thumbs-o-up"></i>
+                                                                    <ins>{{item.LikesCount}}</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li (click)="singleNews(item.Id)">
+                                                                <span title="Comments" data-toggle="tooltip" class="comment">
+                                                                    <i class="ti-comments"></i>
+                                                                    <ins>{{item.CommentCount}}</ins>
+                                                                </span>
+                                                            </li>
+                                                            <li (click)="copyMessage(item.Id)">
+                                                                <span title="link" data-toggle="tooltip" class="Copy">
+                                                                    <i class="fa fa-copy"></i>
+                                                                </span>
+                                                            </li>
+                                                            <li>																	
+                                                                    <span class="more-post-optns"><i class="fa fa-share-alt"></i>
+                                                                        <ul>
+                                                                            <li><a href="https://web.whatsapp.com/send?text={{baseUrl}}/newsdetail?newsId={{item.Id}}" data-action="share/whatsapp/share"><img src="../assets/images/svg/whatsapp.svg">Whatsapp</a></li>
+                                                                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{baseUrl}}/newsdetail?newsId={{item.Id}}" target="_blank" ><img src="../assets/images/svg/facebook.svg">Facebook</a></li>  	
+                                                                            <li><a href="https://twitter.com/intent/tweet?source=tweetbutton&text={{item.NewsHeadline}}&url={{baseUrl}}/newsdetail?newsId={{item.Id}}" target="_blank"><img src="../assets/images/svg/twitter.svg">Twitter</a></li>  
+                                                                            <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{baseUrl}}/newsdetail?newsId={{item.Id}}&title={{item.NewsHeadline}}&summary=Some%20Summary&source=Eoovbook" target="_blank"><img src="../assets/images/svg/linkedin.svg">Linkedin</a></li> 
+                                                                                                                                      
+                                                                        </ul>
+                                                                    </span>																	
+                                                            </li>
+                                                            
+                                                            
+                                                        </ul>
+                                                    </div>
+                                                </div>	
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            
+                            </div>
+
+
+                            <div class="lodmore">
+                                <span>Viewing 1-6 of 44 posts</span>
+                                <button class="btn-view btn-load-more"></button>
+                            </div>
+                        </div><!-- centerl meta -->
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </div>	
+</section>

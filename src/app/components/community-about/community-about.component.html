@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+
+            <div class="row merged20">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row merged20" id="page-contents">
+
+                                <app-community-navbar></app-community-navbar>
+
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3">
+                                            <aside class="sidebar">
+                                                <div class="central-meta stick-widget">
+                                                    <span class="create-post">Community Info </span>
+                                                    <div class="personal-head">
+                                                        <span class="f-title"><i class="fa fa-users"></i> Community Name :</span>
+                                                        <p>{{data.GroupName}}</p>
+                                                        <span class="f-title"><i class="fa fa-user"></i> About :</span>
+                                                        <p>
+                                                           {{data.GroupDescription}}
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-calendar"></i> Created On:</span>
+                                                        <p>
+                                                            {{data.CreatedOn | date : 'medium'}}
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-link"></i> URL:</span>
+                                                        <p>
+                                                            htttps://www.eoovbook.com
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-bars"></i> Category :</span>
+                                                        <p>
+                                                           {{data.Category}}
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-male"></i> Guidelines:</span>
+                                                        <p>
+                                                            {{data.GuideLines}}
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-globe"></i> Type:</span>
+                                                        <p *ngIf="data.IsPublic==false">
+                                                            Private
+                                                        </p>
+                                                        <p *ngIf="data.IsPublic==true">
+                                                            Public
+                                                        </p>
+                                                        <span class="f-title"><i class="fa fa-user-plus"></i> Member count:</span>
+                                                        <p>
+                                                            {{data.MemberCount}} Member
+                                                        </p>
+                                                                                     
+                                                    </div>
+                                                    
+    
+                                                </div>
+                                                </aside>
+                                           
+                                           
+                                        </div>
+                                        
+                                    <div class="col-lg-9">
+                                        <aside class="sidebar static right">
+                                            
+                                                <div class="central-meta item">
+                                                    <span class="create-post">Community Members<a title="" href="javascript:void(0);" routerLink="/friend-request">See All</a></span>
+                                                    <div>     
+                                                        <ul class="friendslistingcustom">
+                                                            <li *ngFor="let item of members" class=""><img src="{{item.ProfileImage}}"><br/><a> {{item.FullName}}</a></li>
+                                                        </ul>   
+                                                    </div>
+                                                    
+                                                </div>
+                                            
+                                        </aside>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+           
+        </div>
+    </div>
+</section>
